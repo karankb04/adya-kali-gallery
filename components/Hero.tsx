@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { KaliImage } from "@/types/image";
-import { r2url } from "@/lib/r2";
+import RImage from "./RImage";
 
 interface HeroProps {
   images: KaliImage[];
@@ -168,8 +168,15 @@ export default function Hero({ images, onOpen }: HeroProps) {
                 aria-hidden="true"
                 onClick={() => onOpen(p)}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={r2url(p.r2Key)} alt="" />
+                <RImage
+                  r2Key={p.r2Key}
+                  alt=""
+                  width={p.width}
+                  height={p.height}
+                  dominantColor={p.dominantColor}
+                  sizes="(max-width:480px) 33vw, (max-width:1100px) 20vw, 14vw"
+                  style={{ width: "100%", height: "auto" }}
+                />
               </button>
             ))}
           </div>

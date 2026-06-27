@@ -1,8 +1,8 @@
 "use client";
 import { useEffect } from "react";
 import { KaliImage } from "@/types/image";
-import { r2url } from "@/lib/r2";
 import { downloadImage } from "@/lib/download";
+import RImage from "./RImage";
 
 interface DarshanModalProps {
   image: KaliImage | null;
@@ -41,11 +41,23 @@ export default function DarshanModal({ image, onClose }: DarshanModalProps) {
       >
         <div className="darshan">
           <div className="frame">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={image ? r2url(image.r2Key) : ""}
-              alt={image ? `${image.transliteration} — ${image.form}` : ""}
-            />
+            {image && (
+              <RImage
+                r2Key={image.r2Key}
+                alt={image.altText ?? `${image.transliteration} — ${image.form}`}
+                width={image.width}
+                height={image.height}
+                dominantColor={image.dominantColor}
+                sizes="(max-width:760px) 92vw, 480px"
+                priority
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: "78vh",
+                  objectFit: "contain",
+                }}
+              />
+            )}
           </div>
           <div className="meta">
             <div className="d-deva">{image?.nameDevanagari}</div>

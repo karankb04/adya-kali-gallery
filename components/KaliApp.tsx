@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { KaliImage } from "@/types/image";
-import { r2url } from "@/lib/r2";
 import { downloadImage } from "@/lib/download";
 import Hero from "./Hero";
 import DarshanModal from "./DarshanModal";
+import RImage from "./RImage";
 
 interface KaliAppProps {
   images: KaliImage[];
@@ -157,11 +157,14 @@ export default function KaliApp({ images }: KaliAppProps) {
                 aria-label={`Behold ${p.transliteration}`}
                 onClick={() => setSelected(p)}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={r2url(p.r2Key)}
-                  alt={`${p.transliteration} — ${p.form}`}
-                  loading="lazy"
+                <RImage
+                  r2Key={p.r2Key}
+                  alt={p.altText ?? `${p.transliteration} — ${p.form}`}
+                  width={p.width}
+                  height={p.height}
+                  dominantColor={p.dominantColor}
+                  sizes="(max-width:560px) 50vw, (max-width:1320px) 25vw, 320px"
+                  style={{ width: "100%", height: "auto" }}
                 />
                 {p.isAI && <span className="aitag">✦ AI</span>}
                 <span
