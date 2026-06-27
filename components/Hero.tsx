@@ -173,7 +173,8 @@ export default function Hero({ images, onOpen }: HeroProps) {
                   alt=""
                   width={p.width}
                   height={p.height}
-                  dominantColor={p.dominantColor}
+                  dominantColor="#1c0e07"
+                  quality={55}
                   sizes="(max-width:480px) 33vw, (max-width:1100px) 20vw, 14vw"
                   style={{ width: "100%", height: "auto" }}
                 />

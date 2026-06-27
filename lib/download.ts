@@ -1,5 +1,4 @@
 import { KaliImage } from "@/types/image";
-import { r2url } from "./r2";
 
 function slugify(s: string): string {
   return (s || "adya-kali")
@@ -20,28 +19,18 @@ export async function downloadImage(p: KaliImage): Promise<void> {
     base = base + "-adya-kali";
   }
   const filename = `${base}.${extFromKey(p.r2Key)}`;
-  const url = r2url(p.r2Key);
 
-  try {
-    const res = await fetch(url, { mode: "cors" });
-    const blob = await res.blob();
-    const objUrl = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = objUrl;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(objUrl);
-  } catch {
-    // Fallback (e.g. CORS not configured): open in a new tab
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.target = "_blank";
-    a.rel = "noopener";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  }
+  // Stream through our same-origin proxy so the browser actually downloads the
+  // file (R2's public bucket has no CORS headers, so a direct cross-origin
+  // link is opened in a new tab instead of downloaded).
+  const href =
+    `/api/download?key=${encodeURIComponent(p.r2Key)}` +
+    `&name=${encodeURIComponent(filename)}`;
+
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
