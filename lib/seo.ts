@@ -3,7 +3,7 @@ import { r2url } from "./r2";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://adya-kali-gallery.vercel.app";
+  "https://adya-kali-gallery-gg4i.vercel.app";
 
 export const SITE_NAME = "Maa Adya Kali Gallery";
 
