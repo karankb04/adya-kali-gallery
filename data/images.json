@@ -1,0 +1,52 @@
+[
+  {
+    "id": "kali-001",
+    "nameDevanagari": "आद्या काली",
+    "transliteration": "Ādyā Kālī",
+    "form": "Adya Kali",
+    "teachingCaption": "She who existed before time, the primordial darkness from which all light is born.",
+    "r2Key": "placeholder-kali-001.jpg",
+    "isAI": false,
+    "aspectRatio": 0.75
+  },
+  {
+    "id": "kali-002",
+    "nameDevanagari": "दक्षिण काली",
+    "transliteration": "Dakṣiṇa Kālī",
+    "form": "Dakshina Kali",
+    "teachingCaption": "The benevolent south-facing form — she who grants liberation with her right hand extended.",
+    "r2Key": "placeholder-kali-002.jpg",
+    "isAI": false,
+    "aspectRatio": 0.8
+  },
+  {
+    "id": "kali-003",
+    "nameDevanagari": "भद्र काली",
+    "transliteration": "Bhadra Kālī",
+    "form": "Bhadra Kali",
+    "teachingCaption": "The auspicious one, fierce in protection yet gentle as a mother.",
+    "r2Key": "placeholder-kali-003.jpg",
+    "isAI": true,
+    "aspectRatio": 1.0
+  },
+  {
+    "id": "kali-004",
+    "nameDevanagari": "श्मशान काली",
+    "transliteration": "Śmaśāna Kālī",
+    "form": "Shmashana Kali",
+    "teachingCaption": "The cremation-ground goddess — she who dissolves all that is impermanent.",
+    "r2Key": "placeholder-kali-004.jpg",
+    "isAI": false,
+    "aspectRatio": 0.65
+  },
+  {
+    "id": "kali-005",
+    "nameDevanagari": "महाकाली",
+    "transliteration": "Mahākālī",
+    "form": "Maha Kali",
+    "teachingCaption": "The great time itself — she who swallows all universes at the end of each cycle.",
+    "r2Key": "placeholder-kali-005.jpg",
+    "isAI": true,
+    "aspectRatio": 0.9
+  }
+]
