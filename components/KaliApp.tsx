@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import { KaliImage } from "@/types/image";
 import { r2url } from "@/lib/r2";
 import { downloadImage } from "@/lib/download";
@@ -69,7 +68,9 @@ export default function KaliApp({ images }: KaliAppProps) {
       {/* ---------- top bar ---------- */}
       <header className={`bar${solid ? " solid" : ""}`} id="bar">
         <div className="mark">
-          <Image src="/logo.png" alt="" width={38} height={38} priority />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Maa Adya Kali Gallery logo" />
+          Maa Adya Kali Gallery
         </div>
         <nav className="navlinks">
           <a
@@ -94,7 +95,7 @@ export default function KaliApp({ images }: KaliAppProps) {
             </a>
           ))}
         </nav>
-        <div style={{ width: 38 }} />
+        <div style={{ width: 19 }} />
       </header>
 
       {/* ---------- HERO ---------- */}
