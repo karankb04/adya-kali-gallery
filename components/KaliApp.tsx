@@ -67,11 +67,11 @@ export default function KaliApp({ images }: KaliAppProps) {
     <>
       {/* ---------- top bar ---------- */}
       <header className={`bar${solid ? " solid" : ""}`} id="bar">
-        <div className="mark">
+        <a href="/" className="mark" style={{ textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="Maa Adya Kali Gallery logo" />
           Maa Adya Kali Gallery
-        </div>
+        </a>
         <nav className="navlinks">
           <a
             onClick={(e) => {

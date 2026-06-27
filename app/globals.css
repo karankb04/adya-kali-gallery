@@ -26,7 +26,7 @@ header.bar.solid{background:linear-gradient(180deg, rgba(243,238,235,0.95), rgba
 header.bar.solid .mark{color:#231712}
 .mark img{width:32px;height:32px;object-fit:contain;border-radius:4px}
 .mark .dot{color:var(--red)}
-.navlinks{display:flex;gap:1.5rem;font-size:.78rem;font-weight:500;letter-spacing:.01em;color:rgba(251,242,228,.85);transition:color .4s}
+.navlinks{display:flex;gap:1.5rem;font-size:1rem;font-weight:600;letter-spacing:.01em;color:rgba(251,242,228,.85);transition:color .4s}
 header.bar.solid .navlinks{color:#7c6a60}
 .navlinks a{color:inherit;text-decoration:none;transition:.25s;cursor:pointer}
 .navlinks a:hover{color:var(--rose)}
