@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { KaliImage } from "@/types/image";
 import DarshanModal from "./DarshanModal";
 
-const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL ?? "";
+import { r2url } from "@/lib/r2";
 
 interface GalleryProps {
   images: KaliImage[];
@@ -123,9 +123,7 @@ export default function Gallery({ images }: GalleryProps) {
         ) : (
           <div className="columns-masonry">
             {filtered.map((img) => {
-              const src = R2_BASE
-                ? `${R2_BASE}/${img.r2Key}`
-                : `https://placehold.co/400x${Math.round(400 / (img.aspectRatio ?? 0.8))}?text=${encodeURIComponent(img.transliteration)}`;
+              const src = r2url(img.r2Key);
               return (
                 <button
                   key={img.id}

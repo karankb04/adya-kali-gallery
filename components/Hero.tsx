@@ -1,7 +1,7 @@
 "use client";
 import { KaliImage } from "@/types/image";
 
-const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL ?? "";
+import { r2url } from "@/lib/r2";
 
 interface HeroProps {
   images: KaliImage[];
@@ -33,7 +33,7 @@ function WallColumn({
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={R2_BASE ? `${R2_BASE}/${img.r2Key}` : `https://placehold.co/400x${Math.round(400/( img.aspectRatio??0.8))}?text=Kali`}
+            src={r2url(img.r2Key)}
             alt={img.transliteration}
             className="w-full block transition-all duration-500 hover:scale-105 hover:saturate-[1.2] saturate-[1.05]"
             loading="lazy"

@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { KaliImage } from "@/types/image";
 
-const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL ?? "";
+import { r2url } from "@/lib/r2";
 
 interface DarshanModalProps {
   image: KaliImage | null;
@@ -23,9 +23,7 @@ export default function DarshanModal({ image, onClose }: DarshanModalProps) {
 
   if (!image) return null;
 
-  const imgSrc = R2_BASE
-    ? `${R2_BASE}/${image.r2Key}`
-    : `https://placehold.co/600x800?text=${encodeURIComponent(image.transliteration)}`;
+  const imgSrc = r2url(image.r2Key);
 
   return (
     <div

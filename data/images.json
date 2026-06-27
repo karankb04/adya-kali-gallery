@@ -4,49 +4,197 @@
     "nameDevanagari": "आद्या काली",
     "transliteration": "Ādyā Kālī",
     "form": "Adya Kali",
-    "teachingCaption": "She who existed before time, the primordial darkness from which all light is born.",
-    "r2Key": "placeholder-kali-001.jpg",
-    "isAI": false,
-    "aspectRatio": 0.75
+    "teachingCaption": "She who existed before time — the primordial darkness from which all light is born.",
+    "r2Key": "64b871d7-e7e0-410d-9213-3f35f2e474a5 (1).jpeg",
+    "isAI": true
   },
   {
     "id": "kali-002",
+    "nameDevanagari": "आद्या काली",
+    "transliteration": "Ādyā Kālī",
+    "form": "Adya Kali",
+    "teachingCaption": "The formless one given form — radiant against the void.",
+    "r2Key": "64b871d7-e7e0-410d-9213-3f35f2e474a5-Photoroom.png",
+    "isAI": true
+  },
+  {
+    "id": "kali-003",
     "nameDevanagari": "दक्षिण काली",
     "transliteration": "Dakṣiṇa Kālī",
     "form": "Dakshina Kali",
     "teachingCaption": "The benevolent south-facing form — she who grants liberation with her right hand extended.",
-    "r2Key": "placeholder-kali-002.jpg",
-    "isAI": false,
-    "aspectRatio": 0.8
-  },
-  {
-    "id": "kali-003",
-    "nameDevanagari": "भद्र काली",
-    "transliteration": "Bhadra Kālī",
-    "form": "Bhadra Kali",
-    "teachingCaption": "The auspicious one, fierce in protection yet gentle as a mother.",
-    "r2Key": "placeholder-kali-003.jpg",
-    "isAI": true,
-    "aspectRatio": 1.0
+    "r2Key": "A0BB96A6-5C94-4808-9C55-C0C1BB8CAEE6.jpg",
+    "isAI": false
   },
   {
     "id": "kali-004",
-    "nameDevanagari": "श्मशान काली",
-    "transliteration": "Śmaśāna Kālī",
-    "form": "Shmashana Kali",
-    "teachingCaption": "The cremation-ground goddess — she who dissolves all that is impermanent.",
-    "r2Key": "placeholder-kali-004.jpg",
-    "isAI": false,
-    "aspectRatio": 0.65
-  },
-  {
-    "id": "kali-005",
     "nameDevanagari": "महाकाली",
     "transliteration": "Mahākālī",
     "form": "Maha Kali",
     "teachingCaption": "The great time itself — she who swallows all universes at the end of each cycle.",
-    "r2Key": "placeholder-kali-005.jpg",
-    "isAI": true,
-    "aspectRatio": 0.9
+    "r2Key": "IMG_3734.PNG",
+    "isAI": false
+  },
+  {
+    "id": "kali-005",
+    "nameDevanagari": "भद्र काली",
+    "transliteration": "Bhadra Kālī",
+    "form": "Bhadra Kali",
+    "teachingCaption": "The auspicious one — fierce in protection yet gentle as a mother.",
+    "r2Key": "IMG_3802.PNG",
+    "isAI": false
+  },
+  {
+    "id": "kali-006",
+    "nameDevanagari": "काली माँ",
+    "transliteration": "Kālī Mā",
+    "form": "Kali Ma",
+    "teachingCaption": "The Mother who loves without condition, who destroys only to create anew.",
+    "r2Key": "SaveClip.App_618911727_17887876374419895_5214875700262540593_n.jpg",
+    "isAI": false
+  },
+  {
+    "id": "kali-007",
+    "nameDevanagari": "काली माँ",
+    "transliteration": "Kālī Mā",
+    "form": "Kali Ma",
+    "teachingCaption": "She dances on Shiva — not in victory over him, but as shakti animating pure consciousness.",
+    "r2Key": "SaveClip.App_627015002_17889990075419895_2019019076339287363_n.jpg",
+    "isAI": false
+  },
+  {
+    "id": "kali-008",
+    "nameDevanagari": "श्यामा काली",
+    "transliteration": "Śyāmā Kālī",
+    "form": "Shyama Kali",
+    "teachingCaption": "Dark as the night sky, beautiful as the deep ocean — Shyama, the beloved dark one.",
+    "r2Key": "WhatsApp Image 2026-04-14 at 17.37.43.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-009",
+    "nameDevanagari": "श्यामा काली",
+    "transliteration": "Śyāmā Kālī",
+    "form": "Shyama Kali",
+    "teachingCaption": "In her darkness, no shadow can hide — she is the light that illuminates from within.",
+    "r2Key": "WhatsApp Image 2026-04-14 at 17.59.57.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-010",
+    "nameDevanagari": "रक्षा काली",
+    "transliteration": "Rakṣā Kālī",
+    "form": "Raksha Kali",
+    "teachingCaption": "She who protects her devotees with ferocity that knows no equal.",
+    "r2Key": "WhatsApp Image 2026-06-21 at 16.01.25.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-011",
+    "nameDevanagari": "महाकाली",
+    "transliteration": "Mahākālī",
+    "form": "Maha Kali",
+    "teachingCaption": "Beyond the ten directions, beyond all time — Mahakali, the supreme power.",
+    "r2Key": "WhatsApp Image 2026-06-22 at 05.28.26.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-012",
+    "nameDevanagari": "दक्षिण काली",
+    "transliteration": "Dakṣiṇa Kālī",
+    "form": "Dakshina Kali",
+    "teachingCaption": "Four-armed, garlanded with skulls — each skull a letter of the alphabet she has transcended.",
+    "r2Key": "WhatsApp Image 2026-06-22 at 13.41.11.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-013",
+    "nameDevanagari": "भद्र काली",
+    "transliteration": "Bhadra Kālī",
+    "form": "Bhadra Kali",
+    "teachingCaption": "Her lotus feet — more merciful than a thousand mothers combined.",
+    "r2Key": "WhatsApp Image 2026-06-22 at 18.38.42.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-014",
+    "nameDevanagari": "श्मशान काली",
+    "transliteration": "Śmaśāna Kālī",
+    "form": "Shmashana Kali",
+    "teachingCaption": "The cremation-ground goddess — she who dissolves all that is impermanent.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 05.43.04.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-015",
+    "nameDevanagari": "तारा काली",
+    "transliteration": "Tārā Kālī",
+    "form": "Tara Kali",
+    "teachingCaption": "Star of the night — she who guides seekers across the ocean of existence.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 06.37.14.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-016",
+    "nameDevanagari": "आद्या काली",
+    "transliteration": "Ādyā Kālī",
+    "form": "Adya Kali",
+    "teachingCaption": "The first — before creation there was only her breath moving over the void.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 07.42.56.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-017",
+    "nameDevanagari": "काली माँ",
+    "transliteration": "Kālī Mā",
+    "form": "Kali Ma",
+    "teachingCaption": "She holds the severed head to remind us: the ego must die for the self to live.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 08.28.42.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-018",
+    "nameDevanagari": "रक्त काली",
+    "transliteration": "Rakta Kālī",
+    "form": "Rakta Kali",
+    "teachingCaption": "The crimson one — passionate, fierce, and overflowing with the life-force of all beings.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 08.51.31.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-019",
+    "nameDevanagari": "श्यामा काली",
+    "transliteration": "Śyāmā Kālī",
+    "form": "Shyama Kali",
+    "teachingCaption": "The poet Ramprasad called her Mother — and she answered in the language of the heart.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 09.23.54.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-020",
+    "nameDevanagari": "महाकाली",
+    "transliteration": "Mahākālī",
+    "form": "Maha Kali",
+    "teachingCaption": "Ten-armed, ten-faced — Mahakali who encompasses all directions of time and space.",
+    "r2Key": "WhatsApp Image 2026-06-24 at 09.58.33.jpeg",
+    "isAI": false
+  },
+  {
+    "id": "kali-021",
+    "nameDevanagari": "आद्या काली",
+    "transliteration": "Ādyā Kālī",
+    "form": "Adya Kali",
+    "teachingCaption": "She who is called by a thousand names — yet remains beyond all naming.",
+    "r2Key": "bfb699e5-84d7-4561-8f75-aa43632b0fdd.jpeg",
+    "isAI": true
+  },
+  {
+    "id": "kali-022",
+    "nameDevanagari": "दक्षिण काली",
+    "transliteration": "Dakṣiṇa Kālī",
+    "form": "Dakshina Kali",
+    "teachingCaption": "Standing on the heart of Shiva — she is the power without which stillness itself cannot exist.",
+    "r2Key": "e78e978e-1808-4646-9b67-f43561ac001b.jpeg",
+    "isAI": true
   }
 ]
