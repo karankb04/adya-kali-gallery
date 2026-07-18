@@ -2,16 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Cinzel+Decorative:wght@700;900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Cinzel+Decorative:wght@700;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
 
 :root{
   --bg:#f3eeeb; --bg-soft:#eae2dd; --paper:#ffffff;
   --red:#db1f24; --red-deep:#9c0f14; --sindoor:#f0411c; --rose:#e23b34;
   --ink:#231712; --ink-soft:#7c6a60; --cream:#fbf2e4;
+  --gold:#c08a2e; --gold-soft:#d9a23e;
   --line:rgba(199,40,44,0.16);
   --disp:'Bricolage Grotesque',system-ui,sans-serif;
   --body:'Hanken Grotesk',system-ui,sans-serif;
   --deva:'Mukta','Hanken Grotesk',sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --read:'Newsreader',Georgia,serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -155,10 +158,174 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 .mclose:hover{border-color:var(--rose);color:var(--rose);transform:rotate(90deg)}
 @media(max-width:760px){.darshan{grid-template-columns:1fr;gap:1.2rem;max-width:440px}.darshan .frame img{max-height:50vh}}
 
-footer{text-align:center;padding:5rem 1.4rem 4rem;margin-top:3.5rem;border-top:1px solid var(--line)}
-footer .fdeva{font-family:var(--deva);color:var(--red);font-size:1.6rem;font-weight:600;margin-bottom:.8rem}
-footer .fline{font-family:var(--disp);font-weight:700;color:var(--ink);font-size:1.1rem;letter-spacing:-.01em;margin-bottom:.5rem}
-footer .fsub{color:var(--ink-soft);font-size:.78rem}
-footer .cred{margin-top:1.3rem;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#b09a86}
+footer{text-align:center;padding:4.5rem 1.4rem 4rem;margin-top:3.5rem;border-top:1px solid var(--line)}
+footer .ornament{margin-bottom:1.6rem}
+footer .fdeva{font-family:var(--deva);color:var(--red);font-size:1.7rem;font-weight:600;margin-bottom:.8rem}
+footer .fline{font-family:var(--disp);font-weight:700;color:var(--ink);font-size:1.15rem;letter-spacing:-.01em;margin-bottom:.5rem}
+footer .fsub{color:var(--ink-soft);font-size:.88rem}
+footer .fnav{margin-top:1.4rem;display:flex;justify-content:center;align-items:center;gap:.7rem;font-size:.92rem;font-weight:600}
+footer .fnav a{color:var(--ink-soft);text-decoration:none;transition:color .25s}
+footer .fnav a:hover{color:var(--red)}
+footer .fdot{color:var(--gold)}
+footer .cred{margin-top:1.3rem;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#b09a86}
 
-@media(prefers-reduced-motion:reduce){.col{animation:none!important}*{transition-duration:.2s!important}}
+/* ---------- site-wide craft ---------- */
+::selection{background:rgba(219,31,36,.85);color:#fbf2e4}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px}
+header.bar.page{background:linear-gradient(180deg, rgba(243,238,235,0.97), rgba(243,238,235,0.88));backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header.bar.page .mark{color:#231712}
+header.bar.page .navlinks{color:#7c6a60}
+header.bar.page .navlinks a:hover{color:var(--red)}
+.navlinks .nav-katha{position:relative;color:var(--red);font-weight:700}
+header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
+.navlinks .nav-katha::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--gold-soft),var(--red));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.navlinks .nav-katha:hover::after{transform:scaleX(1)}
+
+/* gold devotional divider */
+.ornament{display:flex;align-items:center;justify-content:center;gap:.9rem;color:var(--gold)}
+.ornament .orn-rule{display:block;width:min(120px,22vw);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(192,138,46,.65));}
+.ornament .orn-rule:last-child{background:linear-gradient(90deg,rgba(192,138,46,.65),transparent)}
+.lib-orn{margin-bottom:.9rem}
+
+/* cards rise softly into place */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.card.rise{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+
+/* darshan modal prev/next */
+.mnav{position:fixed;top:50%;transform:translateY(-50%);z-index:91;width:46px;height:46px;border-radius:50%;
+  display:none;place-items:center;cursor:pointer;background:rgba(20,8,4,.4);backdrop-filter:blur(4px);
+  border:1px solid rgba(255,170,140,.35);color:var(--cream);transition:.3s}
+.mnav.show{display:grid}
+.mnav:hover{border-color:var(--rose);color:var(--rose);background:rgba(30,10,6,.6)}
+.mnav svg{width:20px;height:20px}
+.mprev{left:1.2rem}
+.mnext{right:1.2rem}
+@media(max-width:760px){.mprev{left:.4rem}.mnext{right:.4rem}.mnav{width:40px;height:40px}}
+
+/* ======================================================================
+   KATHA — the journal
+   ====================================================================== */
+.katha-page{min-height:60vh}
+
+/* --- index hero --- */
+.katha-hero{padding:8.5rem 0 3.4rem;text-align:center;position:relative;
+  background:
+    radial-gradient(60% 130% at 50% -30%, rgba(219,31,36,.10), transparent 70%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg))}
+.katha-hero-deva{font-family:var(--deva);color:var(--red);font-size:1.35rem;font-weight:600;letter-spacing:.14em;margin-bottom:.6rem}
+.katha-hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.8rem,7vw,4.6rem);color:var(--ink);
+  letter-spacing:-.015em;line-height:1.02}
+.katha-hero-dek{margin:1.1rem auto 0;max-width:52ch;color:var(--ink-soft);font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
+.katha-orn{margin-top:2rem}
+
+/* --- index list --- */
+.katha-list{padding:3.2rem 0 2rem}
+.katha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.6rem;margin-top:1.6rem}
+
+/* --- katha cards --- */
+.kcard{display:flex;flex-direction:column;text-decoration:none;background:var(--paper);border-radius:16px;overflow:hidden;
+  border:1px solid rgba(199,40,44,.12);box-shadow:0 10px 30px -18px rgba(60,20,8,.35);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s}
+.kcard:hover{transform:translateY(-5px);box-shadow:0 26px 54px -22px rgba(120,20,15,.4)}
+.kcard-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#241208}
+.kcard-img img{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.kcard:hover .kcard-img img{transform:scale(1.045)}
+.kcard-kind{position:absolute;top:.8rem;left:.8rem;z-index:2;font-family:var(--body);font-size:.7rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:#ffe9d2;background:rgba(20,8,4,.55);backdrop-filter:blur(4px);
+  padding:.34rem .7rem;border-radius:30px;border:1px solid rgba(255,190,140,.35)}
+.kcard-meta{padding:1.35rem 1.4rem 1.5rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.kcard-deva{font-family:var(--deva);color:var(--gold);font-size:.95rem;font-weight:600;letter-spacing:.1em}
+.kcard-title{font-family:var(--serif);font-weight:600;font-size:1.42rem;line-height:1.18;color:var(--ink);letter-spacing:-.01em;
+  transition:color .3s}
+.kcard:hover .kcard-title{color:var(--red-deep)}
+.kcard-dek{color:var(--ink-soft);font-size:1rem;line-height:1.55;flex:1}
+.kcard-foot{display:flex;align-items:center;gap:.5rem;margin-top:.55rem;font-size:.82rem;font-weight:600;
+  letter-spacing:.04em;color:#a08b7d;text-transform:uppercase}
+.kdot{color:var(--gold)}
+
+/* featured card: image beside text */
+.kcard-featured{display:grid;grid-template-columns:1.15fr 1fr;min-height:380px}
+.kcard-featured .kcard-img{aspect-ratio:auto;height:100%}
+.kcard-featured .kcard-meta{padding:2.4rem 2.6rem;justify-content:center;gap:.7rem}
+.kcard-featured .kcard-title{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.kcard-featured .kcard-dek{font-size:1.12rem;flex:initial}
+@media(max-width:760px){.kcard-featured{grid-template-columns:1fr;min-height:0}
+  .kcard-featured .kcard-img{aspect-ratio:16/10}.kcard-featured .kcard-meta{padding:1.5rem 1.5rem 1.7rem}}
+
+/* --- article head --- */
+.katha-article{padding-top:7.5rem}
+.k-head{max-width:860px;text-align:center}
+.k-kind{display:flex;justify-content:center;align-items:center;gap:.55rem;font-size:.8rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.k-kind a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s}
+.k-kind a:hover{border-color:var(--red)}
+.k-deva{font-family:var(--deva);color:var(--gold);font-size:1.2rem;font-weight:600;letter-spacing:.2em;margin-top:1.3rem}
+.k-title{font-family:var(--serif);font-weight:600;font-size:clamp(2.1rem,5.4vw,3.4rem);line-height:1.08;
+  letter-spacing:-.015em;color:var(--ink);margin-top:.55rem}
+.k-dek{margin:1.15rem auto 0;max-width:56ch;font-family:var(--read);font-style:italic;font-size:clamp(1.12rem,2.2vw,1.3rem);
+  line-height:1.55;color:var(--ink-soft)}
+.k-date{margin-top:1.3rem;display:flex;justify-content:center;align-items:center;gap:.5rem;
+  font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a08b7d}
+
+/* --- cover --- */
+.k-cover{max-width:860px;margin:2.4rem auto 0;padding:0 clamp(1rem,4vw,2.4rem)}
+.k-cover img{border-radius:14px;max-height:66vh;box-shadow:0 26px 60px -26px rgba(60,20,8,.55)}
+
+/* --- reading body --- */
+.k-body{max-width:680px;margin:2.8rem auto 0;padding:0 clamp(1rem,4vw,1.4rem);
+  font-family:var(--read);font-size:1.22rem;line-height:1.78;color:#33241c}
+.k-p{margin-bottom:1.55rem}
+.k-dropcap::first-letter{font-family:var(--serif);font-weight:600;font-size:4.35rem;line-height:.78;
+  float:left;padding:.42rem .65rem 0 0;color:var(--red)}
+.k-h2{font-family:var(--serif);font-weight:600;font-size:1.72rem;line-height:1.22;letter-spacing:-.01em;
+  color:var(--ink);margin:2.9rem 0 1.1rem}
+.k-h2::before{content:"";display:block;width:44px;height:2px;margin-bottom:1rem;border-radius:2px;
+  background:linear-gradient(90deg,var(--gold-soft),transparent)}
+.k-list{margin:0 0 1.55rem 1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.k-list li{padding-left:.35rem}
+.k-list li::marker{color:var(--gold);content:"✦  "}
+
+/* verse: Devanagari with gold rule */
+.k-verse{margin:2.3rem 0;padding:1.5rem 1.7rem;border-left:3px solid var(--gold);border-radius:0 14px 14px 0;
+  background:linear-gradient(90deg, rgba(217,162,62,.08), rgba(217,162,62,.02))}
+.k-verse-deva{font-family:var(--deva);font-size:1.4rem;font-weight:600;line-height:1.7;color:var(--red-deep);white-space:pre-line}
+.k-verse-translit{margin-top:.55rem;font-style:italic;font-size:1.02rem;color:#8a7360;white-space:pre-line}
+.k-verse-render{margin-top:.8rem;font-size:1.1rem;line-height:1.65;color:#4a382d}
+.k-verse-src{margin-top:.7rem;font-family:var(--body);font-size:.74rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#a08b7d}
+
+/* pull quote */
+.k-quote{margin:2.6rem 0;text-align:center;padding:0 1rem}
+.k-quote p{font-family:var(--serif);font-weight:500;font-style:italic;font-size:1.45rem;line-height:1.45;color:var(--red-deep)}
+.k-quote p::before{content:"“"}.k-quote p::after{content:"”"}
+.k-quote cite{display:block;margin-top:.8rem;font-family:var(--body);font-style:normal;font-size:.8rem;
+  font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a08b7d}
+
+/* inline images */
+.k-img{margin:2.3rem 0}
+.k-img img{border-radius:12px;box-shadow:0 18px 44px -22px rgba(60,20,8,.5)}
+.k-img figcaption{margin-top:.7rem;text-align:center;font-family:var(--body);font-size:.86rem;color:var(--ink-soft)}
+
+.k-end{margin:3.2rem 0 0;display:flex;justify-content:center}
+
+/* --- related darshan strip --- */
+.k-darshan{max-width:1100px;margin:3.6rem auto 0;padding:2.8rem clamp(1rem,4vw,2.4rem) 0;border-top:1px solid var(--line)}
+.k-darshan-head{text-align:center;margin-bottom:1.5rem}
+.k-darshan-head h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--ink);letter-spacing:-.01em}
+.k-darshan-head p{margin-top:.35rem;color:var(--ink-soft);font-size:.98rem}
+.k-darshan-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.9rem}
+.k-darshan-tile{position:relative;display:block;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#241208;
+  box-shadow:0 10px 26px -14px rgba(60,20,8,.5);transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s}
+.k-darshan-tile:hover{transform:translateY(-4px);box-shadow:0 20px 40px -18px rgba(120,20,15,.5)}
+.k-darshan-tile img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.k-darshan-tile:hover img{transform:scale(1.05)}
+.k-darshan-nm{position:absolute;left:0;right:0;bottom:0;padding:1.3rem .6rem .55rem;z-index:2;
+  background:linear-gradient(transparent, rgba(20,8,4,.85));color:#fbf2e4;font-size:.82rem;font-weight:600;text-align:center}
+
+/* --- related katha --- */
+.k-related{padding:3rem 0 1rem;max-width:1100px}
+.k-related-h{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--ink);text-align:center;letter-spacing:-.01em}
+
+@media(prefers-reduced-motion:reduce){.col{animation:none!important}.card.rise{animation:none!important}*{transition-duration:.2s!important}}

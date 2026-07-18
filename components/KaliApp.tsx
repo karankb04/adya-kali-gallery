@@ -5,30 +5,24 @@ import { downloadImage } from "@/lib/download";
 import Hero from "./Hero";
 import DarshanModal from "./DarshanModal";
 import RImage from "./RImage";
+import SiteHeader from "./SiteHeader";
+import SiteFooter from "./SiteFooter";
+import Ornament from "./Ornament";
 
 interface KaliAppProps {
   images: KaliImage[];
 }
 
-// Nav shortcuts map evocative labels to actual form values present in the data.
-const NAV_FORMS: { label: string; form: string }[] = [
-  { label: "Smashan", form: "Shmashana Kali" },
-  { label: "Dakshina", form: "Dakshina Kali" },
-];
-
 export default function KaliApp({ images }: KaliAppProps) {
   const [query, setQuery] = useState("");
   const [form, setForm] = useState("all");
   const [selected, setSelected] = useState<KaliImage | null>(null);
-  const [solid, setSolid] = useState(false);
 
+  // Arriving from another page with /?form=…#library preselects the filter.
   useEffect(() => {
-    const onScroll = () =>
-      setSolid(window.scrollY > window.innerHeight * 0.7);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const f = new URLSearchParams(window.location.search).get("form");
+    if (f && images.some((p) => p.form === f)) setForm(f);
+  }, [images]);
 
   const forms = useMemo(() => {
     const out: string[] = [];
@@ -58,6 +52,17 @@ export default function KaliApp({ images }: KaliAppProps) {
     });
   }, [images, query, form]);
 
+  // Prev/next within the current filtered set (for the darshan modal).
+  const selectedIndex = selected
+    ? filtered.findIndex((p) => p.id === selected.id)
+    : -1;
+  const prev =
+    selectedIndex > 0 ? filtered[selectedIndex - 1] : undefined;
+  const next =
+    selectedIndex >= 0 && selectedIndex < filtered.length - 1
+      ? filtered[selectedIndex + 1]
+      : undefined;
+
   function navTo(f: string) {
     setForm(f);
     document.getElementById("library")?.scrollIntoView({ behavior: "smooth" });
@@ -65,38 +70,15 @@ export default function KaliApp({ images }: KaliAppProps) {
 
   return (
     <>
-      {/* ---------- top bar ---------- */}
-      <header className={`bar${solid ? " solid" : ""}`} id="bar">
-        <a href="/" className="mark" style={{ textDecoration: "none" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Maa Adya Kali Gallery logo" />
-          Maa Adya Kali Gallery
-        </a>
-        <nav className="navlinks">
-          <a
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("library")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            The Library
-          </a>
-          {NAV_FORMS.map((n) => (
-            <a
-              key={n.label}
-              onClick={(e) => {
-                e.preventDefault();
-                navTo(n.form);
-              }}
-            >
-              {n.label}
-            </a>
-          ))}
-        </nav>
-        <div style={{ width: 19 }} />
-      </header>
+      <SiteHeader
+        variant="hero"
+        onNavForm={navTo}
+        onNavLibrary={() =>
+          document
+            .getElementById("library")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
+      />
 
       {/* ---------- HERO ---------- */}
       <Hero images={images} onOpen={setSelected} />
@@ -104,6 +86,7 @@ export default function KaliApp({ images }: KaliAppProps) {
       {/* ---------- LIBRARY ---------- */}
       <section className="lib wrap" id="library">
         <div className="lib-head">
+          <Ornament className="lib-orn" />
           <h2>Her Faces</h2>
           <div className="sub">
             New darshan, offered by her children. Search her names, filter her
@@ -150,10 +133,11 @@ export default function KaliApp({ images }: KaliAppProps) {
           <div className="empty">She is not hidden here. Try another name.</div>
         ) : (
           <div className="grid">
-            {filtered.map((p) => (
+            {filtered.map((p, i) => (
               <button
                 key={p.id}
-                className="card"
+                className="card rise"
+                style={{ animationDelay: `${Math.min(i, 10) * 55}ms` }}
                 aria-label={`Behold ${p.transliteration}`}
                 onClick={() => setSelected(p)}
               >
@@ -202,16 +186,14 @@ export default function KaliApp({ images }: KaliAppProps) {
         )}
       </section>
 
-      <footer>
-        <div className="fdeva">॥ जय माँ आद्या महाकाली ॥</div>
-        <div className="fline">Spread her naam across all the worlds.</div>
-        <div className="fsub">
-          Adya Kali — a seva of devotion, never of commerce
-        </div>
-        <div className="cred">Images · KaliPutra Mission · Creative Bench</div>
-      </footer>
+      <SiteFooter />
 
-      <DarshanModal image={selected} onClose={() => setSelected(null)} />
+      <DarshanModal
+        image={selected}
+        onClose={() => setSelected(null)}
+        onPrev={prev ? () => setSelected(prev) : undefined}
+        onNext={next ? () => setSelected(next) : undefined}
+      />
     </>
   );
 }

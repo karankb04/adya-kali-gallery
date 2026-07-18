@@ -1,4 +1,5 @@
 import { getImages } from "@/lib/images";
+import { getPosts } from "@/lib/posts";
 import { SITE_URL } from "@/lib/seo";
 import { r2url } from "@/lib/r2";
 
@@ -26,6 +27,20 @@ export async function GET() {
     )
     .join("\n");
 
+  const postTags = getPosts()
+    .map(
+      (p) =>
+        `  <url>\n` +
+        `    <loc>${SITE_URL}/blog/${p.slug}</loc>\n` +
+        `    <lastmod>${p.date}</lastmod>\n` +
+        `    <image:image>\n` +
+        `      <image:loc>${esc(r2url(p.cover.r2Key))}</image:loc>\n` +
+        `      <image:title>${esc(p.title)}</image:title>\n` +
+        `    </image:image>\n` +
+        `  </url>`
+    )
+    .join("\n");
+
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
@@ -33,6 +48,10 @@ export async function GET() {
     `    <loc>${SITE_URL}/</loc>\n` +
     `${imageTags}\n` +
     `  </url>\n` +
+    `  <url>\n` +
+    `    <loc>${SITE_URL}/blog</loc>\n` +
+    `  </url>\n` +
+    `${postTags}\n` +
     `</urlset>`;
 
   return new Response(xml, {

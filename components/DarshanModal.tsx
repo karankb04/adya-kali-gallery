@@ -7,12 +7,22 @@ import RImage from "./RImage";
 interface DarshanModalProps {
   image: KaliImage | null;
   onClose: () => void;
+  /** Navigate to the previous/next darshan in the current filtered set. */
+  onPrev?: () => void;
+  onNext?: () => void;
 }
 
-export default function DarshanModal({ image, onClose }: DarshanModalProps) {
+export default function DarshanModal({
+  image,
+  onClose,
+  onPrev,
+  onNext,
+}: DarshanModalProps) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && onPrev) onPrev();
+      if (e.key === "ArrowRight" && onNext) onNext();
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = image ? "hidden" : "";
@@ -20,7 +30,7 @@ export default function DarshanModal({ image, onClose }: DarshanModalProps) {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [image, onClose]);
+  }, [image, onClose, onPrev, onNext]);
 
   return (
     <>
@@ -31,6 +41,28 @@ export default function DarshanModal({ image, onClose }: DarshanModalProps) {
       >
         ✕
       </button>
+      {image && onPrev && (
+        <button
+          className="mnav mprev show"
+          aria-label="Previous darshan"
+          onClick={onPrev}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+      )}
+      {image && onNext && (
+        <button
+          className="mnav mnext show"
+          aria-label="Next darshan"
+          onClick={onNext}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 6l6 6-6 6" />
+          </svg>
+        </button>
+      )}
       <div
         className={`modal${image ? " show" : ""}`}
         role="dialog"
