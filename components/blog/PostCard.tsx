@@ -7,9 +7,11 @@ interface PostCardProps {
   post: Post;
   /** Featured card: larger image, larger type (index lead story). */
   featured?: boolean;
+  /** Load the cover image eagerly (e.g. the first slide of the hero carousel). */
+  priority?: boolean;
 }
 
-export default function PostCard({ post, featured }: PostCardProps) {
+export default function PostCard({ post, featured, priority }: PostCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -22,6 +24,7 @@ export default function PostCard({ post, featured }: PostCardProps) {
           width={post.cover.width}
           height={post.cover.height}
           dominantColor={post.cover.dominantColor}
+          priority={priority}
           sizes={
             featured
               ? "(max-width:760px) 92vw, 640px"

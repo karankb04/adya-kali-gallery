@@ -220,6 +220,18 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
 .katha-hero-dek{margin:1.1rem auto 0;max-width:52ch;color:var(--ink-soft);font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
 .katha-orn{margin-top:2rem}
 
+/* --- pinned hero carousel (reuses the .kcard-featured split layout) --- */
+.k-carousel-pin{position:relative}
+.k-carousel{position:relative;height:min(82svh,740px);min-height:460px}
+.k-carousel-slide{position:absolute;inset:0}
+.k-carousel-slide .kcard{height:100%}
+.k-carousel-dots{position:absolute;right:-2.4rem;top:50%;transform:translateY(-50%);z-index:3;
+  display:flex;flex-direction:column;gap:.6rem}
+.k-dot{width:7px;height:7px;border-radius:50%;background:var(--red-deep);opacity:.35;transition:opacity .3s}
+@media(max-width:1400px){.k-carousel-dots{display:none}}
+@media(max-width:760px){.k-carousel{height:640px}}
+@media(prefers-reduced-motion:reduce){.k-carousel-slide:not(:first-child){display:none}}
+
 /* --- index list --- */
 .katha-list{padding:3.2rem 0 2rem}
 .katha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.6rem;margin-top:1.6rem}

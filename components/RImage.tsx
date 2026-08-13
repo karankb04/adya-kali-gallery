@@ -13,6 +13,8 @@ interface RImageProps {
   priority?: boolean;
   quality?: number;
   style?: React.CSSProperties;
+  /** Fill the nearest positioned ancestor instead of using intrinsic width/height (for full-bleed backgrounds). */
+  fill?: boolean;
 }
 
 /** Tiny solid-colour SVG used as a native blur placeholder (smooth fade-in). */
@@ -39,6 +41,7 @@ export default function RImage({
   priority,
   quality,
   style,
+  fill,
 }: RImageProps) {
   const w = width ?? 1024;
   const h = height ?? Math.round(w * 1.3);
@@ -47,8 +50,7 @@ export default function RImage({
     <Image
       src={r2url(r2Key)}
       alt={alt}
-      width={w}
-      height={h}
+      {...(fill ? { fill: true } : { width: w, height: h })}
       sizes={sizes}
       className={className}
       priority={priority}

@@ -3,6 +3,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Ornament from "@/components/Ornament";
 import PostCard from "@/components/blog/PostCard";
+import HeroCarousel from "@/components/blog/HeroCarousel";
 import { getPosts } from "@/lib/posts";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   const posts = getPosts();
-  const [featured, ...rest] = posts;
+  const carousel = posts.slice(0, 3);
 
   return (
     <>
@@ -44,10 +45,11 @@ export default function BlogIndex() {
           </div>
         </section>
 
+        {carousel.length > 0 && <HeroCarousel posts={carousel} />}
+
         <section className="wrap katha-list">
-          {featured && <PostCard post={featured} featured />}
           <div className="katha-grid">
-            {rest.map((p) => (
+            {posts.map((p) => (
               <PostCard key={p.slug} post={p} />
             ))}
           </div>
