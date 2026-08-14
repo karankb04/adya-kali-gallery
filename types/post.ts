@@ -52,4 +52,6 @@ export interface Post {
   /** Topical tags — used for related-katha matching + SEO keywords. */
   tags: string[];
   blocks: PostBlock[];
+  /** Post-specific FAQ, shown at the end of the reading view. */
+  faqs?: { q: string; a: string }[];
 }

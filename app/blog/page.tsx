@@ -4,6 +4,8 @@ import SiteFooter from "@/components/SiteFooter";
 import Ornament from "@/components/Ornament";
 import PostCard from "@/components/blog/PostCard";
 import HeroCarousel from "@/components/blog/HeroCarousel";
+import FaqSection from "@/components/FaqSection";
+import { BLOG_INDEX_FAQS } from "@/content/faqs";
 import { getPosts } from "@/lib/posts";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
@@ -55,6 +57,12 @@ export default function BlogIndex() {
           </div>
         </section>
       </main>
+      <FaqSection
+        deva="प्रश्न"
+        title="Questions about Katha"
+        sub="What this section is, and where the stories come from."
+        items={BLOG_INDEX_FAQS}
+      />
       <SiteFooter />
     </>
   );

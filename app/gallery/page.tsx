@@ -4,6 +4,8 @@ import { buildGalleryJsonLd, SITE_URL, SITE_NAME } from "@/lib/seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import GalleryLibrary from "@/components/GalleryLibrary";
+import FaqSection from "@/components/FaqSection";
+import { GALLERY_FAQS } from "@/content/faqs";
 
 export const revalidate = 60;
 
@@ -44,6 +46,12 @@ export default async function GalleryPage() {
         </div>
       </section>
       <GalleryLibrary images={images} />
+      <FaqSection
+        deva="प्रश्न"
+        title="Questions about the gallery"
+        sub="How to search, filter, and download her darshan."
+        items={GALLERY_FAQS}
+      />
       <SiteFooter />
     </>
   );

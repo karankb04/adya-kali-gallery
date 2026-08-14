@@ -7,6 +7,7 @@ import PostBody from "@/components/blog/PostBody";
 import PostCard from "@/components/blog/PostCard";
 import RelatedDarshan from "@/components/blog/RelatedDarshan";
 import RImage from "@/components/RImage";
+import FaqSection from "@/components/FaqSection";
 import { getPost, getPosts, relatedPosts, formatDate } from "@/lib/posts";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { r2url } from "@/lib/r2";
@@ -68,12 +69,30 @@ export default function KathaPage({ params }: Params) {
     isPartOf: { "@id": `${SITE_URL}/#website` },
   };
 
+  const faqJsonLd = post.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <SiteHeader variant="page" />
       <main className="katha-page">
         <article className="katha-article">
@@ -124,6 +143,10 @@ export default function KathaPage({ params }: Params) {
               ))}
             </div>
           </section>
+        )}
+
+        {post.faqs && post.faqs.length > 0 && (
+          <FaqSection title="Questions about this katha" items={post.faqs} />
         )}
       </main>
       <SiteFooter />

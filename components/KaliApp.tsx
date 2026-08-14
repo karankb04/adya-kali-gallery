@@ -6,6 +6,10 @@ import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import GalleryLibrary from "./GalleryLibrary";
 import InstagramFeed from "./InstagramFeed";
+import PinnedTeaching from "./showcase/PinnedTeaching";
+import MantraRibbon from "./MantraRibbon";
+import FaqSection from "./FaqSection";
+import { HOME_FAQS } from "@/content/faqs";
 
 interface KaliAppProps {
   images: KaliImage[];
@@ -40,6 +44,22 @@ export default function KaliApp({ images }: KaliAppProps) {
 
       {/* ---------- INSTAGRAM ---------- */}
       <InstagramFeed />
+
+      {/* ---------- PINNED TEACHING ---------- */}
+      <section className="pin-teaching wrap">
+        <PinnedTeaching />
+      </section>
+
+      {/* ---------- MANTRA RIBBON ---------- */}
+      <MantraRibbon />
+
+      {/* ---------- FAQ ---------- */}
+      <FaqSection
+        deva="प्रश्न"
+        title="Questions devotees ask"
+        sub="Everything you might want to know about the gallery and the mission behind it."
+        items={HOME_FAQS}
+      />
 
       <SiteFooter />
     </>

@@ -417,4 +417,58 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
 .insta-dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:none;cursor:pointer;transition:.2s}
 .insta-dot.on{background:var(--red);width:20px;border-radius:4px}
 
-@media(prefers-reduced-motion:reduce){.col{animation:none!important}.card.rise{animation:none!important}*{transition-duration:.2s!important}}
+/* ---------- pinned teaching (homepage) ---------- */
+.pin-teaching{padding:1rem 0 4.5rem}
+.sc-pin-area{display:grid;grid-template-columns:320px 1fr;gap:2.4rem;align-items:start}
+.sc-pin-sticky{position:sticky;top:100px;background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:2rem 1.8rem;box-shadow:0 14px 34px -22px rgba(60,20,8,.4)}
+.sc-pin-area.sc-pin-gsap .sc-pin-sticky{position:static}
+.sc-pin-deva{font-family:var(--deva);color:var(--gold);font-size:.95rem;font-weight:600;letter-spacing:.1em}
+.sc-pin-sticky h3{font-family:var(--serif);font-weight:600;font-size:1.4rem;color:var(--ink);margin-top:.6rem;letter-spacing:-.01em}
+.sc-pin-sticky p{margin-top:.8rem;color:var(--ink-soft);font-size:.98rem;line-height:1.6}
+.sc-pin-list{display:flex;flex-direction:column;gap:1.1rem}
+.sc-pin-row{padding:1.3rem 1.5rem;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+.sc-pin-row-name{font-family:var(--deva);color:var(--red-deep);font-weight:600;font-size:1.1rem;margin-right:.6rem}
+.sc-pin-row-tr{font-size:.86rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em}
+.sc-pin-row-cap{display:block;margin-top:.4rem;color:var(--ink-soft);font-size:.95rem;line-height:1.5}
+@media(max-width:1199px){.sc-pin-area{grid-template-columns:1fr}}
+
+/* ---------- mantra ribbon (homepage) ---------- */
+/* Red silk gradient echoing the hero's ribbon motif, not a flat dark bar. */
+.mantra-ribbon{overflow:hidden;padding:1.5rem 0;position:relative;
+  background:linear-gradient(100deg,#5e0a0c 0%,#a5171a 20%,#e2372c 45%,#c0151a 65%,#7a0c0e 85%,#5e0a0c 100%);
+  box-shadow:inset 0 2px 0 rgba(255,225,180,.18), inset 0 -3px 10px rgba(0,0,0,.3), 0 12px 34px -18px rgba(120,10,10,.55)}
+.mantra-ribbon::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,230,190,.14) 48%,transparent 62%)}
+.mantra-ribbon-track{display:flex;width:max-content;gap:2.6rem;animation:mantra-scroll var(--duration,20s) linear infinite}
+.mantra-ribbon:hover .mantra-ribbon-track{animation-play-state:paused}
+@keyframes mantra-scroll{to{transform:translateX(calc(-50% - 1.3rem))}}
+.mantra-ribbon-item{display:inline-flex;align-items:center;gap:2.6rem;font-family:var(--disp);font-weight:800;
+  font-size:1.28rem;letter-spacing:.06em;text-transform:uppercase;color:#fbead0;white-space:nowrap;
+  text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.mantra-ribbon-sep{color:var(--gold-soft);font-size:.9rem;opacity:.85}
+@media(max-width:640px){.mantra-ribbon-item{font-size:1rem;gap:1.6rem}.mantra-ribbon-track{gap:1.6rem}}
+
+/* ---------- FAQ accordion ---------- */
+.faq{padding:1rem 0 4.5rem}
+.faq-deva{font-family:var(--deva);color:var(--gold);font-size:.95rem;font-weight:600;letter-spacing:.1em;margin-bottom:.2rem}
+.faq-list{max-width:760px;margin:2.2rem auto 0;display:flex;flex-direction:column;gap:.9rem}
+.faq-item{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .25s}
+.faq-item.open{border-color:rgba(219,31,36,.35)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
+  padding:1.25rem 1.4rem;background:none;border:none;cursor:pointer;text-align:left;
+  font-family:var(--body);font-weight:600;font-size:1.04rem;color:var(--ink);transition:color .2s}
+.faq-item.open .faq-q{color:var(--red-deep)}
+.faq-icon{position:relative;flex:none;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);
+  transition:border-color .25s,background .25s}
+.faq-item.open .faq-icon{border-color:var(--red);background:rgba(219,31,36,.08)}
+.faq-bar{position:absolute;left:50%;top:50%;background:var(--ink-soft);border-radius:2px;
+  transform:translate(-50%,-50%);transition:transform .3s,background .3s}
+.faq-bar-h{width:14px;height:2px}
+.faq-bar-v{width:2px;height:14px}
+.faq-item.open .faq-bar{background:var(--red)}
+.faq-item.open .faq-bar-v{transform:translate(-50%,-50%) scaleY(0)}
+.faq-a-wrap{overflow:hidden}
+.faq-a{padding:0 1.4rem 1.35rem;color:var(--ink-soft);font-size:.98rem;line-height:1.65}
+
+@media(prefers-reduced-motion:reduce){.col{animation:none!important}.card.rise{animation:none!important}.faq-item.rise{animation:none!important}*{transition-duration:.2s!important}}

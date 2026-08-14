@@ -74,6 +74,20 @@ export const POSTS: Post[] = [
         rendering: "Victory to Mother Kali.",
       },
     ],
+    faqs: [
+      {
+        q: "Is the extended tongue a sign of anger or rage?",
+        a: "Not in the lajja reading — that tradition holds it as tenderness and humility, a moment of modest recognition, not fury.",
+      },
+      {
+        q: "Why do the two readings (lajja vs. tantric) seem to contradict each other?",
+        a: "They aren't meant to agree. Kali's iconography is deliberately layered — each element carries more than one true meaning, meeting the devotee at whichever door they're able to open.",
+      },
+      {
+        q: "So which reading is the correct one?",
+        a: "Both, depending on the lineage. Bengali household devotion favors the lajja (humility) reading; tantric sadhana favors the \"she tastes and refuses nothing\" reading.",
+      },
+    ],
   },
 
   {
@@ -138,6 +152,20 @@ export const POSTS: Post[] = [
         type: "verse",
         deva: "॥ जय माँ आद्या ॥",
         rendering: "Victory to the Primordial Mother.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Are the fifty skulls real trophies of violence?",
+        a: "No — they represent the fifty matrika letters of the Sanskrit alphabet, not literal war trophies. The garland is a garland of sound itself.",
+      },
+      {
+        q: "Why fifty skulls specifically?",
+        a: "Sanskrit's traditional count holds fifty phonemes (matrikas), from अ (a) to क्ष (ksha) — one skull for each.",
+      },
+      {
+        q: "What does \"mundamala\" mean?",
+        a: "Literally \"garland of heads.\" Mundamala and varnamala (\"garland of letters\") are used interchangeably to describe this same ornament in her iconography.",
       },
     ],
   },
@@ -233,6 +261,20 @@ export const POSTS: Post[] = [
         rendering: "Victory to the Primordial Great Mother Kali.",
       },
     ],
+    faqs: [
+      {
+        q: "Are Dakshina Kali and Shmashana Kali different goddesses?",
+        a: "No — one Mother, different doors, each suited to a different moment in a devotee's life.",
+      },
+      {
+        q: "Which form should I worship?",
+        a: "Whichever one calls to you. The tradition doesn't rank the forms — there's no wrong door.",
+      },
+      {
+        q: "Is Adya Kali the \"original\" form and the others secondary?",
+        a: "Adya Kali represents the primordial source all her other forms arise from — that's a statement about origin, not a hierarchy of importance.",
+      },
+    ],
   },
 
   {
@@ -299,6 +341,20 @@ export const POSTS: Post[] = [
         type: "verse",
         deva: "॥ जय माँ श्यामा ॥",
         rendering: "Victory to Mother Shyama, the beloved dark one.",
+      },
+    ],
+    faqs: [
+      {
+        q: "When exactly is Kali Puja celebrated?",
+        a: "On amavasya, the new-moon night, in the month of Kartik — the same night as Diwali across most of India.",
+      },
+      {
+        q: "Do I need a priest or a pandal to celebrate it?",
+        a: "No. The tradition is explicit that a clean space, a single lamp, and her name spoken with attention is a complete puja.",
+      },
+      {
+        q: "Why is she worshipped on the darkest night of the year?",
+        a: "It's a deliberate teaching, not an accident of the calendar — the divine isn't found only in light. The darkest moment is also her.",
       },
     ],
   },

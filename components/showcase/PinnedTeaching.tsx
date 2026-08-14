@@ -41,7 +41,16 @@ export default function PinnedTeaching() {
           pinSpacing: false,
           start: "top 100px",
           end: () => "+=" + Math.max(200, area.offsetHeight - sticky.offsetHeight),
+          invalidateOnRefresh: true,
         });
+        // Under React StrictMode's dev-only double-invoke (mount -> cleanup
+        // -> mount), creating this synchronously in the same tick as the
+        // prior instance's teardown can measure a not-yet-settled layout,
+        // collapsing the computed pin range to zero. Forcing a refresh here
+        // (same fix applied to the Katha carousel and floating gallery
+        // button elsewhere in this codebase) re-measures against the
+        // now-settled DOM.
+        ScrollTrigger.refresh();
       }, 0);
       return () => {
         clearTimeout(t);
