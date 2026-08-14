@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "motion/react";
 import { KaliImage } from "@/types/image";
 import RImage from "./RImage";
 
@@ -26,6 +27,17 @@ function colCount(w: number): number {
 
 export default function Hero({ images, onOpen }: HeroProps) {
   const [cols, setCols] = useState<KaliImage[][]>([]);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Scroll-zoom-hero pattern: as the hero scrolls past, the logo is pushed
+  // and pulled vertically (parallax) with a subtle accompanying zoom —
+  // scoped to just the logo, not the whole hero.
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const logoY = useTransform(scrollYProgress, [0, 1], [0, -140]);
+  const logoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   useEffect(() => {
     function build() {
@@ -51,7 +63,7 @@ export default function Hero({ images, onOpen }: HeroProps) {
   }, [images]);
 
   return (
-    <section className="hero" id="hero">
+    <section className="hero" id="hero" ref={heroRef}>
       <div className="wall" id="wall">
         {cols.map((col, ci) => (
           <div
@@ -94,14 +106,18 @@ export default function Hero({ images, onOpen }: HeroProps) {
       <div className="hero-c">
         <div className="deva">॥ जय माँ आद्या ॥</div>
         <div className="title-wrap">
-          <Image
-            src="/title-adya-kali.webp"
-            alt="Adya Kali"
-            width={2000}
-            height={721}
-            priority
-            sizes="(max-width:560px) 98vw, (max-width:980px) 94vw, 980px"
-          />
+          <motion.div
+            style={{ y: logoY, scale: logoScale }}
+          >
+            <Image
+              src="/title-adya-kali.webp"
+              alt="Adya Kali"
+              width={2000}
+              height={721}
+              priority
+              sizes="(max-width:560px) 98vw, (max-width:980px) 94vw, 980px"
+            />
+          </motion.div>
         </div>
         <p>
           A living library of the Mother — her every face, gathered in one place

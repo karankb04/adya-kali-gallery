@@ -66,3 +66,26 @@ export const BLOG_INDEX_FAQS: FaqItem[] = [
     a: "Yes — reach out via Instagram @kaliputramission. Requests from devotees are always welcome.",
   },
 ];
+
+export const ABOUT_FAQS: FaqItem[] = [
+  {
+    q: "What is the KaliPutra Mission?",
+    a: "[Placeholder] A devotional mission dedicated to Maa Adya Kali — sharing her images, teachings, and seva with devotees everywhere, free of cost.",
+  },
+  {
+    q: "Is the mission a registered organization?",
+    a: "[Placeholder] Details on registration and how the mission is run will be added here.",
+  },
+  {
+    q: "How can I volunteer or contribute?",
+    a: "[Placeholder] Reach out via Instagram @kaliputramission — ways to get involved will be listed here soon.",
+  },
+  {
+    q: "Where do the sevas shown on this page take place?",
+    a: "[Placeholder] Location and schedule details for annadanam and other seva activities will be added here.",
+  },
+  {
+    q: "Is this website officially run by the mission?",
+    a: "[Placeholder] Yes — this gallery and site are maintained as part of the KaliPutra Mission's outreach.",
+  },
+];
