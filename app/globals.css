@@ -58,15 +58,9 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 .hero-c .deva{font-family:var(--deva);font-weight:600;color:var(--rose);font-size:clamp(1rem,3vw,1.5rem);
   letter-spacing:.02em;margin-bottom:.7rem;text-shadow:0 2px 20px rgba(0,0,0,.6)}
 .title-wrap{position:relative;display:flex;align-items:center;justify-content:center;
-  width:min(96vw,940px);aspect-ratio:1000/360}
-.tw-layer{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%}
-.ribbons{z-index:1}
-.ribbons .rb{animation:wave 9s ease-in-out infinite}
-.ribbons .rb2{animation:wave 11s ease-in-out infinite reverse}
-@keyframes wave{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-6px) scaleY(1.03)}}
-.title-svg{position:relative;z-index:4;width:100%;height:100%;overflow:visible}
-.title-svg text{font-family:'Cinzel Decorative',Georgia,serif;font-weight:900;
-  font-size:150px;letter-spacing:2px;text-anchor:middle;dominant-baseline:middle}
+  width:min(94vw,980px);aspect-ratio:2000/721}
+.title-wrap img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 40px rgba(0,0,0,.55))}
+@media(max-width:560px){.title-wrap{width:min(98vw,640px)}}
 .hero-c p{margin-top:1.1rem;max-width:40ch;color:rgba(251,242,228,.96);font-size:clamp(1.12rem,2.4vw,1.4rem);font-weight:400;
   text-shadow:0 2px 18px rgba(0,0,0,.7)}
 .hero-c .cue{margin-top:2.2rem;font-size:.86rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(251,242,228,.92)}
