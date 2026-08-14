@@ -142,6 +142,7 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
   box-shadow:0 8px 26px -16px rgba(60,20,8,.5);transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s}
 .card:hover{transform:translateY(-5px);box-shadow:0 22px 50px -20px rgba(120,20,15,.5)}
 .card:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.card-media{display:block;overflow:hidden}
 .card img{width:100%;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .card:hover img{transform:scale(1.04)}
 .card .cap{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .9rem .8rem;background:linear-gradient(transparent, rgba(20,8,4,0.9));}
@@ -167,14 +168,11 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 .dl svg{width:16px;height:16px;pointer-events:none}
 @media(hover:none){.dl{opacity:1;transform:none}}
 
-/* darshan modal */
-.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:1.4rem;
-  background:radial-gradient(60% 60% at 50% 40%, rgba(28,10,6,0.95), rgba(12,5,3,0.98));backdrop-filter:blur(8px);opacity:0;transition:opacity .45s}
-.modal.show{display:flex;opacity:1}
-.darshan{max-width:980px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:center;
-  transform:translateY(16px) scale(.98);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
-.modal.show .darshan{transform:none}
-.darshan .frame{border-radius:10px;overflow:hidden;box-shadow:0 30px 80px -30px #000, 0 0 0 1px rgba(255,90,77,.25), 0 0 70px rgba(219,31,36,.22)}
+/* darshan modal — visibility is mount/unmount driven (AnimatePresence), not CSS class toggles */
+.modal{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:1.4rem;
+  background:radial-gradient(60% 60% at 50% 40%, rgba(28,10,6,0.95), rgba(12,5,3,0.98));backdrop-filter:blur(8px)}
+.darshan{max-width:980px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:center}
+.darshan .frame{overflow:hidden;box-shadow:0 30px 80px -30px #000, 0 0 0 1px rgba(255,90,77,.25), 0 0 70px rgba(219,31,36,.22)}
 .darshan .frame img{width:100%;display:block;max-height:78vh;object-fit:contain;background:#160a05}
 .darshan .meta .d-deva{font-family:var(--deva);font-weight:700;color:var(--rose);font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.1}
 .darshan .meta .d-tr{color:#fff;font-size:1.15rem;font-weight:500;margin-top:.25rem}
@@ -188,8 +186,7 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 .d-dl:hover{background:var(--sindoor);transform:translateY(-1px)}
 .d-dl svg{width:17px;height:17px}
 .mclose{position:fixed;top:1.3rem;right:1.5rem;z-index:91;background:none;border:1px solid rgba(255,170,140,.4);color:var(--cream);
-  width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem;transition:.3s;display:none}
-.mclose.show{display:block}
+  width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem;transition:border-color .3s,color .3s,transform .3s}
 .mclose:hover{border-color:var(--rose);color:var(--rose);transform:rotate(90deg)}
 @media(max-width:760px){.darshan{grid-template-columns:1fr;gap:1.2rem;max-width:440px}.darshan .frame img{max-height:50vh}}
 
@@ -230,9 +227,8 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
 
 /* darshan modal prev/next */
 .mnav{position:fixed;top:50%;transform:translateY(-50%);z-index:91;width:46px;height:46px;border-radius:50%;
-  display:none;place-items:center;cursor:pointer;background:rgba(20,8,4,.4);backdrop-filter:blur(4px);
-  border:1px solid rgba(255,170,140,.35);color:var(--cream);transition:.3s}
-.mnav.show{display:grid}
+  display:grid;place-items:center;cursor:pointer;background:rgba(20,8,4,.4);backdrop-filter:blur(4px);
+  border:1px solid rgba(255,170,140,.35);color:var(--cream);transition:border-color .3s,color .3s,background .3s}
 .mnav:hover{border-color:var(--rose);color:var(--rose);background:rgba(30,10,6,.6)}
 .mnav svg{width:20px;height:20px}
 .mprev{left:1.2rem}

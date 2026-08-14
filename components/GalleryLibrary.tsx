@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { KaliImage } from "@/types/image";
 import { downloadImage } from "@/lib/download";
 import DarshanModal from "./DarshanModal";
@@ -274,15 +275,21 @@ export default function GalleryLibrary({
               aria-label={`Behold ${p.transliteration}`}
               onClick={() => setSelected(p)}
             >
-              <RImage
-                r2Key={p.r2Key}
-                alt={p.altText ?? `${p.transliteration} — ${p.form}`}
-                width={p.width}
-                height={p.height}
-                dominantColor={p.dominantColor}
-                sizes="(max-width:560px) 50vw, (max-width:1320px) 25vw, 320px"
-                style={{ width: "100%", height: "auto" }}
-              />
+              <motion.div
+                className="card-media"
+                layoutId={`darshan-img-${p.id}`}
+                style={{ borderRadius: 12 }}
+              >
+                <RImage
+                  r2Key={p.r2Key}
+                  alt={p.altText ?? `${p.transliteration} — ${p.form}`}
+                  width={p.width}
+                  height={p.height}
+                  dominantColor={p.dominantColor}
+                  sizes="(max-width:560px) 50vw, (max-width:1320px) 25vw, 320px"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </motion.div>
               {p.isAI && <span className="aitag">✦ AI</span>}
               <span
                 className="dl"
