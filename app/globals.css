@@ -265,17 +265,14 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
   letter-spacing:-.015em;line-height:1.02}
 .gallery-hero-dek{margin:1.1rem auto 0;max-width:52ch;color:var(--ink-soft);font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
 
-/* --- pinned hero carousel (reuses the .kcard-featured split layout) --- */
-.k-carousel-pin{position:relative}
-.k-carousel{position:relative;height:min(82svh,740px);min-height:460px}
-.k-carousel-slide{position:absolute;inset:0}
-.k-carousel-slide .kcard{height:100%}
-.k-carousel-dots{position:absolute;right:-2.4rem;top:50%;transform:translateY(-50%);z-index:3;
-  display:flex;flex-direction:column;gap:.6rem}
-.k-dot{width:7px;height:7px;border-radius:50%;background:var(--red-deep);opacity:.35;transition:opacity .3s}
-@media(max-width:1400px){.k-carousel-dots{display:none}}
-@media(max-width:760px){.k-carousel{height:640px}}
-@media(prefers-reduced-motion:reduce){.k-carousel-slide:not(:first-child){display:none}}
+/* --- lead posts: sticky stack (reuses the .kcard-featured split layout) ---
+   Pure CSS, no scroll library: each card is position:sticky at a slightly
+   deeper offset than the one before it (--i), so they pile up like a stack
+   of photographs as you scroll past — matches the /components pattern. */
+.k-stack{display:flex;flex-direction:column;padding-top:1px}
+.k-stack-card{position:sticky;top:calc(90px + var(--i) * 14px);margin-bottom:1.6rem}
+.k-stack-card .kcard{box-shadow:0 20px 44px -26px rgba(60,20,8,.5)}
+@media(prefers-reduced-motion:reduce){.k-stack-card{position:static}}
 
 /* --- index list --- */
 .katha-list{padding:3.2rem 0 2rem}
