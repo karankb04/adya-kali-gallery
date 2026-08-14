@@ -5,6 +5,7 @@ import Hero from "./Hero";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import GalleryLibrary from "./GalleryLibrary";
+import InstagramFeed from "./InstagramFeed";
 
 interface KaliAppProps {
   images: KaliImage[];
@@ -36,6 +37,9 @@ export default function KaliApp({ images }: KaliAppProps) {
         selected={selected}
         onSelectChange={setSelected}
       />
+
+      {/* ---------- INSTAGRAM ---------- */}
+      <InstagramFeed />
 
       <SiteFooter />
     </>
