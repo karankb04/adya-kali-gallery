@@ -26,11 +26,12 @@ var HEADERS = [
   'nameDevanagari', 'transliteration', 'form', 'teachingCaption', 'isAI',
   'altText', 'slug', 'description', 'tags',
   'creditText', 'creator', 'license', 'acquireLicensePage',
-  'dateCreated', 'order', 'width', 'height', 'dominantColor'
+  'dateCreated', 'order', 'width', 'height', 'dominantColor',
+  'mediaType', 'popularity', 'featured'
 ];
 
-var BOOL_FIELDS = ['isAI', 'active'];
-var NUM_FIELDS = ['order', 'width', 'height'];
+var BOOL_FIELDS = ['isAI', 'active', 'featured'];
+var NUM_FIELDS = ['order', 'width', 'height', 'popularity'];
 
 // =====================================================================
 //  Web App entry point — serves the image list as JSON

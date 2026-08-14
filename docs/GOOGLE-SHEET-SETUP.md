@@ -28,7 +28,7 @@ Images themselves stay in Cloudflare R2; the Sheet just references filenames (r2
 | `active` | | `TRUE` to show, `FALSE` to hide (blank = shown) |
 | `nameDevanagari` | ✅ | Name in Devanagari |
 | `transliteration` | ✅ | Roman/IAST name |
-| `form` | ✅ | Form (drives the filter pills) |
+| `form` | ✅ | Iconographic form/deity, e.g. "Dakshina Kali" (drives the Form filter — any value you put here shows up automatically, no code changes needed) |
 | `teachingCaption` | ✅ | Caption shown in the darshan modal |
 | `isAI` | | `TRUE` if AI-generated |
 | `altText` | SEO | Descriptive alt text (accessibility + image SEO) |
@@ -42,6 +42,9 @@ Images themselves stay in Cloudflare R2; the Sheet just references filenames (r2
 | `order` | | Sort order (lower = earlier) |
 | `width` / `height` | SEO/perf | Pixel size (prevents layout shift) |
 | `dominantColor` | perf | Hex placeholder color while loading |
+| `mediaType` | | Media category — must be exactly one of `Sketch`, `Wallpaper Mobile`, `Wallpaper Desktop`, `WhatsApp Sticker` (drives the Type filter). Blank = shows under "All" only, not under any specific type |
+| `popularity` | | A number you set by hand, higher = more popular. Drives the "Popular" sort. Blank counts as `0` |
+| `featured` | | `TRUE` to pin this image to the front of the "Featured" sort |
 
 ---
 

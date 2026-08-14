@@ -43,4 +43,12 @@ export interface KaliImage {
   dateCreated?: string;
   /** Manual sort/priority (lower = earlier). */
   order?: number;
+
+  // ---- filtering / sorting ----
+  /** Media category, e.g. "Sketch", "Wallpaper Mobile", "Wallpaper Desktop", "WhatsApp Sticker". Blank = uncategorized. */
+  mediaType?: string;
+  /** Manual popularity score for the "Popular" sort (higher = more popular). Unset treated as 0. */
+  popularity?: number;
+  /** Whether this image is pinned to the front of the "Featured" sort. */
+  featured?: boolean;
 }
