@@ -69,7 +69,7 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 
 /* ---------- library ---------- */
 .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(1rem,4vw,2.4rem);position:relative;z-index:10}
-.lib{padding:4rem 0 1rem}
+.lib{padding:4rem 0 1rem;position:relative}
 .lib-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;margin-bottom:2rem}
 .lib-head h2{font-family:var(--disp);font-weight:700;color:var(--ink);font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.02em;line-height:1}
 .lib-head .sub{color:var(--ink-soft);font-size:1.12rem;margin-top:.2rem;max-width:46ch}
@@ -109,10 +109,30 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 .facet-count{font-size:.78rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
 .facet-opt.on .facet-count{color:var(--red-deep)}
 
+/* "Open Gallery" CTA — sits in the facet row, deliberately louder than the plain filter pills */
+.open-gallery-btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--body);
+  font-weight:700;font-size:1.05rem;color:#fff;text-decoration:none;white-space:nowrap;
+  background:linear-gradient(180deg,var(--sindoor),var(--red-deep));border:none;border-radius:40px;
+  padding:.85rem 1.5rem;box-shadow:0 10px 26px -10px rgba(219,31,36,.65);transition:transform .25s,box-shadow .25s}
+.open-gallery-btn svg{width:19px;height:19px;transition:transform .25s}
+.open-gallery-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px rgba(219,31,36,.75)}
+.open-gallery-btn:hover svg{transform:translateX(3px)}
+
+/* floating variant: pinned to the viewport's bottom-right while the preview
+   section is in view; "settled" detaches it to sit at the section's own
+   bottom-right once you've scrolled past, so it doesn't drift into the footer */
+.open-gallery-float{position:fixed;right:1.5rem;bottom:1.5rem;z-index:30;opacity:0;pointer-events:none;
+  transform:translateY(14px) scale(.95);transition:opacity .4s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+.open-gallery-float.show{opacity:1;pointer-events:auto;transform:none}
+.open-gallery-float.settled{position:absolute;right:1.5rem;bottom:0}
+@media(max-width:640px){.open-gallery-float{right:1rem;bottom:1rem;padding:.7rem 1.2rem;font-size:.94rem}
+  .open-gallery-float.settled{right:1rem}}
+
 @media(max-width:640px){
   .facet-backdrop{background:rgba(20,8,4,.45)}
   .facet-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(90vw,360px);max-height:70vh}
   .facet-value{max-width:44vw}
+  .open-gallery-btn{width:100%;justify-content:center}
 }
 
 /* masonry grid (display:block overrides Tailwind's .grid utility which would force display:grid) */
@@ -234,6 +254,16 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
   letter-spacing:-.015em;line-height:1.02}
 .katha-hero-dek{margin:1.1rem auto 0;max-width:52ch;color:var(--ink-soft);font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
 .katha-orn{margin-top:2rem}
+
+/* --- gallery page intro --- */
+.gallery-hero{padding:8.5rem 0 2rem;text-align:center;position:relative;
+  background:
+    radial-gradient(60% 130% at 50% -30%, rgba(219,31,36,.10), transparent 70%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg))}
+.gallery-hero-deva{font-family:var(--deva);color:var(--red);font-size:1.35rem;font-weight:600;letter-spacing:.14em;margin-bottom:.6rem}
+.gallery-hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.8rem,7vw,4.6rem);color:var(--ink);
+  letter-spacing:-.015em;line-height:1.02}
+.gallery-hero-dek{margin:1.1rem auto 0;max-width:52ch;color:var(--ink-soft);font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
 
 /* --- pinned hero carousel (reuses the .kcard-featured split layout) --- */
 .k-carousel-pin{position:relative}

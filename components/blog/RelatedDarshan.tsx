@@ -30,7 +30,7 @@ export default async function RelatedDarshan({
           <a
             key={p.id}
             className="k-darshan-tile"
-            href={`/?form=${encodeURIComponent(p.form)}#library`}
+            href={`/gallery?form=${encodeURIComponent(p.form)}`}
             aria-label={`${p.transliteration} — ${p.form}, in the library`}
           >
             <RImage

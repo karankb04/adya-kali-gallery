@@ -29,24 +29,33 @@ export function imageObject(p: KaliImage) {
   return obj;
 }
 
-/** Full JSON-LD graph for the gallery home page. */
-export function buildJsonLd(images: KaliImage[]) {
+function websiteNode() {
+  return {
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: SITE_NAME,
+    description:
+      "A living library of Maa Adya Kali — sacred images, her many forms, and teachings.",
+    inLanguage: ["en", "hi", "sa"],
+  };
+}
+
+/** Lightweight JSON-LD for pages that aren't the canonical image gallery (home preview, blog, etc). */
+export function buildSiteJsonLd() {
+  return { "@context": "https://schema.org", "@graph": [websiteNode()] };
+}
+
+/** Full JSON-LD graph (WebSite + ImageGallery) for whichever page is the canonical full gallery. */
+export function buildGalleryJsonLd(images: KaliImage[], galleryUrl = SITE_URL) {
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": `${SITE_URL}/#website`,
-        url: SITE_URL,
-        name: SITE_NAME,
-        description:
-          "A living library of Maa Adya Kali — sacred images, her many forms, and teachings.",
-        inLanguage: ["en", "hi", "sa"],
-      },
+      websiteNode(),
       {
         "@type": "ImageGallery",
-        "@id": `${SITE_URL}/#gallery`,
-        url: SITE_URL,
+        "@id": `${galleryUrl}#gallery`,
+        url: galleryUrl,
         name: SITE_NAME,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         about: "Maa Adya Kali (Kali, the primordial Divine Mother)",

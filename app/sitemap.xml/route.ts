@@ -46,6 +46,9 @@ export async function GET() {
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
     `  <url>\n` +
     `    <loc>${SITE_URL}/</loc>\n` +
+    `  </url>\n` +
+    `  <url>\n` +
+    `    <loc>${SITE_URL}/gallery</loc>\n` +
     `${imageTags}\n` +
     `  </url>\n` +
     `  <url>\n` +
