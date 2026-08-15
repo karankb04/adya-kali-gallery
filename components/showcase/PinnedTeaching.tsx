@@ -2,7 +2,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { sample } from "./sampleData";
+import { ENGAGE_LINKS } from "@/content/engageLinks";
+import EngageIcon from "./EngageIcons";
 
 /**
  * A sidebar column stays fixed while a taller sibling list scrolls past it.
@@ -20,7 +21,6 @@ import { sample } from "./sampleData";
 export default function PinnedTeaching() {
   const areaRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const forms = sample(9);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -64,21 +64,41 @@ export default function PinnedTeaching() {
   return (
     <div className="sc-pin-area" ref={areaRef}>
       <div className="sc-pin-sticky" ref={stickyRef}>
-        <span className="sc-pin-deva">शिक्षा</span>
-        <h3>One teaching, held in place</h3>
+        <span className="sc-pin-deva">जुड़ें</span>
+        <h3>Nine ways to walk with her</h3>
         <p>
-          The column pins while her nine forms scroll past beside it — the
-          text stays put so the reader keeps their place while skimming a
-          longer list.
+          The column pins while the ways to reach the mission scroll past
+          beside it — watch, listen, read, or join, whichever calls you.
         </p>
       </div>
       <div className="sc-pin-list">
-        {forms.map((f) => (
-          <div key={f.id} className="sc-pin-row">
-            <span className="sc-pin-row-name">{f.nameDevanagari}</span>
-            <span className="sc-pin-row-tr">{f.transliteration}</span>
-            <span className="sc-pin-row-cap">{f.teachingCaption}</span>
-          </div>
+        {ENGAGE_LINKS.map((link) => (
+          <a
+            key={link.id}
+            className="sc-pin-row"
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="sc-pin-row-icon">
+              <EngageIcon id={link.id} />
+            </span>
+            <span className="sc-pin-row-body">
+              <span className="sc-pin-row-label">{link.label}</span>
+              <span className="sc-pin-row-desc">{link.description}</span>
+            </span>
+            <span className="sc-pin-row-arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" width="16">
+                <path
+                  d="M4 12L12 4M12 4H5.5M12 4V10.5"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </a>
         ))}
       </div>
     </div>

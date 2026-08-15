@@ -34,7 +34,7 @@ export default async function GalleryPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SiteHeader variant="page" />
+      <SiteHeader />
       <section className="gallery-hero">
         <div className="wrap">
           <div className="gallery-hero-deva">काली दर्शन</div>

@@ -93,7 +93,7 @@ export default function KathaPage({ params }: Params) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
-      <SiteHeader variant="page" />
+      <SiteHeader />
       <main className="katha-page">
         <article className="katha-article">
           <header className="k-head wrap">

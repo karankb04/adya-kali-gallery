@@ -22,19 +22,44 @@ body{font-family:var(--body);color:var(--ink);font-weight:400;line-height:1.55;o
   -webkit-font-smoothing:antialiased;background:var(--bg)}
 
 /* ---------- top bar ---------- */
+/* One consistent glass bar, always visible, same on every page and scroll
+   position (no transparent-over-hero flip) — inspired by hex.tech's plain
+   persistent nav. */
 header.bar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
-  padding:.9rem clamp(1rem,4vw,2.4rem);}
-header.bar.solid{background:linear-gradient(180deg, rgba(243,238,235,0.95), rgba(243,238,235,0));backdrop-filter:blur(4px)}
-.mark{display:flex;align-items:center;gap:.6rem;font-family:var(--disp);font-weight:800;letter-spacing:-.01em;font-size:1.05rem;color:var(--cream);transition:color .4s}
-header.bar.solid .mark{color:#231712}
+  gap:1.4rem;padding:.85rem clamp(1rem,4vw,2.4rem);
+  background:rgba(23,9,7,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(251,242,228,.08)}
+.mark{display:flex;align-items:center;gap:.6rem;font-family:var(--disp);font-weight:800;letter-spacing:-.01em;font-size:1.05rem;color:var(--cream)}
 .mark img{width:32px;height:32px;object-fit:contain;border-radius:4px}
 .mark .dot{color:var(--red)}
-.navlinks{display:flex;gap:1.7rem;font-size:1.18rem;font-weight:600;letter-spacing:.01em;color:rgba(251,242,228,.92);transition:color .4s}
-header.bar.solid .navlinks{color:#7c6a60}
-.navlinks a{color:inherit;text-decoration:none;transition:.25s;cursor:pointer}
+.navlinks{display:flex;gap:1.7rem;font-size:1.02rem;font-weight:600;letter-spacing:.01em;color:rgba(251,242,228,.85)}
+.navlinks a{color:inherit;text-decoration:none;transition:color .25s;cursor:pointer}
 .navlinks a:hover{color:var(--rose)}
-header.bar.solid .navlinks a:hover{color:var(--red)}
-@media(max-width:720px){.navlinks{display:none}}
+@media(max-width:900px){.navlinks{display:none}}
+
+/* ---------- nav CTAs ---------- */
+.nav-cta{display:flex;align-items:center;gap:.7rem;margin-left:auto}
+
+.btn-donate{--clr:#9c0f14;position:relative;display:inline-flex;text-decoration:none;line-height:1;
+  border-radius:2rem;overflow:hidden;background:var(--cream);box-shadow:0 6px 18px -8px rgba(0,0,0,.5)}
+.btn-donate-decor{position:absolute;inset:0;background:var(--clr);transform:translateX(-100%);transition:transform .3s;z-index:0}
+.btn-donate:hover .btn-donate-decor{transform:translateX(0)}
+.btn-donate-content{position:relative;z-index:1;display:flex;align-items:center;font-weight:700;font-size:.86rem}
+.btn-donate-icon{width:34px;height:32px;display:grid;place-items:center;background:var(--clr);color:var(--cream)}
+.btn-donate-text{padding:0 1.1rem 0 .7rem;color:#231712;letter-spacing:.02em;transition:color .2s}
+.btn-donate:hover .btn-donate-text{color:var(--cream)}
+
+.btn-mission{--fill:#c08a2e;position:relative;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
+  border:1.5px solid rgba(251,242,228,.55);border-radius:2rem;padding:.5rem 1.15rem;overflow:hidden;
+  font-weight:600;font-size:.86rem;letter-spacing:.01em;color:var(--cream);isolation:isolate}
+.btn-mission-fill{position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;background:var(--fill);
+  transform:translate(-50%,-50%) scale(0);transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.btn-mission:hover .btn-mission-fill{transform:translate(-50%,-50%) scale(18)}
+.btn-mission:hover{color:#231712;border-color:var(--fill)}
+.btn-mission-arrow{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;
+  border:1px solid rgba(251,242,228,.55);transform:rotate(45deg);transition:transform .3s,border-color .3s}
+.btn-mission:hover .btn-mission-arrow{transform:rotate(90deg);border-color:#231712}
+@media(max-width:560px){.btn-mission-text{display:none}.btn-mission{padding:.5rem .65rem}}
 
 /* ---------- HERO : drifting wall ---------- */
 .hero{position:relative;height:100svh;min-height:600px;width:100%;overflow:hidden;background:#160a05}
@@ -223,12 +248,7 @@ header.bar.solid .navlinks a:hover{color:var(--red)}
 /* ---------- site-wide craft ---------- */
 ::selection{background:rgba(219,31,36,.85);color:#fbf2e4}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:4px}
-header.bar.page{background:linear-gradient(180deg, rgba(243,238,235,0.97), rgba(243,238,235,0.88));backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-header.bar.page .mark{color:#231712}
-header.bar.page .navlinks{color:#7c6a60}
-header.bar.page .navlinks a:hover{color:var(--red)}
-.navlinks .nav-katha{position:relative;color:var(--red);font-weight:700}
-header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
+.navlinks .nav-katha{position:relative;color:var(--rose);font-weight:700}
 .navlinks .nav-katha::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;
   background:linear-gradient(90deg,var(--gold-soft),var(--red));transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .navlinks .nav-katha:hover::after{transform:scaleX(1)}
@@ -445,11 +465,18 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
 .sc-pin-deva{font-family:var(--deva);color:var(--gold);font-size:.95rem;font-weight:600;letter-spacing:.1em}
 .sc-pin-sticky h3{font-family:var(--serif);font-weight:600;font-size:1.4rem;color:var(--ink);margin-top:.6rem;letter-spacing:-.01em}
 .sc-pin-sticky p{margin-top:.8rem;color:var(--ink-soft);font-size:.98rem;line-height:1.6}
-.sc-pin-list{display:flex;flex-direction:column;gap:1.1rem}
-.sc-pin-row{padding:1.3rem 1.5rem;background:var(--paper);border:1px solid var(--line);border-radius:12px}
-.sc-pin-row-name{font-family:var(--deva);color:var(--red-deep);font-weight:600;font-size:1.1rem;margin-right:.6rem}
-.sc-pin-row-tr{font-size:.86rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em}
-.sc-pin-row-cap{display:block;margin-top:.4rem;color:var(--ink-soft);font-size:.95rem;line-height:1.5}
+.sc-pin-list{display:flex;flex-direction:column;gap:1rem}
+.sc-pin-row{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;background:var(--paper);
+  border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;cursor:pointer;
+  transition:border-color .25s,transform .25s,box-shadow .25s}
+.sc-pin-row:hover{border-color:var(--red-deep);transform:translateX(4px);box-shadow:0 10px 26px -18px rgba(156,15,20,.4)}
+.sc-pin-row-icon{flex:none;width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+  background:var(--bg-soft);color:var(--red-deep)}
+.sc-pin-row-body{flex:1;min-width:0}
+.sc-pin-row-label{display:block;font-family:var(--disp);font-weight:700;color:var(--ink);font-size:1.02rem}
+.sc-pin-row-desc{display:block;margin-top:.2rem;color:var(--ink-soft);font-size:.9rem;line-height:1.45}
+.sc-pin-row-arrow{flex:none;width:20px;height:20px;color:var(--ink-soft);transition:transform .25s,color .25s}
+.sc-pin-row:hover .sc-pin-row-arrow{transform:translate(3px,-3px);color:var(--red-deep)}
 @media(max-width:1199px){.sc-pin-area{grid-template-columns:1fr}}
 
 /* ---------- mantra ribbon (homepage) ---------- */

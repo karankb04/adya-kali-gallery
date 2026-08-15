@@ -32,7 +32,7 @@ export default function BlogIndex() {
 
   return (
     <>
-      <SiteHeader variant="page" />
+      <SiteHeader />
       <main className="katha-page">
         <section className="katha-hero">
           <div className="wrap">

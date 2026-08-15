@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function ComponentsShowcase() {
   return (
     <div className="sc-page">
-      <SiteHeader variant="page" />
+      <SiteHeader />
 
       <KineticHero />
 

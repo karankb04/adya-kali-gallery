@@ -27,7 +27,7 @@ export default function KaliApp({ images }: KaliAppProps) {
 
   return (
     <>
-      <SiteHeader variant="hero" />
+      <SiteHeader />
 
       {/* ---------- HERO ---------- */}
       <Hero images={images} onOpen={setSelected} />

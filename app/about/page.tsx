@@ -58,7 +58,7 @@ const COVERFLOW_ITEMS = [
 export default function AboutPage() {
   return (
     <>
-      <SiteHeader variant="page" />
+      <SiteHeader />
       <section className="gallery-hero" style={{ minHeight: "50vh", display: "flex", alignItems: "center" }}>
         <div className="wrap">
           <div className="gallery-hero-deva">परिचय</div>
@@ -83,7 +83,7 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- SCROLL IMAGE REVEAL: seva / annadanam ---------- */}
-      <section className="about-section about-section-alt wrap">
+      <section className="about-section about-section-alt wrap" id="seva">
         <div className="lib-head">
           <Ornament className="lib-orn" />
           <h2>Her seva, in the world</h2>
