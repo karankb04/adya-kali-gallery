@@ -6,6 +6,7 @@ import RevealGrid from "@/components/showcase/RevealGrid";
 import ScrollImageReveal from "@/components/ScrollImageReveal";
 import Coverflow from "@/components/Coverflow";
 import FaqSection from "@/components/FaqSection";
+import MantraRibbon from "@/components/MantraRibbon";
 import { ABOUT_FAQS } from "@/content/faqs";
 
 export const metadata: Metadata = {
@@ -92,6 +93,9 @@ export default function AboutPage() {
         </div>
         <ScrollImageReveal items={SEVA_ITEMS} />
       </section>
+
+      {/* ---------- MANTRA RIBBON ---------- */}
+      <MantraRibbon />
 
       {/* ---------- COVERFLOW (placeholder content) ---------- */}
       <section className="about-section wrap">

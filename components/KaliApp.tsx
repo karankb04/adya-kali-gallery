@@ -7,7 +7,7 @@ import SiteFooter from "./SiteFooter";
 import GalleryLibrary from "./GalleryLibrary";
 import InstagramFeed from "./InstagramFeed";
 import PinnedTeaching from "./showcase/PinnedTeaching";
-import MantraRibbon from "./MantraRibbon";
+import ScrollTextLines from "./ScrollTextLines";
 import FaqSection from "./FaqSection";
 import { HOME_FAQS } from "@/content/faqs";
 
@@ -50,8 +50,8 @@ export default function KaliApp({ images }: KaliAppProps) {
         <PinnedTeaching />
       </section>
 
-      {/* ---------- MANTRA RIBBON ---------- */}
-      <MantraRibbon />
+      {/* ---------- SCROLL TEXT LINES ---------- */}
+      <ScrollTextLines />
 
       {/* ---------- FAQ ---------- */}
       <FaqSection

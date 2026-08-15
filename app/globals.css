@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Cinzel+Decorative:wght@700;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Cinzel+Decorative:wght@700;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@300;400;500;600;700&family=League+Gothic:wght@400..700&family=Mukta:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
 
 :root{
   --bg:#f3eeeb; --bg-soft:#eae2dd; --paper:#ffffff;
@@ -448,6 +448,22 @@ header.bar:not(.solid):not(.page) .navlinks .nav-katha{color:var(--rose)}
   text-shadow:0 2px 8px rgba(0,0,0,.4)}
 .mantra-ribbon-sep{color:var(--gold-soft);font-size:.9rem;opacity:.85}
 @media(max-width:640px){.mantra-ribbon-item{font-size:1rem;gap:1.6rem}.mantra-ribbon-track{gap:1.6rem}}
+
+/* ---------- scroll text lines (homepage) ---------- */
+/* Two condensed-type ticker rows moving opposite directions, nudged by an
+   extra scroll-linked drift on top of the continuous CSS marquee. */
+.stl{padding:2.2rem 0;overflow:hidden;display:flex;flex-direction:column;gap:.2rem}
+.stl-row{overflow:hidden}
+.stl-drift{width:100%}
+.stl-track{display:flex;width:max-content;gap:2.2rem;will-change:transform}
+.stl-track-a{animation:stl-scroll-left var(--stl-duration,20s) linear infinite}
+.stl-track-b{animation:stl-scroll-right var(--stl-duration,20s) linear infinite}
+@keyframes stl-scroll-left{to{transform:translateX(calc(-50% - 1.1rem))}}
+@keyframes stl-scroll-right{from{transform:translateX(calc(-50% - 1.1rem))}to{transform:translateX(0)}}
+.stl-item{font-family:'League Gothic',var(--disp),sans-serif;font-weight:500;text-transform:uppercase;
+  font-size:clamp(2.6rem,8vw,5.4rem);letter-spacing:.01em;line-height:1;white-space:nowrap}
+.stl-item-solid{color:var(--red-deep)}
+.stl-item-outline{color:transparent;-webkit-text-stroke:1.5px var(--ink);text-stroke:1.5px var(--ink)}
 
 /* ---------- FAQ accordion ---------- */
 .faq{padding:1rem 0 4.5rem}
