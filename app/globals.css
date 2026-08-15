@@ -215,6 +215,34 @@ header.bar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-ite
 .mclose:hover{border-color:var(--rose);color:var(--rose);transform:rotate(90deg)}
 @media(max-width:760px){.darshan{grid-template-columns:1fr;gap:1.2rem;max-width:440px}.darshan .frame img{max-height:50vh}}
 
+/* ---------- music page ---------- */
+.music-wrap{padding:1rem 0 5rem}
+.music-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.music-card{display:block;text-align:left;background:none;border:none;padding:0;cursor:pointer;width:100%}
+.music-card-media{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:16/9;background:#160a05}
+.music-card-media img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.music-card:hover .music-card-media img{transform:scale(1.06)}
+.music-card-scrim{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, rgba(10,4,2,.85) 0%, rgba(10,4,2,.45) 35%, transparent 60%)}
+.music-card-overlay{position:absolute;left:0;right:0;top:0;padding:.95rem 1rem;display:flex;flex-direction:column;gap:.25rem}
+.music-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(23,9,7,.72);color:var(--cream);backdrop-filter:blur(3px);
+  box-shadow:0 8px 22px -8px rgba(0,0,0,.6);transition:background .25s,transform .25s}
+.music-card:hover .music-play{background:var(--red-deep);transform:translate(-50%,-50%) scale(1.08)}
+.music-card-title{display:block;font-family:var(--disp);font-weight:700;color:#fff;font-size:1.02rem;line-height:1.25;
+  text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.music-card-desc{display:block;color:rgba(251,242,228,.82);font-size:.82rem;line-height:1.4;
+  text-shadow:0 1px 6px rgba(0,0,0,.6);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+.music-detail{max-width:920px;width:100%;display:flex;flex-direction:column;gap:1.6rem}
+.music-detail-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;
+  box-shadow:0 30px 80px -30px #000, 0 0 0 1px rgba(255,90,77,.25), 0 0 70px rgba(219,31,36,.22)}
+.music-detail-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.music-detail-title{font-family:var(--disp);font-weight:700;color:#fff;font-size:1.5rem;letter-spacing:-.01em}
+.music-detail-desc{margin-top:.5rem;color:#ecdcc8;font-size:1.02rem;line-height:1.6}
+@media(max-width:600px){.music-grid{grid-template-columns:1fr}}
+
 /* ---------- site footer ---------- */
 .sfoot{background:#170907;margin-top:3.5rem;padding:5rem 1.6rem 2.2rem;overflow:hidden}
 .sfoot-inner{max-width:1220px;margin:0 auto}
@@ -299,6 +327,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .gallery-hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.8rem,7vw,4.6rem);color:var(--ink);
   letter-spacing:-.015em;line-height:1.02}
 .gallery-hero-dek{margin:1.1rem auto 0;max-width:52ch;color:var(--ink-soft);font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}
+.gallery-hero-dek a{color:var(--red-deep);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 
 /* --- lead posts: sticky stack (reuses the .kcard-featured split layout) ---
    Pure CSS, no scroll library: each card is position:sticky at a slightly

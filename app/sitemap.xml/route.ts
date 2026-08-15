@@ -52,6 +52,9 @@ export async function GET() {
     `${imageTags}\n` +
     `  </url>\n` +
     `  <url>\n` +
+    `    <loc>${SITE_URL}/music</loc>\n` +
+    `  </url>\n` +
+    `  <url>\n` +
     `    <loc>${SITE_URL}/blog</loc>\n` +
     `  </url>\n` +
     `${postTags}\n` +

@@ -10,6 +10,7 @@ export default function SiteHeader() {
       <nav className="navlinks">
         <a href="/gallery">Gallery</a>
         <a href="/about">About</a>
+        <a href="/music">Music</a>
         <a href="/blog" className="nav-katha">
           Katha
         </a>
