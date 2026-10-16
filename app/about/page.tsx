@@ -59,16 +59,13 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <section className="gallery-hero" style={{ minHeight: "50vh", display: "flex", alignItems: "center" }}>
+      <section className="gallery-hero">
         <div className="wrap">
           <div className="gallery-hero-deva">परिचय</div>
           <h1>About</h1>
           <p className="gallery-hero-dek">
             The story of Adya Kali and the KaliPutra Mission — coming soon.
           </p>
-          <div style={{ marginTop: "2rem" }}>
-            <Ornament />
-          </div>
         </div>
       </section>
 

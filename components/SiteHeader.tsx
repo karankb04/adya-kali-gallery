@@ -23,7 +23,7 @@ export default function SiteHeader() {
             <span className="btn-donate-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15">
                 <path
-                  d="M12 21s-7.5-4.66-10-9.13C.53 8.66 2.24 5 5.9 5c2.1 0 3.5 1.2 4.1 2.28h.9C11.5 6.2 12.9 5 15 5c3.66 0 5.37 3.66 3.9 6.87C19.5 16.34 12 21 12 21z"
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
                   fill="currentColor"
                 />
               </svg>
