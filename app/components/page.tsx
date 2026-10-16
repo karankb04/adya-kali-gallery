@@ -17,6 +17,16 @@ import MagneticCursorDemo from "@/components/showcase/MagneticCursorDemo";
 import TextScramble from "@/components/showcase/TextScramble";
 import PeekPreviewList from "@/components/showcase/PeekPreviewList";
 import DevelopCanvas from "@/components/showcase/DevelopCanvas";
+import HorizontalScroll from "@/components/showcase/HorizontalScroll";
+import WordReveal from "@/components/showcase/WordReveal";
+import VelocityMarquee from "@/components/showcase/VelocityMarquee";
+import StickyChapters from "@/components/showcase/StickyChapters";
+import CurtainReveal from "@/components/showcase/CurtainReveal";
+import ExpandPanels from "@/components/showcase/ExpandPanels";
+import RollingNumbers from "@/components/showcase/RollingNumbers";
+import CircularBadge from "@/components/showcase/CircularBadge";
+import TiltCards from "@/components/showcase/TiltCards";
+import TypeSpecimen from "@/components/showcase/TypeSpecimen";
 
 // Internal decision-making page — not linked from site nav, not indexed.
 export const metadata: Metadata = {
@@ -148,6 +158,98 @@ export default function ComponentsShowcase() {
         description="A blocked, pixelated portrait sharpens in a soft radius around the cursor — like watching a photograph develop. No pixel read-back, so it works with any image."
       >
         <DevelopCanvas />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={15}
+        technique="Horizontal scroll · GSAP pin + containerAnimation"
+        title="Scrolling down moves the row sideways"
+        description="The section pins and the track slides left by exactly its overflow width. Two rules matter: animate a child of the pinned element, never the pin itself, and keep ease:'none' or scroll and position stop matching 1:1. Falls back to native touch-scroll under 760px."
+        bleed
+      >
+        <HorizontalScroll />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={16}
+        technique="Word-by-word scrub · GSAP stagger"
+        title="A statement that writes itself in"
+        description="Each word lifts out of a blurred, dimmed rest state as you scroll through the block. Words are split in JSX rather than by rewriting innerHTML, so React keeps ownership of the DOM."
+      >
+        <WordReveal />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={17}
+        technique="Scroll-velocity marquee · single rAF loop"
+        title="A ribbon that follows how fast you scroll"
+        description="Speeds up with scroll velocity, flips direction when you scroll back, and skews under acceleration before settling. One rAF loop owns a single x offset — no per-frame layout reads."
+        bleed
+      >
+        <VelocityMarquee />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={18}
+        technique="Sticky media + IntersectionObserver"
+        title="One image, four chapters"
+        description="The image column holds with position:sticky while the text scrolls; a thin observer band across mid-viewport decides which chapter is current and cross-fades the art. Cheaper and less brittle than measuring scroll offsets."
+      >
+        <StickyChapters />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={19}
+        technique="Curtain wipe · clip-path + counter-scale"
+        title="A frame that opens on her"
+        description="The frame widens via clip-path while the image inside counter-scales down. Without that counter-scale the image appears to grow with the frame and it reads as a zoom rather than an unveiling."
+      >
+        <CurtainReveal />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={20}
+        technique="Expanding panels · flex-grow transition"
+        title="Panels that open where you point"
+        description="Pure flex-grow — no measuring, no FLIP, smooth at any panel count. Labels sit vertical while collapsed and snap horizontal when open, which keeps the row readable at rest."
+      >
+        <ExpandPanels />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={21}
+        technique="Odometer · per-digit CSS reels"
+        title="Numbers that roll into place"
+        description="Each digit is its own 0–9 reel that slides to target with a staggered delay, so they land left to right. Different feel from a tweened count-up, which shows every number in between."
+      >
+        <RollingNumbers />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={22}
+        technique="Circular type · SVG textPath + scrub"
+        title="A seal that turns as you pass"
+        description="Text set on a circular path, with a slow idle spin in CSS and a second scroll-scrubbed rotation on a wrapper element — kept on separate nodes so neither fights the other for the transform."
+      >
+        <CircularBadge />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={23}
+        technique="3D tilt · CSS custom properties"
+        title="Cards that lean toward the pointer"
+        description="Pointer position is written to CSS variables and the transform lives in CSS, so it stays on the compositor and the mouse-leave reset is a plain transition instead of an unwinding JS animation. Writes are coalesced to one per frame."
+      >
+        <TiltCards />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={24}
+        technique="Type reference · candidate faces + treatments"
+        title="Fonts and text styles to pull from"
+        description="Six candidate faces beside the one in use, then six reusable text treatments — outline mixes, kicker pairings, oversized numerals, drop caps. These faces load only on this page; the live site is untouched."
+      >
+        <TypeSpecimen />
       </ShowcaseSection>
 
       <SiteFooter />
