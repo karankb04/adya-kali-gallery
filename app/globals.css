@@ -591,6 +591,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .stl-item-solid{color:var(--red-deep)}
 .stl-item-outline{color:transparent;-webkit-text-stroke:1.5px var(--ink);text-stroke:1.5px var(--ink)}
 
+/* ---------- darshan of the day (homepage) ---------- */
+.dotd{padding:4.5rem 0 2rem}
+.dotd-card{display:grid;grid-template-columns:minmax(0,400px) 1fr;gap:2.6rem;align-items:center;max-width:940px;
+  margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:1.3rem;
+  box-shadow:0 30px 70px -42px rgba(60,20,8,.45)}
+.dotd-media{aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#241208}
+.dotd-deva{font-family:var(--deva);font-size:1.5rem;color:#815b13}
+.dotd-title{margin-top:.2rem;font-family:var(--disp);font-weight:700;text-transform:uppercase;
+  font-size:clamp(1.9rem,4.4vw,3rem);line-height:1;color:var(--ink)}
+.dotd-form{margin-top:.5rem;font-family:var(--body);font-weight:600;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:#c4171c}
+.dotd-teach{margin-top:1.1rem;font-family:var(--read);font-weight:300;font-size:1.08rem;line-height:1.7;
+  color:var(--ink-soft);border-left:2px solid var(--red);padding-left:1rem}
+@media(max-width:760px){.dotd-card{grid-template-columns:1fr;gap:1.4rem}}
+
 /* ---------- FAQ accordion ---------- */
 .faq{padding:1rem 0 4.5rem}
 .faq-deva{font-family:var(--deva);color:#815b13;font-size:.95rem;font-weight:600;letter-spacing:.1em;margin-bottom:.2rem}

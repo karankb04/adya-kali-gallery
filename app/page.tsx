@@ -1,6 +1,7 @@
 import { getImages } from "@/lib/images";
 import { buildSiteJsonLd } from "@/lib/seo";
 import KaliApp from "@/components/KaliApp";
+import DarshanOfTheDay from "@/components/DarshanOfTheDay";
 
 export const revalidate = 60;
 
@@ -13,7 +14,7 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <KaliApp images={images} />
+      <KaliApp images={images} daily={<DarshanOfTheDay images={images} />} />
     </>
   );
 }
