@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Mukta, Roboto_Slab } from "next/font/google";
+import { Roboto_Slab, Tiro_Devanagari_Hindi } from "next/font/google";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import "./globals.css";
 
@@ -24,8 +24,9 @@ const slab = Roboto_Slab({
   display: "swap",
 });
 
-const mukta = Mukta({
-  weight: ["400", "500", "600", "700"],
+// Calligraphic Devanagari with the stroke contrast of hand-lettered scripture.
+const deva = Tiro_Devanagari_Hindi({
+  weight: "400",
   subsets: ["devanagari"],
   variable: "--font-deva",
   display: "swap",
@@ -74,7 +75,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${clash.variable} ${slab.variable} ${mukta.variable}`}>
+    <html lang="en" className={`${clash.variable} ${slab.variable} ${deva.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

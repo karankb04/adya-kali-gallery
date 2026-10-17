@@ -17,7 +17,7 @@ const PROPOSALS = [
     priority: "High",
     area: "Devotional feel",
     title: "A Devanagari headline face with real character",
-    why: "Every Devanagari line (mantras, form names, eyebrows) is set in Mukta, which reads like interface text. Tiro Devanagari Hindi (section 09) brings the stroke contrast of hand-lettered scripture. Loaded as a subset of only the characters used, it costs a few KB.",
+    why: "Every Devanagari line (mantras, form names, eyebrows) is set in Mukta, which reads like interface text. Tiro Devanagari Hindi (section 09) brings the stroke contrast of hand-lettered scripture. It is one ~80 KB file, replacing the ~200 KB of Mukta weights the site was loading, so the page gets lighter, not heavier.",
     effort: "Small",
   },
   {

@@ -11,12 +11,14 @@
   /* Font files are loaded by next/font in app/layout.tsx. */
   --disp:var(--font-clash),sans-serif;
   --body:var(--font-slab),serif;
-  --deva:var(--font-deva),var(--font-slab),sans-serif;
+  --deva:var(--font-deva),var(--font-slab),serif;
   --serif:var(--font-clash),sans-serif;
   --read:var(--font-slab),serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* Tiro Devanagari ships one weight; show it as designed instead of letting
+   the browser smear a fake bold where rules ask for 600/700. */
+html{scroll-behavior:smooth;font-synthesis-weight:none}
 body{font-family:var(--body);color:var(--ink);font-weight:400;line-height:1.55;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;background:var(--bg)}
 
