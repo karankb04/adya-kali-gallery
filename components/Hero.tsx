@@ -105,7 +105,7 @@ export default function Hero({ images, onOpen }: HeroProps) {
 
       <div className="hero-c">
         <div className="deva">॥ जय माँ आद्या ॥</div>
-        <div className="title-wrap">
+        <h1 className="title-wrap">
           <motion.div
             style={{ y: logoY, scale: logoScale }}
           >
@@ -118,7 +118,7 @@ export default function Hero({ images, onOpen }: HeroProps) {
               sizes="(max-width:560px) 98vw, (max-width:980px) 94vw, 980px"
             />
           </motion.div>
-        </div>
+        </h1>
         <p>
           A living library of the Mother — her every face, gathered in one place
           for all the world to behold.
