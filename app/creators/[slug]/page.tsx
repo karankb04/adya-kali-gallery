@@ -11,7 +11,7 @@ import { r2url } from "@/lib/r2";
 export const revalidate = 300;
 
 interface Params {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 function initials(name: string): string {
@@ -26,8 +26,8 @@ export function generateStaticParams() {
   return getCreators().map((c) => ({ slug: c.slug }));
 }
 
-export function generateMetadata({ params }: Params): Metadata {
-  const creator = getCreator(params.slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const creator = getCreator((await params).slug);
   if (!creator) return {};
   const ogImage = creator.works[0]?.thumbnailR2Key
     ? r2url(creator.works[0].thumbnailR2Key)
@@ -51,8 +51,8 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
-export default function CreatorPage({ params }: Params) {
-  const creator = getCreator(params.slug);
+export default async function CreatorPage({ params }: Params) {
+  const creator = getCreator((await params).slug);
   if (!creator) notFound();
 
   const jsonLd = {

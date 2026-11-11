@@ -27,6 +27,8 @@ const nextConfig = {
     ];
   },
   images: {
+    // Next 16 only serves listed qualities; 55 is the hero wall's (Hero.tsx).
+    qualities: [55, 75],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,
     remotePatterns: [

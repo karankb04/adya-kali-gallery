@@ -15,15 +15,15 @@ import { r2url } from "@/lib/r2";
 export const revalidate = 300;
 
 interface Params {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: Params): Metadata {
-  const post = getPost(params.slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const post = getPost((await params).slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -48,8 +48,8 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
-export default function KathaPage({ params }: Params) {
-  const post = getPost(params.slug);
+export default async function KathaPage({ params }: Params) {
+  const post = getPost((await params).slug);
   if (!post) notFound();
 
   const related = relatedPosts(post);

@@ -28,8 +28,8 @@ export default function ScrollTextLines() {
 
   useEffect(() => {
     function fill(
-      trackRef: React.RefObject<HTMLDivElement>,
-      viewRef: React.RefObject<HTMLDivElement>,
+      trackRef: React.RefObject<HTMLDivElement | null>,
+      viewRef: React.RefObject<HTMLDivElement | null>,
       speed: number
     ) {
       const track = trackRef.current;

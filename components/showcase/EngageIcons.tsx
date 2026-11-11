@@ -1,4 +1,4 @@
-const ICONS: Record<string, JSX.Element> = {
+const ICONS: Record<string, React.JSX.Element> = {
   youtube: (
     <svg viewBox="0 0 24 24" fill="none" width="19">
       <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" strokeWidth="1.6" />
