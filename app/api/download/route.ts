@@ -8,7 +8,6 @@ import { r2url } from "@/lib/r2";
  *
  *   /api/download?key=<r2Key>&name=<filename>
  */
-export const runtime = "edge";
 
 function sanitizeName(name: string): string {
   // strip anything that could break the header / path
