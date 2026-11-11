@@ -14,6 +14,7 @@ import DarshanOfTheDay from "@/components/showcase2/DarshanOfTheDay";
 import ViewTransitionGallery from "@/components/showcase2/ViewTransitionGallery";
 import DevanagariSpecimen from "@/components/showcase2/DevanagariSpecimen";
 import UxProposals from "@/components/showcase2/UxProposals";
+import NavTypeSpecimen from "@/components/showcase2/NavTypeSpecimen";
 
 // Internal proposals page — not linked from site nav, not indexed.
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function ComponentsTwo() {
         <p className="s2-intro-deva">दर्शन</p>
         <h1>Proposals for her</h1>
         <p className="s2-intro-dek">
-          Ten ideas built around one goal: that a visitor feels her presence,
+          Eleven ideas built around one goal: that a visitor feels her presence,
           not just sees her pictures. Each lists what it costs the page, since
           search ranking depends on staying fast. None adds a new library.
         </p>
@@ -130,6 +131,16 @@ export default function ComponentsTwo() {
         description="Prioritised by impact. Each was checked against the actual code, not a generic checklist."
       >
         <UxProposals />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={11}
+        technique="Nav typography · six directions · buttons unchanged"
+        title="A header worthy of her name"
+        description="The wordmark and links set six ways, each in a full replica of the bar with the Donate and Mission buttons left exactly as they are. Hover the links to see each one's hover style. On the live site the wordmark hides below 1100px wide, so the links carry most of the effect."
+        bleed
+      >
+        <NavTypeSpecimen />
       </ShowcaseSection>
 
       <SiteFooter />

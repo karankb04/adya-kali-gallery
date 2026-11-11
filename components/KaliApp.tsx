@@ -13,6 +13,8 @@ import { HOME_FAQS } from "@/content/faqs";
 
 interface KaliAppProps {
   images: KaliImage[];
+  /** Server-rendered Darshan of the Day, passed in so it stays zero-JS. */
+  daily?: React.ReactNode;
 }
 
 // The homepage shows a taste of the gallery, not the whole thing — full
@@ -20,7 +22,7 @@ interface KaliAppProps {
 // landing in the 20-30% reduction range asked for.
 const HOME_PREVIEW_LIMIT = 16;
 
-export default function KaliApp({ images }: KaliAppProps) {
+export default function KaliApp({ images, daily }: KaliAppProps) {
   // Shared with GalleryLibrary so the Hero wall and the grid below open the
   // same darshan modal instead of two independent ones.
   const [selected, setSelected] = useState<KaliImage | null>(null);
@@ -41,6 +43,9 @@ export default function KaliApp({ images }: KaliAppProps) {
         selected={selected}
         onSelectChange={setSelected}
       />
+
+      {/* ---------- DARSHAN OF THE DAY ---------- */}
+      {daily}
 
       {/* ---------- INSTAGRAM ---------- */}
       <InstagramFeed />

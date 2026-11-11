@@ -17,7 +17,7 @@ const FONT_HREFS = [
 
 const FACES = [
   {
-    css: "'Clash Display', sans-serif",
+    css: "var(--disp)",
     name: "Clash Display",
     role: "In use — display / headings",
     note: "Bold geometric. Reads loud at size, holds up in all-caps.",

@@ -4,8 +4,8 @@ import { useEffect } from "react";
 const SAMPLE = "॥ जय माँ आद्या काली ॥";
 
 const FACES = [
-  { name: "Mukta", css: "'Mukta', sans-serif", weight: 600, role: "In use now", note: "Clean and legible, but plain. Reads like interface text, not a prayer." },
-  { name: "Tiro Devanagari Hindi", css: "'Tiro Devanagari Hindi', serif", weight: 400, role: "Recommended: headlines", note: "Calligraphic, with the stroke contrast of hand-lettered scripture. Has a true italic. The strongest devotional voice of the set." },
+  { name: "Mukta", css: "'Mukta', sans-serif", weight: 600, role: "Previously in use", note: "Clean and legible, but plain. Reads like interface text, not a prayer." },
+  { name: "Tiro Devanagari Hindi", css: "var(--deva)", weight: 400, role: "In use now", note: "Calligraphic, with the stroke contrast of hand-lettered scripture. Has a true italic. The strongest devotional voice of the set." },
   { name: "Kadwa", css: "'Kadwa', serif", weight: 700, role: "Alt: headlines", note: "Bold, traditional book serif. Weighty enough to stand beside Clash Display." },
   { name: "Sura", css: "'Sura', serif", weight: 700, role: "Alt: body + labels", note: "Calm and balanced; good for longer Hindi passages and verse blocks." },
   { name: "Sumana", css: "'Sumana', serif", weight: 700, role: "Alt: verse blocks", note: "Softer, rounder serif with a warm, old-print feel." },
@@ -22,7 +22,7 @@ const FACES = [
  */
 export default function DevanagariSpecimen() {
   useEffect(() => {
-    const families = ["Tiro+Devanagari+Hindi", "Kadwa:wght@700", "Sura:wght@700", "Sumana:wght@700", "Asar"]
+    const families = ["Mukta:wght@600", "Kadwa:wght@700", "Sura:wght@700", "Sumana:wght@700", "Asar"]
       .map((f) => `family=${f}`)
       .join("&");
     const l = document.createElement("link");

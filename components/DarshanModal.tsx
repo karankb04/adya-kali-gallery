@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { KaliImage } from "@/types/image";
 import { downloadImage } from "@/lib/download";
@@ -29,19 +29,56 @@ export default function DarshanModal({
   onPrev,
   onNext,
 }: DarshanModalProps) {
+  const isOpen = !!image;
+  const returnFocusTo = useRef<HTMLElement | null>(null);
+
+  // Keyboard focus: move into the dialog on open, return to whatever opened
+  // it on close — otherwise keyboard users are left on the hidden page.
   useEffect(() => {
+    if (!isOpen) return;
+    returnFocusTo.current = document.activeElement as HTMLElement | null;
+    document.querySelector<HTMLElement>(".mclose")?.focus();
+    return () => {
+      const el = returnFocusTo.current;
+      // Hero wall tiles are aria-hidden decoration; don't park focus there.
+      if (el && !el.closest("[aria-hidden='true']")) el.focus();
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft" && onPrev) onPrev();
       if (e.key === "ArrowRight" && onNext) onNext();
+      if (e.key === "Tab") {
+        // Keep Tab cycling inside the dialog's own controls.
+        const f = Array.from(
+          document.querySelectorAll<HTMLElement>(".mclose, .mnav, .modal button, .modal a[href]")
+        );
+        if (!f.length) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        if (!active || !f.includes(active)) {
+          e.preventDefault();
+          first.focus();
+        } else if (e.shiftKey && active === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener("keydown", onKey);
-    document.body.style.overflow = image ? "hidden" : "";
+    document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [image, onClose, onPrev, onNext]);
+  }, [isOpen, onClose, onPrev, onNext]);
 
   return (
     <AnimatePresence>

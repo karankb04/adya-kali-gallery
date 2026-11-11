@@ -1,5 +1,9 @@
 export default function SiteHeader() {
   return (
+    <>
+    <a href="#main-content" className="skip-link">
+      Skip to content
+    </a>
     <header className="bar" id="bar">
       <a href="/" className="mark" style={{ textDecoration: "none" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -54,5 +58,8 @@ export default function SiteHeader() {
         </a>
       </div>
     </header>
+    {/* Skip-link target: lands keyboard users just past the header. */}
+    <span id="main-content" tabIndex={-1} />
+    </>
   );
 }
