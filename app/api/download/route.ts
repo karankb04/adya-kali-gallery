@@ -29,8 +29,11 @@ export async function GET(req: Request) {
     return new Response("Image not found.", { status: 404 });
   }
 
-  const contentType =
-    upstream.headers.get("content-type") || "application/octet-stream";
+  // Only ever hand back gallery media, whatever else might land in the bucket.
+  const contentType = upstream.headers.get("content-type") || "";
+  if (!/^(image|video)\//.test(contentType)) {
+    return new Response("Not a gallery file.", { status: 415 });
+  }
 
   return new Response(upstream.body, {
     headers: {

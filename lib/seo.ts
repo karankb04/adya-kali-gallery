@@ -7,6 +7,15 @@ export const SITE_URL =
 
 export const SITE_NAME = "Maa Adya Kali Gallery";
 
+/**
+ * JSON for an inline <script type="application/ld+json">. Escaping "<" stops
+ * text such as "</script>" in a caption from closing the tag early and
+ * injecting markup into the page.
+ */
+export function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
 /** One Schema.org ImageObject per image (rich metadata for Google Images). */
 export function imageObject(p: KaliImage) {
   const obj: Record<string, unknown> = {

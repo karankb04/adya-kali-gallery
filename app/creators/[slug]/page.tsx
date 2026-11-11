@@ -5,7 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import RImage from "@/components/RImage";
 import { getCreator, getCreators } from "@/lib/creators";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, serializeJsonLd } from "@/lib/seo";
 import { r2url } from "@/lib/r2";
 
 export const revalidate = 300;
@@ -69,7 +69,7 @@ export default function CreatorPage({ params }: Params) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <SiteHeader />
 

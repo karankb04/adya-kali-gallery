@@ -1,5 +1,5 @@
 import { getImages } from "@/lib/images";
-import { buildSiteJsonLd } from "@/lib/seo";
+import { buildSiteJsonLd, serializeJsonLd } from "@/lib/seo";
 import KaliApp from "@/components/KaliApp";
 
 export const revalidate = 60;
@@ -11,7 +11,7 @@ export default async function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <KaliApp images={images} />
     </>

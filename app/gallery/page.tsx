@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getImages } from "@/lib/images";
-import { buildGalleryJsonLd, SITE_URL, SITE_NAME } from "@/lib/seo";
+import { buildGalleryJsonLd, SITE_URL, SITE_NAME, serializeJsonLd } from "@/lib/seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import GalleryLibrary from "@/components/GalleryLibrary";
@@ -32,7 +32,7 @@ export default async function GalleryPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <SiteHeader />
       <section className="gallery-hero">

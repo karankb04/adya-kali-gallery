@@ -9,7 +9,7 @@ import RelatedDarshan from "@/components/blog/RelatedDarshan";
 import RImage from "@/components/RImage";
 import FaqSection from "@/components/FaqSection";
 import { getPost, getPosts, relatedPosts, formatDate } from "@/lib/posts";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, serializeJsonLd } from "@/lib/seo";
 import { r2url } from "@/lib/r2";
 
 export const revalidate = 300;
@@ -85,12 +85,12 @@ export default function KathaPage({ params }: Params) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       {faqJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
         />
       )}
       <SiteHeader />
