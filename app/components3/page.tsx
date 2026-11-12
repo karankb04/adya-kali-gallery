@@ -11,6 +11,7 @@ import KargoArc from "@/components/showcase3/KargoArc";
 import DomeDarshan from "@/components/showcase3/DomeDarshan";
 import KineticName from "@/components/showcase3/KineticName";
 import EditorialChrome from "@/components/showcase3/EditorialChrome";
+import OfferingPile from "@/components/showcase3/OfferingPile";
 import { getImages } from "@/lib/images";
 
 // Internal proposals page — not linked from site nav, not indexed.
@@ -86,6 +87,16 @@ export default async function ComponentsThree() {
         bleed
       >
         <EditorialChrome images={images} />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={6}
+        technique="Offering pile · seeded layout · pranam counter"
+        title="An offering, not a hoard"
+        description="Click to Keep piles up what you save; here her darshans drop one by one into a heap, like flowers laid at her feet. Tap Offer a pranam and a marigold petal joins them. Your count stays on your own device."
+        bleed
+      >
+        <OfferingPile images={images} />
       </ShowcaseSection>
 
       <SiteFooter />
