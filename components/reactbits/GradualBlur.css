@@ -1,0 +1,4 @@
+/* Adapted from React Bits (https://github.com/DavidHDev/react-bits) — MIT + Commons Clause. @ 9d9c687 */
+.gradual-blur {
+  pointer-events: none;
+}

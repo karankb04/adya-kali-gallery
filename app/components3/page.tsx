@@ -9,6 +9,8 @@ import ShowcaseSection from "@/components/showcase/ShowcaseSection";
 import TypeSystems from "@/components/showcase3/TypeSystems";
 import KargoArc from "@/components/showcase3/KargoArc";
 import DomeDarshan from "@/components/showcase3/DomeDarshan";
+import KineticName from "@/components/showcase3/KineticName";
+import EditorialChrome from "@/components/showcase3/EditorialChrome";
 import { getImages } from "@/lib/images";
 
 // Internal proposals page — not linked from site nav, not indexed.
@@ -64,6 +66,26 @@ export default async function ComponentsThree() {
         bleed
       >
         <DomeDarshan images={images} />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={4}
+        technique="Variable-font pressure · React Bits TextPressure + ScrollFloat"
+        title="Her name, felt"
+        description="MAHAKALI across the full width. Move your cursor along it and each letter swells in weight and width, as if breathing. Below, a line that rises letter by letter as you scroll. On phones the name stays still."
+        bleed
+      >
+        <KineticName />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={5}
+        technique="Editorial chrome · bracket labels · file captions · grain · edge blur"
+        title="The details that make it not basic"
+        description="One homepage-style section wearing Click to Keep's details: labels in square brackets, file-name captions under each darshan, a faint film grain, an oversized heading with one serif word, and edges that blur away as you swipe the strip."
+        bleed
+      >
+        <EditorialChrome images={images} />
       </ShowcaseSection>
 
       <SiteFooter />

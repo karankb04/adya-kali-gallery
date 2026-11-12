@@ -70,6 +70,9 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
         end: () => `+=${maxX()}`,
         pin: true,
         invalidateOnRefresh: true,
+        // This pin is created after triggers further down the page (it waits
+        // a tick); refreshing it first lets theirs include its pin spacing.
+        refreshPriority: 1,
         onUpdate: (self) => (target = self.progress * maxX()),
       });
       ScrollTrigger.refresh();
