@@ -91,3 +91,7 @@
 .s3-arc--flat{height:auto;padding:4rem 0;overflow-x:auto;scroll-snap-type:x mandatory;perspective:none}
 .s3-arc--flat .s3-arc-track{padding:0 1.2rem}
 .s3-arc--flat .s3-arc-panel{scroll-snap-align:center}
+
+/* ---------- 3 · dome ---------- */
+.s3-dome{position:relative;height:min(100vh,860px);background:#170907;overflow:hidden}
+.s3-dome .item__image{background:#0d0503}

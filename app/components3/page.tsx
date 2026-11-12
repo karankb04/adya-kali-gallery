@@ -8,6 +8,7 @@ import SiteFooter from "@/components/SiteFooter";
 import ShowcaseSection from "@/components/showcase/ShowcaseSection";
 import TypeSystems from "@/components/showcase3/TypeSystems";
 import KargoArc from "@/components/showcase3/KargoArc";
+import DomeDarshan from "@/components/showcase3/DomeDarshan";
 import { getImages } from "@/lib/images";
 
 // Internal proposals page — not linked from site nav, not indexed.
@@ -53,6 +54,16 @@ export default async function ComponentsThree() {
         bleed
       >
         <KargoArc images={images} />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={3}
+        technique="Dome gallery · React Bits · drag to turn"
+        title="A dome of her forms"
+        description="An alternative to the wall: her darshans tile the inside of a dome you turn by dragging, and tapping one lifts it out to fill the screen. Images are shown whole inside each tile."
+        bleed
+      >
+        <DomeDarshan images={images} />
       </ShowcaseSection>
 
       <SiteFooter />
