@@ -29,3 +29,21 @@ export function arcTransform(
   // `|| 0` turns -0 into 0 at the centre.
   return { rotateY: (-angle * 180) / Math.PI || 0, translateZ: r * (1 - Math.cos(angle)) };
 }
+
+/**
+ * Whether a click on the wall should be ignored because it ends a pointer
+ * drag. Keyboard clicks (Enter/Space) arrive with `detail === 0` and always
+ * go through, whatever the last drag was.
+ */
+export function shouldSuppressClick(movedPx: number, clickDetail: number): boolean {
+  return clickDetail !== 0 && movedPx > 6;
+}
+
+/**
+ * Whether a resize should rebuild the wall. Phone toolbars change the
+ * height by a few percent while scrolling; only a width change or a height
+ * change of 15% or more is a real layout change.
+ */
+export function needsRelayout(prev: { w: number; h: number }, next: { w: number; h: number }): boolean {
+  return prev.w !== next.w || Math.abs(next.h - prev.h) / prev.h >= 0.15;
+}

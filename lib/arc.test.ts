@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { panelSize, arcTransform } from "./arc";
+import { panelSize, arcTransform, shouldSuppressClick, needsRelayout } from "./arc";
 
 test("panelSize keeps the image's own aspect", () => {
   assert.deepEqual(panelSize({ width: 3000, height: 4000 }, 600), { width: 450, height: 600, letterbox: false });
@@ -34,4 +34,23 @@ test("arcTransform matches Kargo's measured cylinder", () => {
   const far = arcTransform(-1216, 1024);
   assert.ok(Math.abs(far.rotateY - 32.9) < 1, `far angle ${far.rotateY}`);
   assert.ok(Math.abs(far.translateZ - 335) < 15, `far depth ${far.translateZ}`);
+});
+
+test("shouldSuppressClick ignores keyboard clicks after a drag", () => {
+  // A keyboard Enter/Space click has detail 0 and must always go through.
+  assert.equal(shouldSuppressClick(50, 0), false);
+});
+
+test("shouldSuppressClick swallows the click that ends a pointer drag", () => {
+  assert.equal(shouldSuppressClick(50, 1), true);
+  assert.equal(shouldSuppressClick(3, 1), false);
+});
+
+test("needsRelayout ignores a phone toolbar's small height change", () => {
+  assert.equal(needsRelayout({ w: 390, h: 700 }, { w: 390, h: 640 }), false);
+});
+
+test("needsRelayout reacts to width changes and big height changes", () => {
+  assert.equal(needsRelayout({ w: 390, h: 700 }, { w: 844, h: 390 }), true);
+  assert.equal(needsRelayout({ w: 1440, h: 900 }, { w: 1440, h: 600 }), true);
 });

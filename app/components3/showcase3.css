@@ -95,6 +95,12 @@
 /* ---------- 3 · dome ---------- */
 .s3-dome{position:relative;height:min(100vh,860px);background:#170907;overflow:hidden}
 .s3-dome .item__image{background:#0d0503}
+/* Touch: vertical swipes scroll the page (the dome turns on sideways drags),
+   and the dome never fills the whole screen, so there is always a way past. */
+@media(pointer:coarse){
+  .s3-dome{height:min(70svh,560px)}
+  .s3-dome main.sphere-main{touch-action:pan-y}
+}
 
 /* ---------- 4 · kinetic name ---------- */
 .s3-kinetic{padding:2rem clamp(1rem,3vw,2.4rem) 4rem;background:#170907;color:var(--cream)}

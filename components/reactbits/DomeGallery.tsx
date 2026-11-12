@@ -1,6 +1,7 @@
 // Adapted from React Bits (https://github.com/DavidHDev/react-bits) — MIT + Commons Clause.
 // Source: src/ts-default/Components/DomeGallery @ 9d9c687dc4f55b23539aa5417b703078047efa74
-// Change: object-fit cover → contain so no darshan is cropped.
+// Changes: object-fit cover → contain so no darshan is cropped; tiles are not
+// tab stops (35×5 of them had no keyboard action and trapped Tab).
 'use client';
 
 import { useEffect, useMemo, useRef, useCallback } from 'react';
@@ -737,7 +738,7 @@ export default function DomeGallery({
                 <div
                   className="item__image"
                   role="button"
-                  tabIndex={0}
+                  tabIndex={-1}
                   aria-label={it.alt || 'Open image'}
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}

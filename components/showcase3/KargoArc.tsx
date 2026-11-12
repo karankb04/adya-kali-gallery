@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { KaliImage } from "@/types/image";
-import { panelSize, arcTransform } from "@/lib/arc";
+import { panelSize, arcTransform, shouldSuppressClick, needsRelayout } from "@/lib/arc";
 import RImage from "@/components/RImage";
 import DarshanModal from "@/components/DarshanModal";
 
@@ -23,12 +23,22 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
   const [panelH, setPanelH] = useState(560);
   const [flat, setFlat] = useState(false);
   const [selected, setSelected] = useState<KaliImage | null>(null);
+  const [layout, setLayout] = useState(0);
+  const lastSize = useRef<{ w: number; h: number } | null>(null);
 
   const sizes = images.map((img) => panelSize(img, panelH));
 
   // Panel height follows the viewport: min(50vh, 520px), minus the label row.
+  // A phone toolbar showing or hiding is not a new layout; rebuilding the
+  // pin then would sweep the ribbon back to the first panel.
   useEffect(() => {
-    const fit = () => setPanelH(Math.round(Math.min(window.innerHeight * 0.5, 520) - LABEL_SPACE));
+    const fit = () => {
+      const next = { w: window.innerWidth, h: window.innerHeight };
+      if (lastSize.current && !needsRelayout(lastSize.current, next)) return;
+      lastSize.current = next;
+      setPanelH(Math.round(Math.min(next.h * 0.5, 520) - LABEL_SPACE));
+      setLayout((n) => n + 1);
+    };
     fit();
     setFlat(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     window.addEventListener("resize", fit);
@@ -98,10 +108,12 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
       moved += Math.abs(dx);
       window.scrollBy(0, -dx);
     };
+    // pointercancel: the browser took over the gesture (e.g. a vertical
+    // swipe on a phone), so pointerup will never come.
     const onUp = () => (dragging = false);
-    // A drag that ends on a panel isn't a click on it.
+    // A drag that ends on a panel isn't a click on it; keyboard clicks are.
     const onClick = (e: MouseEvent) => {
-      if (moved > 6) {
+      if (shouldSuppressClick(moved, e.detail)) {
         e.stopPropagation();
         e.preventDefault();
       }
@@ -110,6 +122,7 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
     section.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
 
     let raf = 0;
     const frame = () => {
@@ -129,7 +142,12 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
       });
       raf = requestAnimationFrame(frame);
     };
-    raf = requestAnimationFrame(frame);
+    // Animate only while the wall is on screen.
+    const io = new IntersectionObserver(([e]) => {
+      cancelAnimationFrame(raf);
+      raf = e.isIntersecting ? requestAnimationFrame(frame) : 0;
+    });
+    io.observe(section);
 
     // Keyboard: bring the focused panel to the centre of the wall.
     const onFocus = (e: FocusEvent) => {
@@ -143,22 +161,25 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
     return () => {
       clearTimeout(t);
       cancelAnimationFrame(raf);
+      io.disconnect();
       st?.kill();
       section.removeEventListener("click", onClick, true);
       section.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
       track.removeEventListener("focusin", onFocus);
       // Leave no 3D behind (e.g. when reduced motion switches to the flat row).
       track.style.transform = "";
       track.style.paddingLeft = "";
       panelRefs.current.forEach((el) => el && (el.style.transform = ""));
     };
-    // sizes is derived from panelH and images; re-run when either changes.
+    // sizes is derived from panelH and images; `layout` bumps on real resizes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [flat, panelH, images]);
+  }, [flat, layout, images]);
 
   return (
+    <>
     <div ref={sectionRef} className={`s3-arc${flat ? " s3-arc--flat" : ""}`}>
       <div ref={trackRef} className="s3-arc-track">
         {images.map((img, i) => (
@@ -189,7 +210,10 @@ export default function KargoArc({ images }: { images: KaliImage[] }) {
           </button>
         ))}
       </div>
-      <DarshanModal image={selected} onClose={() => setSelected(null)} />
     </div>
+    {/* Outside the wall: its perspective and clipping would otherwise box in
+        the fixed-position viewer and trap it under the site header. */}
+    <DarshanModal image={selected} onClose={() => setSelected(null)} />
+    </>
   );
 }
