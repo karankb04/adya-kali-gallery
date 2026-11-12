@@ -2,3 +2,73 @@
    /components3 — proposals. Built on the globals.css tokens and the
    /components shell (.sc-section etc.); everything here is s3-*.
    ====================================================================== */
+
+/* ---------- 1 · type systems ---------- */
+.s3-types{display:flex;flex-direction:column;gap:3.2rem;padding:0 clamp(1rem,2vw,1.6rem)}
+.s3-type{--t-disp:var(--disp);--t-body:var(--body);--t-accent:inherit;--t-label:var(--body);
+  position:relative;overflow:hidden;border-radius:18px;padding:1rem clamp(1rem,3vw,2.4rem) clamp(1.6rem,4vw,3rem);
+  background:radial-gradient(80% 90% at 85% 0%,rgba(219,31,36,.18),transparent 60%),#170907;color:var(--cream)}
+.s3-type-nav{display:flex;align-items:center;gap:1rem 1.6rem;flex-wrap:wrap;padding-bottom:.9rem;border-bottom:1px solid rgba(251,242,228,.1)}
+.s3-type-mark{display:flex;align-items:center;gap:.6rem;font-family:var(--t-disp);font-size:1.1rem;white-space:nowrap}
+.s3-type-mark img{width:30px;height:30px;object-fit:contain;border-radius:4px}
+.s3-type-links{display:flex;gap:1.5rem;font-family:var(--t-label);font-size:.9rem;color:rgba(251,242,228,.82)}
+.s3-type-links .is-katha{color:var(--rose)}
+.s3-type-hero{margin-top:clamp(1.6rem,5vw,3.4rem);font-family:var(--t-disp);color:var(--cream);overflow-wrap:anywhere}
+.s3-type-deva{margin-top:.6rem;font-family:var(--deva);font-size:clamp(1.1rem,2.4vw,1.6rem);color:#e0b05a}
+.s3-type-body{display:grid;grid-template-columns:minmax(110px,180px) 1fr auto;gap:1.2rem 2rem;align-items:start;margin-top:clamp(1.6rem,4vw,2.6rem)}
+.s3-type-label{font-family:var(--t-label);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rose)}
+.s3-type-sub{font-family:var(--t-body);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.15;color:var(--cream)}
+.s3-type-sub em{font-family:var(--t-accent);font-style:italic}
+.s3-type-text{margin-top:.8rem;max-width:58ch;font-family:var(--t-body);font-size:1rem;line-height:1.6;color:rgba(251,242,228,.72)}
+.s3-type-cap{font-family:var(--t-label);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(251,242,228,.55);white-space:nowrap}
+.s3-type-meta{display:flex;flex-direction:column;gap:.2rem;margin-top:.9rem;max-width:72ch}
+.s3-type-name{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:.95rem;color:var(--ink)}
+.s3-type-fonts{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red-ink)}
+.s3-type-feel{font-family:var(--read);font-weight:300;font-size:.92rem;line-height:1.55;color:var(--ink-soft)}
+@media(max-width:760px){.s3-type-body{grid-template-columns:1fr}.s3-type-links{display:none}}
+
+/* today */
+.s3-type-current .s3-type-mark{font-weight:700;text-transform:uppercase}
+.s3-type-current .s3-type-links{font-weight:600}
+.s3-type-current .s3-type-hero{font-weight:700;text-transform:uppercase;font-size:clamp(3rem,9vw,8rem);line-height:.92}
+.s3-type-current .s3-type-sub{font-weight:600}
+.s3-type-current .s3-type-text{font-weight:300}
+
+/* Sanctum Grotesk — closest to Click to Keep */
+.s3-type-grotesk{--t-disp:var(--f3-inter-tight);--t-body:var(--f3-inter-tight);--t-accent:var(--f3-instrument);--t-label:var(--f3-mono)}
+.s3-type-grotesk .s3-type-mark{font-weight:800;text-transform:uppercase;letter-spacing:-.03em}
+.s3-type-grotesk .s3-type-hero{font-weight:800;text-transform:uppercase;font-size:clamp(3.5rem,11vw,11rem);line-height:.86;letter-spacing:-.055em}
+.s3-type-grotesk .s3-type-sub{font-weight:600;letter-spacing:-.03em}
+.s3-type-grotesk .s3-type-sub em{font-weight:400;letter-spacing:0}
+.s3-type-grotesk .s3-type-links{text-transform:uppercase;font-size:.78rem;letter-spacing:.06em}
+
+/* Living Grotesque */
+.s3-type-bricolage{--t-disp:var(--f3-bricolage);--t-body:var(--f3-bricolage);--t-label:var(--f3-mono)}
+.s3-type-bricolage .s3-type-mark{font-weight:800}
+.s3-type-bricolage .s3-type-hero{font-weight:800;font-stretch:75%;font-variation-settings:"opsz" 96;text-transform:uppercase;
+  font-size:clamp(3.5rem,12vw,12rem);line-height:.84;letter-spacing:-.04em}
+.s3-type-bricolage .s3-type-sub{font-weight:700;letter-spacing:-.02em}
+.s3-type-bricolage .s3-type-sub em{font-style:normal;color:var(--rose)}
+.s3-type-bricolage .s3-type-links{font-weight:500}
+
+/* Devotional Serif */
+.s3-type-boska{--t-disp:var(--f3-boska);--t-body:var(--f3-switzer);--t-accent:var(--f3-boska);--t-label:var(--f3-mono)}
+.s3-type-boska .s3-type-mark{font-style:italic;font-weight:700;font-size:1.3rem}
+.s3-type-boska .s3-type-hero{font-style:italic;font-weight:700;font-size:clamp(3.2rem,10vw,10rem);line-height:.9;letter-spacing:-.03em}
+.s3-type-boska .s3-type-sub{font-weight:500;letter-spacing:-.01em}
+.s3-type-boska .s3-type-sub em{font-weight:700}
+
+/* Gallery Editorial */
+.s3-type-instrument{--t-disp:var(--f3-instrument);--t-body:var(--f3-inter-tight);--t-accent:var(--f3-instrument);--t-label:var(--f3-mono)}
+.s3-type-instrument .s3-type-mark{font-size:1.45rem}
+.s3-type-instrument .s3-type-hero{font-size:clamp(3.8rem,13vw,13rem);line-height:.85;letter-spacing:-.04em}
+.s3-type-instrument .s3-type-sub{font-family:var(--f3-instrument);font-size:clamp(1.6rem,3.2vw,2.5rem);line-height:1.05}
+.s3-type-instrument .s3-type-links{font-weight:500}
+
+/* Clash, minus the slab */
+.s3-type-clash{--t-disp:var(--disp);--t-body:var(--f3-satoshi);--t-label:var(--f3-mono)}
+.s3-type-clash .s3-type-mark{font-weight:700;text-transform:uppercase}
+.s3-type-clash .s3-type-hero{font-weight:700;text-transform:uppercase;font-size:clamp(3.2rem,10vw,9.5rem);line-height:.9;letter-spacing:-.02em}
+.s3-type-clash .s3-type-sub{font-weight:700;letter-spacing:-.01em}
+.s3-type-clash .s3-type-sub em{font-style:normal;color:var(--rose)}
+.s3-type-clash .s3-type-links{font-weight:500}

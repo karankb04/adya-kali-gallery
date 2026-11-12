@@ -5,6 +5,8 @@ import "./showcase3.css";
 import { FONT_VARS } from "./fonts";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import ShowcaseSection from "@/components/showcase/ShowcaseSection";
+import TypeSystems from "@/components/showcase3/TypeSystems";
 
 // Internal proposals page — not linked from site nav, not indexed.
 export const metadata: Metadata = {
@@ -29,6 +31,16 @@ export default async function ComponentsThree() {
           touches the live site yet.
         </p>
       </header>
+
+      <ShowcaseSection
+        index={1}
+        technique="Type systems · same words, five voices"
+        title="A voice worthy of her"
+        description="The same nav, headline, Hindi line, label and teaching, set five ways beside today's fonts. Judge the feeling first; every option keeps Tiro Devanagari for Hindi and the two header buttons as they are."
+        bleed
+      >
+        <TypeSystems />
+      </ShowcaseSection>
 
       <SiteFooter />
     </div>

@@ -144,7 +144,7 @@ export default function NavTypeSpecimen() {
 }
 
 /** The live header's two buttons, unchanged. */
-function NavButtons() {
+export function NavButtons() {
   return (
     <div className="nav-cta">
       <a href="/about#seva" className="btn-donate">
