@@ -72,3 +72,22 @@
 .s3-type-clash .s3-type-sub{font-weight:700;letter-spacing:-.01em}
 .s3-type-clash .s3-type-sub em{font-style:normal;color:var(--rose)}
 .s3-type-clash .s3-type-links{font-weight:500}
+
+/* ---------- 2 · Kargo arc ---------- */
+.s3-arc{position:relative;height:100vh;overflow:clip;perspective:1200px;touch-action:pan-y;user-select:none;
+  background:radial-gradient(70% 60% at 50% 45%,#2a0d08 0%,#120604 70%,#0a0302 100%);display:flex;align-items:center}
+.s3-arc-track{display:flex;align-items:flex-start;gap:14px;transform-style:preserve-3d;will-change:transform}
+.s3-arc-panel{flex:none;display:flex;flex-direction:column;gap:.7rem;padding:0;border:0;background:none;cursor:grab;
+  transform-style:preserve-3d;will-change:transform;color:var(--cream);text-align:left}
+.s3-arc-panel:active{cursor:grabbing}
+.s3-arc-panel:focus-visible{outline:2px solid var(--gold-soft);outline-offset:6px;border-radius:4px}
+.s3-arc-media{position:relative;display:block;width:100%;background:#0d0503;overflow:hidden;border-radius:3px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.s3-arc-media img{-webkit-user-drag:none;pointer-events:none}
+.s3-arc-label{display:flex;justify-content:space-between;gap:.8rem;font-family:var(--disp);font-weight:500;
+  text-transform:uppercase;font-size:.68rem;letter-spacing:.06em;color:rgba(251,242,228,.7)}
+.s3-arc-label span:last-child{color:rgba(251,242,228,.45);text-transform:none;font-family:var(--f3-mono)}
+/* reduced motion: a plain swipeable row */
+.s3-arc--flat{height:auto;padding:4rem 0;overflow-x:auto;scroll-snap-type:x mandatory;perspective:none}
+.s3-arc--flat .s3-arc-track{padding:0 1.2rem}
+.s3-arc--flat .s3-arc-panel{scroll-snap-align:center}

@@ -19,6 +19,19 @@ test("arcTransform is flat at centre", () => {
 });
 
 test("arcTransform is concave and symmetric", () => {
-  assert.deepEqual(arcTransform(500, 1000), { rotateY: -35, translateZ: 225 });
-  assert.deepEqual(arcTransform(-500, 1000), { rotateY: 35, translateZ: 225 });
+  const right = arcTransform(500, 1000);
+  const left = arcTransform(-500, 1000);
+  assert.equal(right.rotateY, -left.rotateY);
+  assert.equal(right.translateZ, left.translateZ);
+  assert.ok(left.rotateY > 0 && left.translateZ > 0);
+});
+
+test("arcTransform matches Kargo's measured cylinder", () => {
+  // Measured on kargo-studio.com/works at a 1024px viewport.
+  const near = arcTransform(-294, 1024);
+  assert.ok(Math.abs(near.rotateY - 7.95) < 0.5, `near angle ${near.rotateY}`);
+  assert.ok(Math.abs(near.translateZ - 20.1) < 3, `near depth ${near.translateZ}`);
+  const far = arcTransform(-1216, 1024);
+  assert.ok(Math.abs(far.rotateY - 32.9) < 1, `far angle ${far.rotateY}`);
+  assert.ok(Math.abs(far.translateZ - 335) < 15, `far depth ${far.translateZ}`);
 });

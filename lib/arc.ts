@@ -16,15 +16,16 @@ export function panelSize(
 
 /**
  * A concave wall, like standing inside a cylinder: panels turn to face the
- * centre and come closer the further they are from it. Measured from Kargo:
- * the angle grows linearly with distance, the depth with its square.
+ * centre and come closer the further they are from it. Kargo's measured
+ * panels sit on a cylinder about 2.07 viewport widths in radius.
  */
 export function arcTransform(
   offsetPx: number,
   viewportW: number,
-  { degPerVw = 70, depth = 900 }: { degPerVw?: number; depth?: number } = {}
+  { radiusVw = 2.07 }: { radiusVw?: number } = {}
 ): { rotateY: number; translateZ: number } {
-  const t = offsetPx / viewportW;
+  const r = radiusVw * viewportW;
+  const angle = offsetPx / r;
   // `|| 0` turns -0 into 0 at the centre.
-  return { rotateY: -t * degPerVw || 0, translateZ: depth * t * t };
+  return { rotateY: (-angle * 180) / Math.PI || 0, translateZ: r * (1 - Math.cos(angle)) };
 }

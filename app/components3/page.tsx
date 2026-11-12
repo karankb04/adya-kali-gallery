@@ -7,6 +7,8 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ShowcaseSection from "@/components/showcase/ShowcaseSection";
 import TypeSystems from "@/components/showcase3/TypeSystems";
+import KargoArc from "@/components/showcase3/KargoArc";
+import { getImages } from "@/lib/images";
 
 // Internal proposals page — not linked from site nav, not indexed.
 export const metadata: Metadata = {
@@ -17,6 +19,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function ComponentsThree() {
+  const images = await getImages();
   return (
     <div className={`sc-page s3-page ${FONT_VARS}`}>
       <SiteHeader />
@@ -40,6 +43,16 @@ export default async function ComponentsThree() {
         bleed
       >
         <TypeSystems />
+      </ShowcaseSection>
+
+      <ShowcaseSection
+        index={2}
+        technique="Kargo-style arc · CSS 3D · whole images"
+        title="The sanctum's curved wall"
+        description="Her darshans line the inside of a curved wall that turns as you scroll or drag, after Kargo Studio's works page. Unlike Kargo's thin strips, every panel takes the image's own shape, so nothing of Maa is cut. Tap any panel to open it."
+        bleed
+      >
+        <KargoArc images={images} />
       </ShowcaseSection>
 
       <SiteFooter />
