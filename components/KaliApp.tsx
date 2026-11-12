@@ -61,7 +61,7 @@ export default function KaliApp({ images, daily }: KaliAppProps) {
       {/* ---------- FAQ ---------- */}
       <FaqSection
         deva="प्रश्न"
-        title="Questions devotees ask"
+        title={<>Questions devotees <em className="ac">ask</em></>}
         sub="Everything you might want to know about the gallery and the mission behind it."
         items={HOME_FAQS}
       />

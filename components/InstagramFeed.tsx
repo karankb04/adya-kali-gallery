@@ -36,7 +36,7 @@ export default function InstagramFeed() {
     <section className="insta wrap">
       <div className="lib-head">
         <Ornament className="lib-orn" />
-        <h2>From Instagram</h2>
+        <h2>From <em className="ac">Instagram</em></h2>
         <div className="sub">
           Devotional moments from the KaliPutra Mission — follow along for
           more.

@@ -10,16 +10,34 @@
   --line:rgba(199,40,44,0.16);
   --gold-ink:#815b13; --red-ink:#c4171c; /* text-safe gold + red, AA on light surfaces */
   /* Font files are loaded by next/font in app/layout.tsx. */
-  --disp:var(--font-clash),sans-serif;
-  --body:var(--font-slab),serif;
-  --deva:var(--font-deva),var(--font-slab),serif;
-  --serif:var(--font-clash),sans-serif;
-  --read:var(--font-slab),serif;
+  /* Family names are spelled out (not var(--font-bricolage)) so the Sanskrit
+     fill-in faces below sit before Next's Arial stand-in in each stack. */
+  --grotesk:"Bricolage Grotesque","Sanskrit Sans","Bricolage Grotesque Fallback",sans-serif;
+  --disp:var(--grotesk);
+  --body:var(--grotesk);
+  --deva:var(--font-deva),var(--grotesk);
+  --serif:var(--grotesk);
+  --read:var(--grotesk);
+  --accent:"Instrument Serif","Sanskrit Italic","Instrument Serif Fallback",serif; /* the one italic word in a heading */
+  --mono:"JetBrains Mono","Sanskrit Sans","JetBrains Mono Fallback",monospace;
+  --btn:var(--font-clash),sans-serif; /* header buttons only */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 /* Tiro Devanagari ships one weight; show it as designed instead of letting
    the browser smear a fake bold where rules ask for 600/700. */
+/* Bricolage, Instrument Serif and JetBrains Mono have no dot-below letters
+   (ṣ ṇ ṭ ṁ ḥ ...), which IAST names need. These two faces hold only those
+   letters (Noto Sans / EB Garamond italic, OFL, cut to 24 glyphs), and the
+   unicode-range means a page downloads one only when it shows such a letter. */
+@font-face{font-family:"Sanskrit Sans";src:url(/fonts/sanskrit-sans.woff2) format("woff2");
+  font-weight:100 900;font-stretch:62.5% 100%;font-display:swap;unicode-range:U+1E00-1E7F}
+@font-face{font-family:"Sanskrit Italic";src:url(/fonts/sanskrit-italic.woff2) format("woff2");
+  font-style:italic;font-weight:400;font-display:swap;unicode-range:U+1E00-1E7F}
 html{scroll-behavior:smooth;font-synthesis-weight:none}
+/* Headings use Bricolage's condensed width; <em class="ac"> sets one word in
+   the italic serif, never uppercased. */
+h1,h2{font-stretch:75%}
+.ac{font-family:var(--accent);font-style:italic;font-weight:400;font-stretch:100%;text-transform:none;letter-spacing:-.01em}
 body{font-family:var(--body);color:var(--ink);font-weight:400;line-height:1.55;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;background:var(--bg)}
 
@@ -42,7 +60,7 @@ header.bar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-ite
   letter-spacing:.02em;font-size:1.15rem;color:var(--cream)}
 .mark img{width:32px;height:32px;object-fit:contain;border-radius:4px}
 .mark .dot{color:var(--red)}
-.navlinks{display:flex;gap:1.7rem;font-family:var(--body);font-size:1.02rem;font-weight:600;letter-spacing:.01em;color:rgba(251,242,228,.85)}
+.navlinks{display:flex;gap:1.7rem;font-family:var(--mono);font-size:.9rem;font-weight:500;letter-spacing:.01em;color:rgba(251,242,228,.85)}
 .navlinks a{color:inherit;text-decoration:none;transition:color .25s;cursor:pointer}
 .navlinks a:hover{color:var(--rose)}
 @media(max-width:900px){.navlinks{display:none}}
@@ -54,7 +72,7 @@ header.bar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-ite
   border-radius:2rem;overflow:hidden;background:var(--cream);box-shadow:0 6px 18px -8px rgba(0,0,0,.5)}
 .btn-donate-decor{position:absolute;inset:0;background:var(--clr);transform:translateX(-100%);transition:transform .3s;z-index:0}
 .btn-donate:hover .btn-donate-decor{transform:translateX(0)}
-.btn-donate-content{position:relative;z-index:1;display:flex;align-items:center;font-family:var(--disp);
+.btn-donate-content{position:relative;z-index:1;display:flex;align-items:center;font-family:var(--btn);
   font-weight:700;text-transform:uppercase;font-size:.92rem}
 .btn-donate-icon{width:34px;height:32px;display:grid;place-items:center;background:var(--clr);color:var(--cream)}
 .btn-donate-text{padding:0 1.1rem 0 .7rem;color:#231712;letter-spacing:.04em;transition:color .2s}
@@ -62,7 +80,7 @@ header.bar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-ite
 
 .btn-mission{--fill:#9c0f14;position:relative;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;
   border:1.5px solid rgba(251,242,228,.55);border-radius:2rem;padding:.5rem 1.15rem;overflow:hidden;
-  font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:.92rem;letter-spacing:.04em;
+  font-family:var(--btn);font-weight:700;text-transform:uppercase;font-size:.92rem;letter-spacing:.04em;
   color:var(--cream);isolation:isolate}
 .btn-mission-fill{position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;background:var(--fill);
   transform:translate(-50%,-50%) scale(0);transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:-1}
@@ -359,7 +377,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .creator-quote{border-left:2px solid var(--red);padding-left:1.3rem;margin-bottom:3rem}
 .creator-quote-label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gold);margin-bottom:.5rem}
-.creator-quote{color:var(--ink);font-family:var(--read);font-weight:300;font-size:1.4rem;font-style:italic;line-height:1.5}
+.creator-quote{color:var(--ink);font-family:var(--accent);font-weight:400;font-size:1.4rem;font-style:italic;line-height:1.5}
 
 .creator-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;margin-bottom:3.5rem}
 .creator-grid h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
@@ -434,7 +452,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .k-deva{font-family:var(--deva);color:var(--gold-ink);font-size:1.2rem;font-weight:600;letter-spacing:.2em;margin-top:1.3rem}
 .k-title{font-family:var(--serif);font-weight:700;text-transform:uppercase;font-size:clamp(2.4rem,6.5vw,5rem);
   line-height:.95;letter-spacing:-.01em;color:var(--ink);margin-top:.55rem}
-.k-dek{margin:1.15rem auto 0;max-width:56ch;font-family:var(--read);font-weight:300;font-style:italic;font-size:clamp(1.12rem,2.2vw,1.3rem);
+.k-dek{margin:1.15rem auto 0;max-width:56ch;font-family:var(--accent);font-weight:400;font-style:italic;font-size:clamp(1.12rem,2.2vw,1.3rem);
   line-height:1.6;color:var(--ink-soft)}
 .k-date{margin-top:1.3rem;display:flex;justify-content:center;align-items:center;gap:.5rem;
   font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
@@ -461,14 +479,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .k-verse{margin:2.3rem 0;padding:1.5rem 1.7rem;border-left:3px solid var(--gold);border-radius:0 14px 14px 0;
   background:linear-gradient(90deg, rgba(217,162,62,.08), rgba(217,162,62,.02))}
 .k-verse-deva{font-family:var(--deva);font-size:1.4rem;font-weight:600;line-height:1.7;color:var(--red-deep);white-space:pre-line}
-.k-verse-translit{margin-top:.55rem;font-style:italic;font-size:1.02rem;color:#8a7360;white-space:pre-line}
+.k-verse-translit{margin-top:.55rem;font-family:var(--accent);font-style:italic;font-size:1.02rem;color:#8a7360;white-space:pre-line}
 .k-verse-render{margin-top:.8rem;font-size:1.1rem;line-height:1.65;color:#4a382d}
 .k-verse-src{margin-top:.7rem;font-family:var(--body);font-size:.74rem;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--ink-soft)}
 
 /* pull quote */
 .k-quote{margin:2.6rem 0;text-align:center;padding:0 1rem}
-.k-quote p{font-family:var(--read);font-weight:300;font-style:italic;font-size:1.5rem;line-height:1.45;color:var(--red-deep)}
+.k-quote p{font-family:var(--accent);font-weight:400;font-style:italic;font-size:1.5rem;line-height:1.45;color:var(--red-deep)}
 .k-quote p::before{content:"“"}.k-quote p::after{content:"”"}
 .k-quote cite{display:block;margin-top:.8rem;font-family:var(--body);font-style:normal;font-size:.8rem;
   font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}

@@ -59,7 +59,7 @@ export default function BlogIndex() {
       </main>
       <FaqSection
         deva="प्रश्न"
-        title="Questions about Katha"
+        title={<>Questions about <em className="ac">Katha</em></>}
         sub="What this section is, and where the stories come from."
         items={BLOG_INDEX_FAQS}
       />

@@ -188,7 +188,7 @@ export default function GalleryLibrary({
       <section className="lib wrap" id={id}>
         <div className="lib-head">
           <Ornament className="lib-orn" />
-          <h2>Her Faces</h2>
+          <h2>Her <em className="ac">Faces</em></h2>
           <div className="sub">
             New darshan, offered by her children. Search her names, filter her
             forms.

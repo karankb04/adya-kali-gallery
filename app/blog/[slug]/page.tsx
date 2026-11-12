@@ -151,7 +151,7 @@ export default async function KathaPage({ params }: Params) {
 
         {related.length > 0 && (
           <section className="wrap k-related">
-            <h2 className="k-related-h">Continue reading</h2>
+            <h2 className="k-related-h">Continue <em className="ac">reading</em></h2>
             <div className="katha-grid">
               {related.map((p) => (
                 <PostCard key={p.slug} post={p} />
@@ -161,7 +161,7 @@ export default async function KathaPage({ params }: Params) {
         )}
 
         {post.faqs && post.faqs.length > 0 && (
-          <FaqSection title="Questions about this katha" items={post.faqs} />
+          <FaqSection title={<>Questions about this <em className="ac">katha</em></>} items={post.faqs} />
         )}
       </main>
       <SiteFooter />

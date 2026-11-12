@@ -22,7 +22,7 @@ export default async function RelatedDarshan({
   return (
     <aside className="k-darshan">
       <div className="k-darshan-head">
-        <h2>Her darshan</h2>
+        <h2>Her <em className="ac">darshan</em></h2>
         <p>Images of the forms this katha speaks of, from the library.</p>
       </div>
       <div className="k-darshan-strip">

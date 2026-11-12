@@ -23,7 +23,7 @@ export default function DarshanOfTheDay({ images }: { images: KaliImage[] }) {
     <section className="dotd wrap" aria-labelledby="dotd-title">
       <div className="lib-head">
         <Ornament className="lib-orn" />
-        <h2 id="dotd-title">Today&apos;s darshan</h2>
+        <h2 id="dotd-title">Today&apos;s <em className="ac">darshan</em></h2>
         <div className="sub">A new face of the Mother each day · {date}</div>
       </div>
       <article className="dotd-card">

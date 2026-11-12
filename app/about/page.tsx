@@ -73,7 +73,7 @@ export default function AboutPage() {
       <section className="about-section wrap">
         <div className="lib-head">
           <Ornament className="lib-orn" />
-          <h2>Moments from the mission</h2>
+          <h2>Moments from the <em className="ac">mission</em></h2>
           <div className="sub">[Placeholder] Content to be decided later.</div>
         </div>
         <RevealGrid />
@@ -83,7 +83,7 @@ export default function AboutPage() {
       <section className="about-section about-section-alt wrap" id="seva">
         <div className="lib-head">
           <Ornament className="lib-orn" />
-          <h2>Her seva, in the world</h2>
+          <h2>Her <em className="ac">seva</em>, in the world</h2>
           <div className="sub">
             [Placeholder] The sevas and annadanams carried out by the mission.
           </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
       <section className="about-section wrap">
         <div className="lib-head">
           <Ornament className="lib-orn" />
-          <h2>Her many faces</h2>
+          <h2>Her many <em className="ac">faces</em></h2>
           <div className="sub">[Placeholder] Content to be decided later.</div>
         </div>
         <Coverflow items={COVERFLOW_ITEMS} />
@@ -106,7 +106,7 @@ export default function AboutPage() {
 
       <FaqSection
         deva="प्रश्न"
-        title="Questions about the mission"
+        title={<>Questions about the <em className="ac">mission</em></>}
         sub="Everything you might want to know about who we are."
         items={ABOUT_FAQS}
       />
