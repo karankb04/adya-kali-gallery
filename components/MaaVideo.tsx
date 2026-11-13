@@ -33,9 +33,14 @@ export default function MaaVideo() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const kind = window.matchMedia("(max-aspect-ratio: 1/1)").matches ? "phone" : "laptop";
     v.src = `/media/maa-${kind}.mp4`;
-    // A still of the first frame shows while the clip loads (no blank yellow);
-    // the canvas paints over it once frames are ready.
-    pinEl.style.backgroundImage = `url(/media/maa-${kind}-poster.webp)`;
+    const setPoster = (end: boolean) => {
+      pinEl.style.backgroundImage = `url(/media/maa-${kind}-poster${end ? "-end" : ""}.webp)`;
+    };
+    // A still frame shows while the clip loads (no blank yellow). It must be
+    // the SAME frame the video will open on, otherwise the picture jumps
+    // (zooms) when the video takes over: reduced-motion visitors see the
+    // final frame, everyone else the first.
+    setPoster(reduced);
 
     // Phones (iOS especially) only fetch metadata for a paused video, so there
     // is no frame to draw. A muted play-then-pause makes them decode frames.
@@ -56,7 +61,12 @@ export default function MaaVideo() {
       getComputedStyle(document.documentElement).getPropertyValue("--font-anton").trim() || "Anton, Impact, sans-serif";
     document.fonts?.load(`100px ${fam}`);
 
-    let W = 0, H = 0, target = 0, shown = 0, lastT = -1, raf = 0;
+    let W = 0, H = 0, target = reduced ? 1 : 0, shown = target, lastT = -1, raf = 0;
+    // The canvas stays invisible until the video sits on the right frame,
+    // then fades in over the matching still: no jump, no zoom.
+    let ready = false;
+    cv.style.opacity = "0";
+    cv.style.transition = "opacity .6s ease";
     const fit = () => {
       const r = cv.getBoundingClientRect();
       const d = Math.min(window.devicePixelRatio || 1, 2);
@@ -90,10 +100,17 @@ export default function MaaVideo() {
     const render = () => {
       if (v.duration && !v.seeking) {
         const t = target * (v.duration - 0.05);
-        if (Math.abs(v.currentTime - t) > 0.01) v.currentTime += (t - v.currentTime) * 0.35;
+        // Before it's shown, go straight to the right frame; afterwards ease (smooth scrubbing).
+        if (Math.abs(v.currentTime - t) > 0.01) v.currentTime = ready ? v.currentTime + (t - v.currentTime) * 0.35 : t;
       }
       shown += (target - shown) * 0.12;
-      if (v.readyState >= 2 && W) {
+      // While the phone "wake up" playback runs, don't paint moving frames.
+      if (!ready && v.readyState >= 2 && v.paused && v.duration &&
+          Math.abs(v.currentTime - target * (v.duration - 0.05)) < 0.06) {
+        ready = true;
+        shown = target;
+      }
+      if (ready && v.readyState >= 2 && W) {
         const [x0, y0, w, h] = cover();
         if (v.currentTime !== lastT) { buildMask(); lastT = v.currentTime; }
         cx.clearRect(0, 0, W, H);
@@ -114,13 +131,14 @@ export default function MaaVideo() {
         tx.globalCompositeOperation = "destination-in";
         tx.drawImage(mc, x0, y0, w, h);
         cx.drawImage(tc, 0, 0);
+        if (cv.style.opacity !== "1") cv.style.opacity = "1";
       }
       raf = requestAnimationFrame(render);
     };
     raf = requestAnimationFrame(render);
 
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
+      const st = ScrollTrigger.create({
         trigger: pinEl,
         start: "top top",
         end: "+=154%",
@@ -128,6 +146,11 @@ export default function MaaVideo() {
         scrub: true,
         onUpdate: (s) => { target = reduced ? 1 : s.progress; },
       });
+      // Page opened (or reloaded) already partway down: start from that frame.
+      if (!reduced) {
+        target = shown = st.progress;
+        setPoster(st.progress > 0.5);
+      }
       if (!reduced) {
         gsap.fromTo(outlineRef.current, { xPercent: 18 }, {
           xPercent: -18, ease: "none",

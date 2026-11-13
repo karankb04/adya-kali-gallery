@@ -25,7 +25,11 @@ const UNIT = (
   </>
 );
 
-export default function HomeRibbon() {
+/**
+ * `tone="yellow"`: the inner pages' version (haldi yellow, green letters) —
+ * the one place yellow appears outside the home page.
+ */
+export default function HomeRibbon({ tone = "black" }: { tone?: "black" | "yellow" } = {}) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +48,7 @@ export default function HomeRibbon() {
 
   return (
     // Outer wrapper clips the tilted band's corners so it never widens the page.
-    <div className="home-ribbon-clip">
+    <div className={`home-ribbon-clip${tone === "yellow" ? " home-ribbon-yellow" : ""}`}>
       <div className="home-ribbon" ref={wrapRef} aria-label="Jai Maa Kali — Mother of infinite forms">
         <div className="home-ribbon-track" ref={trackRef} aria-hidden="true">
           {Array.from({ length: 6 }).map((_, i) => (

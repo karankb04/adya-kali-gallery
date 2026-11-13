@@ -273,3 +273,19 @@ html.lenis,html.lenis body{height:auto}
 /* ---------- shared sections keep a side margin on every page (old rules zeroed it) ---------- */
 .site2 section.lib,.site2 section.dotd,.site2 section.insta,.site2 section.faq,.site2 section.katha-list,.site2 section.k-related{
   padding-left:clamp(1rem,4vw,2.4rem);padding-right:clamp(1rem,4vw,2.4rem)}
+
+/* ---------- selected text: haldi yellow with black text (from mockup 1) ---------- */
+.site2 ::selection{background:#FAF112;color:#0D0806}
+
+/* Katha: featured stories heading + stacked cards inside a band */
+.site2 .band > .k-stack{padding-top:0;padding-bottom:clamp(56px,7vw,96px)}
+.site2 .band > section.lib-head-only{padding-bottom:0}
+
+/* FAQ / headings on a red band */
+.site2 .band-red .faq-deva,.site2 .band-red .lib-head .kick{color:#0D0806}
+.site2 .band-red .lib-head h2 .it{color:#0D0806}
+.site2 .band-red .faq-item{border-color:rgba(251,241,227,.3)}
+
+/* ---------- yellow tilted ribbon: the only yellow on inner pages ---------- */
+.site2 .home-ribbon-yellow .home-ribbon{background:#FAF112;color:#0B7A37}
+.site2 .home-ribbon-yellow .hr-sep{color:#0D0806}

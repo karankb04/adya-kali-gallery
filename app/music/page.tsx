@@ -3,6 +3,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import MusicGrid from "@/components/MusicGrid";
+import HomeRibbon from "@/components/HomeRibbon";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -40,6 +41,7 @@ export default function MusicPage() {
           </p>
         </div>
       </section>
+      <HomeRibbon tone="yellow" />
       <div className="wrap music-wrap">
         <MusicGrid />
       </div>

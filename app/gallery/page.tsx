@@ -4,6 +4,7 @@ import { buildGalleryJsonLd, SITE_URL, SITE_NAME, serializeJsonLd } from "@/lib/
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import GalleryLibrary from "@/components/GalleryLibrary";
+import HomeRibbon from "@/components/HomeRibbon";
 import FaqSection from "@/components/FaqSection";
 import { GALLERY_FAQS } from "@/content/faqs";
 
@@ -47,6 +48,7 @@ export default async function GalleryPage() {
           </p>
         </div>
       </section>
+      <HomeRibbon tone="yellow" />
       <GalleryLibrary images={images} />
       <FaqSection
         deva="Questions"

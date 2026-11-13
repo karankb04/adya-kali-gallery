@@ -95,7 +95,7 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- MANTRA RIBBON ---------- */}
-      <HomeRibbon />
+      <HomeRibbon tone="yellow" />
 
       {/* ---------- COVERFLOW (placeholder content) ---------- */}
       <section className="about-section wrap">

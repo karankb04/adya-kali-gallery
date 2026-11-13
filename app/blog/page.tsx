@@ -4,6 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Ornament from "@/components/Ornament";
 import PostCard from "@/components/blog/PostCard";
 import HeroCarousel from "@/components/blog/HeroCarousel";
+import HomeRibbon from "@/components/HomeRibbon";
 import FaqSection from "@/components/FaqSection";
 import { BLOG_INDEX_FAQS } from "@/content/faqs";
 import { getPosts } from "@/lib/posts";
@@ -47,7 +48,21 @@ export default function BlogIndex() {
           </div>
         </section>
 
-        {carousel.length > 0 && <HeroCarousel posts={carousel} />}
+        {carousel.length > 0 && (
+          <div className="band band-black">
+            <section className="wrap lib-head-only">
+              <div className="lib-head">
+                <div className="kick">Start here</div>
+                <h2>
+                  Featured <em className="it">stories</em>
+                </h2>
+              </div>
+            </section>
+            <HeroCarousel posts={carousel} />
+          </div>
+        )}
+
+        <HomeRibbon tone="yellow" />
 
         <section className="wrap katha-list">
           <div className="katha-grid">
@@ -57,12 +72,14 @@ export default function BlogIndex() {
           </div>
         </section>
       </main>
-      <FaqSection
-        deva="Questions"
-        title="Questions about Katha"
-        sub="What this section is, and where the stories come from."
-        items={BLOG_INDEX_FAQS}
-      />
+      <div className="band band-red">
+        <FaqSection
+          deva="Questions"
+          title="Questions about Katha"
+          sub="What this section is, and where the stories come from."
+          items={BLOG_INDEX_FAQS}
+        />
+      </div>
       <SiteFooter />
     </>
   );
