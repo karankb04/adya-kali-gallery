@@ -289,3 +289,34 @@ html.lenis,html.lenis body{height:auto}
 /* ---------- yellow tilted ribbon: the only yellow on inner pages ---------- */
 .site2 .home-ribbon-yellow .home-ribbon{background:#FAF112;color:#0B7A37}
 .site2 .home-ribbon-yellow .hr-sep{color:#0D0806}
+
+/* ======================================================================
+   PHONES & SMALL TABLETS
+   ====================================================================== */
+/* menu button (the desktop links are hidden under 900px) */
+.pmenu-btn{display:none;place-items:center;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(35,23,18,.55);
+  background:transparent;color:#231712;cursor:pointer}
+@media(max-width:900px){.pmenu-btn{display:grid}}
+.pmenu{position:fixed;inset:0;z-index:100;background:#E8371D;color:#FBF1E3;display:flex;flex-direction:column;
+  padding:5.5rem clamp(1.2rem,6vw,2.4rem) 2rem;overflow-y:auto;animation:pmenu-in .25s ease}
+@keyframes pmenu-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.pmenu-close{position:absolute;top:1rem;right:1rem;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid rgba(251,241,227,.6);background:transparent;color:#FBF1E3;cursor:pointer}
+.pmenu-jai{font-family:var(--font-inter-tight),sans-serif;font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0D0806;margin-bottom:1.4rem}
+.pmenu-links{display:flex;flex-direction:column;gap:.35rem}
+.pmenu-links a{font-family:var(--font-anton),Impact,sans-serif;text-transform:uppercase;font-size:clamp(2.6rem,13vw,4rem);line-height:1.05;
+  color:#FBF1E3;text-decoration:none;padding:.15rem 0}
+.pmenu-mission{margin-top:auto;padding-top:2rem;font-family:var(--font-clash),sans-serif;font-weight:700;text-transform:uppercase;
+  letter-spacing:.04em;color:#0D0806;text-decoration:none}
+
+/* About: sections had no side margin on phones */
+.site2 .about-section{padding-left:clamp(1rem,4vw,2.4rem);padding-right:clamp(1rem,4vw,2.4rem)}
+
+/* sticky "stacking" cards slide over each other on small screens — keep them in normal flow */
+@media(max-width:1199px){.site2 .sc-pin-sticky{position:static}}
+@media(max-width:900px){.site2 .k-stack-card{position:static}}
+
+/* floating "Open gallery": a compact pill bottom-right on phones, not a full-width bar over the photos */
+@media(max-width:860px){
+  .site2 .open-gallery-float{width:auto;left:auto;right:1rem;bottom:1rem;padding:.75rem 1.1rem}
+}

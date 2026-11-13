@@ -1,3 +1,5 @@
+import MobileMenu from "./MobileMenu";
+
 export default function SiteHeader() {
   return (
     <>
@@ -56,6 +58,7 @@ export default function SiteHeader() {
             </svg>
           </span>
         </a>
+        <MobileMenu />
       </div>
     </header>
     {/* Skip-link target: lands keyboard users just past the header. */}
