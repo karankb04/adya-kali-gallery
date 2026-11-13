@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Roboto_Slab, Tiro_Devanagari_Hindi } from "next/font/google";
+import { Anton, Instrument_Serif, Inter_Tight, Roboto_Slab, Tiro_Devanagari_Hindi } from "next/font/google";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import "./globals.css";
 
@@ -29,6 +29,29 @@ const deva = Tiro_Devanagari_Hindi({
   weight: "400",
   subsets: ["devanagari"],
   variable: "--font-deva",
+  display: "swap",
+});
+
+// Redesign type pair: a tall condensed display face for headings, menu and
+// footer, plus one soft italic serif for the single "gentle" word in a title.
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-anton",
+  display: "swap",
+});
+
+const instrument = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-instrument",
+  display: "swap",
+});
+
+const interTight = Inter_Tight({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -75,7 +98,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${clash.variable} ${slab.variable} ${deva.variable}`}>
+    <html lang="en" className={`${clash.variable} ${slab.variable} ${deva.variable} ${anton.variable} ${instrument.variable} ${interTight.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

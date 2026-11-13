@@ -10,7 +10,7 @@ export interface FaqItem {
 
 interface FaqSectionProps {
   deva?: string;
-  title: string;
+  title: React.ReactNode;
   sub?: string;
   items: FaqItem[];
 }

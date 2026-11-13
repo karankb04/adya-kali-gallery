@@ -18,7 +18,15 @@ import EngageIcon from "./EngageIcons";
  * fallback (the .sc-pin-fallback class, active by default) covers narrower
  * viewports and any environment where GSAP fails to load.
  */
-export default function PinnedTeaching() {
+export default function PinnedTeaching({
+  kicker = "जुड़ें",
+  heading = "Nine ways to walk with her",
+  text = "The column pins while the ways to reach the mission scroll past beside it — watch, listen, read, or join, whichever calls you.",
+}: {
+  kicker?: string;
+  heading?: React.ReactNode;
+  text?: string;
+} = {}) {
   const areaRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
 
@@ -64,12 +72,9 @@ export default function PinnedTeaching() {
   return (
     <div className="sc-pin-area" ref={areaRef}>
       <div className="sc-pin-sticky" ref={stickyRef}>
-        <span className="sc-pin-deva">जुड़ें</span>
-        <h3>Nine ways to walk with her</h3>
-        <p>
-          The column pins while the ways to reach the mission scroll past
-          beside it — watch, listen, read, or join, whichever calls you.
-        </p>
+        <span className="sc-pin-deva">{kicker}</span>
+        <h3>{heading}</h3>
+        <p>{text}</p>
       </div>
       <div className="sc-pin-list">
         {ENGAGE_LINKS.map((link) => (

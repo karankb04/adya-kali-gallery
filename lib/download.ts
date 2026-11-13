@@ -13,7 +13,11 @@ function extFromKey(key: string): string {
   return m ? m[1].toLowerCase().replace("jpeg", "jpg") : "jpg";
 }
 
-export async function downloadImage(p: KaliImage): Promise<void> {
+/**
+ * Same-origin download link + filename for an image. Usable on the server too
+ * (e.g. a plain <a download> in a server component, no JavaScript needed).
+ */
+export function downloadLink(p: KaliImage): { href: string; filename: string } {
   let base = slugify(p.transliteration) || "adya-kali";
   if (base.indexOf("kali") < 0 && base.indexOf("bhairav") < 0) {
     base = base + "-adya-kali";
@@ -26,7 +30,11 @@ export async function downloadImage(p: KaliImage): Promise<void> {
   const href =
     `/api/download?key=${encodeURIComponent(p.r2Key)}` +
     `&name=${encodeURIComponent(filename)}`;
+  return { href, filename };
+}
 
+export async function downloadImage(p: KaliImage): Promise<void> {
+  const { href, filename } = downloadLink(p);
   const a = document.createElement("a");
   a.href = href;
   a.download = filename;

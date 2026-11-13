@@ -7,8 +7,11 @@ import SiteFooter from "./SiteFooter";
 import GalleryLibrary from "./GalleryLibrary";
 import InstagramFeed from "./InstagramFeed";
 import PinnedTeaching from "./showcase/PinnedTeaching";
-import ScrollTextLines from "./ScrollTextLines";
 import FaqSection from "./FaqSection";
+import HomeRibbon from "./HomeRibbon";
+import MaaVideo from "./MaaVideo";
+import SmoothScroll from "./SmoothScroll";
+import FadeUp from "./FadeUp";
 import { HOME_FAQS } from "@/content/faqs";
 
 interface KaliAppProps {
@@ -22,6 +25,12 @@ interface KaliAppProps {
 // landing in the 20-30% reduction range asked for.
 const HOME_PREVIEW_LIMIT = 16;
 
+/**
+ * Homepage, redesign pilot ("home2"). Every section sits on a solid band:
+ * image-heavy galleries on black, everything else on sindoor red, with the
+ * yellow Maa video as the one poster moment. All home-only styling lives in
+ * app/home.css under the .home2 wrapper, so other pages are unaffected.
+ */
 export default function KaliApp({ images, daily }: KaliAppProps) {
   // Shared with GalleryLibrary so the Hero wall and the grid below open the
   // same darshan modal instead of two independent ones.
@@ -29,44 +38,77 @@ export default function KaliApp({ images, daily }: KaliAppProps) {
 
   return (
     <>
+      <SmoothScroll />
       <SiteHeader />
 
-      {/* ---------- HERO ---------- */}
-      <Hero images={images} onOpen={setSelected} />
+      <div className="home2">
+        {/* ---------- HERO ---------- */}
+        <Hero images={images} onOpen={setSelected} />
 
-      {/* ---------- LIBRARY PREVIEW ---------- */}
-      <GalleryLibrary
-        images={images}
-        limit={HOME_PREVIEW_LIMIT}
-        showOpenGalleryButton
-        id="library"
-        selected={selected}
-        onSelectChange={setSelected}
-      />
+        {/* ---------- MANTRA RIBBON ---------- */}
+        <HomeRibbon />
 
-      {/* ---------- DARSHAN OF THE DAY ---------- */}
-      {daily}
+        {/* ---------- MAA VIDEO (yellow) ---------- */}
+        <MaaVideo />
 
-      {/* ---------- INSTAGRAM ---------- */}
-      <InstagramFeed />
+        {/* ---------- LIBRARY PREVIEW (black) ---------- */}
+        <div className="band band-black">
+          <GalleryLibrary
+            images={images}
+            limit={HOME_PREVIEW_LIMIT}
+            showOpenGalleryButton
+            id="library"
+            selected={selected}
+            onSelectChange={setSelected}
+            kicker="The library"
+            heading={
+              <>
+                Her <em className="it">faces</em>
+              </>
+            }
+          />
+        </div>
 
-      {/* ---------- PINNED TEACHING ---------- */}
-      <section className="pin-teaching wrap">
-        <PinnedTeaching />
-      </section>
+        {/* ---------- DARSHAN OF THE DAY (red) ---------- */}
+        <div className="band band-red">{daily}</div>
 
-      {/* ---------- SCROLL TEXT LINES ---------- */}
-      <ScrollTextLines />
+        {/* ---------- INSTAGRAM (black) ---------- */}
+        <div className="band band-black">
+          <InstagramFeed />
+        </div>
 
-      {/* ---------- FAQ ---------- */}
-      <FaqSection
-        deva="प्रश्न"
-        title="Questions devotees ask"
-        sub="Everything you might want to know about the gallery and the mission behind it."
-        items={HOME_FAQS}
-      />
+        {/* ---------- PINNED TEACHING (red) ---------- */}
+        <div className="band band-red">
+          <section className="pin-teaching wrap">
+            <PinnedTeaching
+              kicker="Join the mission"
+              heading={
+                <>
+                  Walk with <em className="it">her</em>
+                </>
+              }
+              text="Nine ways to stay close to the mission — watch, listen, read, or join, whichever calls you."
+            />
+          </section>
+        </div>
+
+        {/* ---------- FAQ (black) ---------- */}
+        <div className="band band-black">
+          <FaqSection
+            deva="Questions"
+            title={
+              <>
+                Devotees <em className="it">ask</em>
+              </>
+            }
+            sub="Everything you might want to know about the gallery and the mission behind it."
+            items={HOME_FAQS}
+          />
+        </div>
+      </div>
 
       <SiteFooter />
+      <FadeUp />
     </>
   );
 }

@@ -2,7 +2,6 @@
 import { useRef, useState } from "react";
 import { INSTAGRAM_POSTS } from "@/content/instagramPosts";
 import RImage from "./RImage";
-import Ornament from "./Ornament";
 
 const HANDLE = "kaliputramission";
 
@@ -34,9 +33,11 @@ export default function InstagramFeed() {
 
   return (
     <section className="insta wrap">
-      <div className="lib-head">
-        <Ornament className="lib-orn" />
-        <h2>From Instagram</h2>
+      <div className="lib-head fade-up">
+        <div className="kick">Follow along</div>
+        <h2>
+          From <em className="it">Instagram</em>
+        </h2>
         <div className="sub">
           Devotional moments from the KaliPutra Mission — follow along for
           more.
@@ -45,9 +46,14 @@ export default function InstagramFeed() {
           href={`https://www.instagram.com/${HANDLE}/`}
           target="_blank"
           rel="noopener noreferrer"
-          className="insta-follow"
+          className="pill pill-line"
         >
-          @{HANDLE}
+          Follow @{HANDLE}
+          <span className="pill-ar" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
+              <path d="M4 12L12 4M12 4H5.5M12 4V10.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </a>
       </div>
 

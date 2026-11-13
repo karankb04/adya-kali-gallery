@@ -104,7 +104,7 @@ export default function Hero({ images, onOpen }: HeroProps) {
       <div className="scrim" />
 
       <div className="hero-c">
-        <div className="deva">॥ जय माँ आद्या ॥</div>
+        <div className="hero-jai">॥ Jai Maa Adya ॥</div>
         <h1 className="title-wrap">
           <motion.div
             style={{ y: logoY, scale: logoScale }}
@@ -119,9 +119,9 @@ export default function Hero({ images, onOpen }: HeroProps) {
             />
           </motion.div>
         </h1>
-        <p>
-          A living library of the Mother — her every face, gathered in one place
-          for all the world to behold.
+        <p className="hero-tagline">
+          A living library of the <em className="it">Mother</em> — her every
+          face, gathered for all the world to behold.
         </p>
         <div className="cue">
           The Library

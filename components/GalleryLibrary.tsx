@@ -26,6 +26,9 @@ interface GalleryLibraryProps {
    */
   selected?: KaliImage | null;
   onSelectChange?: (image: KaliImage | null) => void;
+  /** Home redesign: custom heading (e.g. with an italic word) and a small English kicker above it. */
+  heading?: React.ReactNode;
+  kicker?: string;
 }
 
 type SortKey = "newest" | "popular" | "random" | "featured";
@@ -61,6 +64,8 @@ export default function GalleryLibrary({
   id,
   selected: controlledSelected,
   onSelectChange,
+  heading,
+  kicker,
 }: GalleryLibraryProps) {
   const [query, setQuery] = useState("");
   const [form, setForm] = useState("all");
@@ -187,8 +192,8 @@ export default function GalleryLibrary({
     <>
       <section className="lib wrap" id={id}>
         <div className="lib-head">
-          <Ornament className="lib-orn" />
-          <h2>Her Faces</h2>
+          {kicker ? <div className="kick">{kicker}</div> : <Ornament className="lib-orn" />}
+          <h2>{heading ?? "Her Faces"}</h2>
           <div className="sub">
             New darshan, offered by her children. Search her names, filter her
             forms.
