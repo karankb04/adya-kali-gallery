@@ -15,6 +15,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
  * has overflow-x:hidden). Scroll distance is 154% of the viewport.
  */
 const LEAF = "#0E9F48";
+const YELLOW = "#FAF112";
 
 export default function MaaVideo() {
   const pinRef = useRef<HTMLDivElement>(null);
@@ -35,6 +36,10 @@ export default function MaaVideo() {
     v.src = `/media/maa-${kind}.mp4`;
     const setPoster = (end: boolean) => {
       pinEl.style.backgroundImage = `url(/media/maa-${kind}-poster${end ? "-end" : ""}.webp)`;
+      // match the canvas: tall screens show the clip full-width, sitting on the bottom
+      const tall = pinEl.clientWidth / pinEl.clientHeight < (kind === "phone" ? 1152 / 1536 : 1920 / 1088);
+      pinEl.style.backgroundSize = tall ? "100% auto" : "cover";
+      pinEl.style.backgroundPosition = tall ? "center bottom" : "center";
     };
     // Very first paint (before even the small stills arrive): the start or
     // end frame, whichever the visitor will see first.
@@ -99,12 +104,23 @@ export default function MaaVideo() {
     fit();
     window.addEventListener("resize", fit);
 
-    const cover = (sw: number, sh: number) => {
+    // Wide screens: fill the section (cover). Tall phone screens: fit the clip
+    // to the screen WIDTH and sit it on the bottom, so nothing of Maa is ever
+    // cut at the sides; the clip's flat yellow background simply continues
+    // above her (that's where the big ADYA lives on phones).
+    const place = (sw: number, sh: number) => {
       const vr = sw / sh, cr = W / H;
+      if (cr < vr) {
+        const h = W / vr;
+        return [0, H - h, W, h, true] as const;
+      }
       const w = cr > vr ? W : H * vr;
       const h = cr > vr ? W / vr : H;
-      return [(W - w) / 2, (H - h) / 2, w, h] as const;
+      return [(W - w) / 2, (H - h) / 2, w, h, false] as const;
     };
+    // full-screen version of the "where is the yellow background" mask
+    const fm = document.createElement("canvas");
+    const fx = fm.getContext("2d");
     const clamp = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
     const buildMask = (src: CanvasImageSource, sw: number, sh: number) => {
       const mw = 320, mh = Math.round((mw * sh) / sw);
@@ -140,10 +156,21 @@ export default function MaaVideo() {
       }
 
       if (src && W) {
-        const [x0, y0, w, h] = cover(sw, sh);
+        const [x0, y0, w, h, fitted] = place(sw, sh);
         if (key !== lastKey) { buildMask(src, sw, sh); lastKey = key; }
         cx.clearRect(0, 0, W, H);
         cx.drawImage(src, x0, y0, w, h);
+        if (fitted && y0 > 0) {
+          // yellow above the clip, with a soft fade so its top edge never shows
+          const fade = h * 0.16;
+          cx.fillStyle = YELLOW;
+          cx.fillRect(0, 0, W, y0 + 1);
+          const g = cx.createLinearGradient(0, y0, 0, y0 + fade);
+          g.addColorStop(0, YELLOW);
+          g.addColorStop(1, "rgba(250,241,18,0)");
+          cx.fillStyle = g;
+          cx.fillRect(0, y0, W, fade);
+        }
         tx.globalCompositeOperation = "source-over";
         tx.clearRect(0, 0, W, H);
         const mob = W < H;
@@ -153,12 +180,23 @@ export default function MaaVideo() {
         tx.fillStyle = LEAF;
         tx.textBaseline = "top";
         tx.save();
-        tx.translate(-W * 0.01, H * (mob ? 0.06 : 0.02) + H * (0.06 - 0.12 * shown));
+        // phones: drift less, so the word never slides up under the top bar
+        tx.translate(-W * 0.01, mob ? H * (0.15 - 0.03 * shown) : H * (0.08 - 0.12 * shown));
         tx.scale(0.95 + 0.1 * shown, 0.95 + 0.1 * shown);
         tx.fillText("ADYA", 0, 0);
         tx.restore();
         tx.globalCompositeOperation = "destination-in";
-        tx.drawImage(mc, x0, y0, w, h);
+        if (fitted && fx) {
+          // everything outside the clip is plain yellow, so the word may show there
+          if (fm.width !== W || fm.height !== H) { fm.width = W; fm.height = H; }
+          fx.clearRect(0, 0, W, H);
+          fx.fillStyle = "#000";
+          fx.fillRect(0, 0, W, y0 + 1);
+          fx.drawImage(mc, x0, y0, w, h);
+          tx.drawImage(fm, 0, 0);
+        } else {
+          tx.drawImage(mc, x0, y0, w, h);
+        }
         cx.drawImage(tc, 0, 0);
         if (cv.style.opacity !== "1") cv.style.opacity = "1";
       }
