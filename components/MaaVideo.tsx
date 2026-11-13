@@ -36,10 +36,8 @@ export default function MaaVideo() {
     const setPoster = (end: boolean) => {
       pinEl.style.backgroundImage = `url(/media/maa-${kind}-poster${end ? "-end" : ""}.webp)`;
     };
-    // A still frame shows while the clip loads (no blank yellow). It must be
-    // the SAME frame the video will open on, otherwise the picture jumps
-    // (zooms) when the video takes over: reduced-motion visitors see the
-    // final frame, everyone else the first.
+    // Very first paint (before even the small stills arrive): the start or
+    // end frame, whichever the visitor will see first.
     setPoster(reduced);
 
     // Phones (iOS especially) only fetch metadata for a paused video, so there
@@ -61,12 +59,37 @@ export default function MaaVideo() {
       getComputedStyle(document.documentElement).getPropertyValue("--font-anton").trim() || "Anton, Impact, sans-serif";
     document.fonts?.load(`100px ${fam}`);
 
-    let W = 0, H = 0, target = reduced ? 1 : 0, shown = target, lastT = -1, raf = 0;
-    // The canvas stays invisible until the video sits on the right frame,
-    // then fades in over the matching still: no jump, no zoom.
+    let W = 0, H = 0, target = reduced ? 1 : 0, shown = target, lastKey = "", raf = 0;
+
+    // 12 small still frames spread evenly across the clip (~0.5 MB in total,
+    // they arrive long before the ~3.5 MB video). Until the video is ready
+    // the canvas shows whichever still matches the scroll position, so the
+    // zoom follows the visitor from the first second and nothing jumps when
+    // the video takes over.
+    const FRAMES = 12, CLIP = 4; // frames cover 0s … 4s of the clip
+    const frames = Array.from({ length: FRAMES }, (_, i) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = `/media/frames/${kind}-${String(i + 1).padStart(2, "0")}.webp`;
+      return img;
+    });
+    const frameFor = (t: number) => {
+      const want = Math.max(0, Math.min(FRAMES - 1, Math.round((t / CLIP) * (FRAMES - 1))));
+      // nearest still that has finished loading
+      for (let d = 0; d < FRAMES; d++) {
+        for (const i of [want - d, want + d]) {
+          const f = frames[i];
+          if (f && f.complete && f.naturalWidth) return [f, i] as const;
+        }
+      }
+      return null;
+    };
+
+    // The video only takes over once it sits on the right frame (and isn't
+    // in the phone "wake up" playback), so the hand-over is seamless.
     let ready = false;
+    cv.style.transition = "opacity .35s ease";
     cv.style.opacity = "0";
-    cv.style.transition = "opacity .6s ease";
     const fit = () => {
       const r = cv.getBoundingClientRect();
       const d = Math.min(window.devicePixelRatio || 1, 2);
@@ -76,17 +99,17 @@ export default function MaaVideo() {
     fit();
     window.addEventListener("resize", fit);
 
-    const cover = () => {
-      const vr = v.videoWidth / v.videoHeight, cr = W / H;
+    const cover = (sw: number, sh: number) => {
+      const vr = sw / sh, cr = W / H;
       const w = cr > vr ? W : H * vr;
       const h = cr > vr ? W / vr : H;
       return [(W - w) / 2, (H - h) / 2, w, h] as const;
     };
     const clamp = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
-    const buildMask = () => {
-      const mw = 320, mh = Math.round((mw * v.videoHeight) / v.videoWidth);
-      if (mc.width !== mw) { mc.width = mw; mc.height = mh; }
-      mx.drawImage(v, 0, 0, mw, mh);
+    const buildMask = (src: CanvasImageSource, sw: number, sh: number) => {
+      const mw = 320, mh = Math.round((mw * sh) / sw);
+      if (mc.width !== mw || mc.height !== mh) { mc.width = mw; mc.height = mh; }
+      mx.drawImage(src, 0, 0, mw, mh);
       const id = mx.getImageData(0, 0, mw, mh), p = id.data;
       for (let i = 0; i < p.length; i += 4) {
         // bright flat yellow (≈250,241,18) → 1; gold/skin/hair → 0
@@ -98,23 +121,29 @@ export default function MaaVideo() {
     };
 
     const render = () => {
+      const dur = v.duration || 4.04;
+      const want = target * (dur - 0.05);
       if (v.duration && !v.seeking) {
-        const t = target * (v.duration - 0.05);
         // Before it's shown, go straight to the right frame; afterwards ease (smooth scrubbing).
-        if (Math.abs(v.currentTime - t) > 0.01) v.currentTime = ready ? v.currentTime + (t - v.currentTime) * 0.35 : t;
+        if (Math.abs(v.currentTime - want) > 0.01) v.currentTime = ready ? v.currentTime + (want - v.currentTime) * 0.35 : want;
       }
       shown += (target - shown) * 0.12;
-      // While the phone "wake up" playback runs, don't paint moving frames.
-      if (!ready && v.readyState >= 2 && v.paused && v.duration &&
-          Math.abs(v.currentTime - target * (v.duration - 0.05)) < 0.06) {
-        ready = true;
-        shown = target;
+      if (!ready && v.readyState >= 2 && v.paused && v.duration && Math.abs(v.currentTime - want) < 0.06) ready = true;
+
+      // pick what to draw: the video once ready, otherwise the matching still
+      let src: CanvasImageSource | null = null, sw = 0, sh = 0, key = "";
+      if (ready && v.readyState >= 2) {
+        src = v; sw = v.videoWidth; sh = v.videoHeight; key = "v" + v.currentTime;
+      } else {
+        const hit = frameFor(want);
+        if (hit) { src = hit[0]; sw = hit[0].naturalWidth; sh = hit[0].naturalHeight; key = "f" + hit[1]; }
       }
-      if (ready && v.readyState >= 2 && W) {
-        const [x0, y0, w, h] = cover();
-        if (v.currentTime !== lastT) { buildMask(); lastT = v.currentTime; }
+
+      if (src && W) {
+        const [x0, y0, w, h] = cover(sw, sh);
+        if (key !== lastKey) { buildMask(src, sw, sh); lastKey = key; }
         cx.clearRect(0, 0, W, H);
-        cx.drawImage(v, x0, y0, w, h);
+        cx.drawImage(src, x0, y0, w, h);
         tx.globalCompositeOperation = "source-over";
         tx.clearRect(0, 0, W, H);
         const mob = W < H;
