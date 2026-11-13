@@ -31,9 +31,11 @@ export default function MaaVideo() {
     gsap.registerPlugin(ScrollTrigger);
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    v.src = window.matchMedia("(max-aspect-ratio: 1/1)").matches
-      ? "/media/maa-phone.mp4"
-      : "/media/maa-laptop.mp4";
+    const kind = window.matchMedia("(max-aspect-ratio: 1/1)").matches ? "phone" : "laptop";
+    v.src = `/media/maa-${kind}.mp4`;
+    // A still of the first frame shows while the clip loads (no blank yellow);
+    // the canvas paints over it once frames are ready.
+    pinEl.style.backgroundImage = `url(/media/maa-${kind}-poster.webp)`;
 
     // Phones (iOS especially) only fetch metadata for a paused video, so there
     // is no frame to draw. A muted play-then-pause makes them decode frames.

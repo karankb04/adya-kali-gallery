@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
  * One simple, quiet entrance for the home page: anything marked .fade-up
  * rises 24px and fades in once, the first time it scrolls into view.
  */
-export default function FadeUp({ selector = ".home2 .fade-up" }: { selector?: string }) {
+export default function FadeUp({ selector = ".site2 .fade-up" }: { selector?: string }) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.registerPlugin(ScrollTrigger);

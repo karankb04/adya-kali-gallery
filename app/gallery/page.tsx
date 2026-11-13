@@ -37,8 +37,10 @@ export default async function GalleryPage() {
       <SiteHeader />
       <section className="gallery-hero">
         <div className="wrap">
-          <div className="gallery-hero-deva">काली दर्शन</div>
-          <h1>The Gallery</h1>
+          <div className="gallery-hero-deva">Jai Maa</div>
+          <h1>
+            The <em className="it">gallery</em>
+          </h1>
           <p className="gallery-hero-dek">
             Every face of the Mother gathered in one place — search her
             names, filter her forms, and take her home.
@@ -47,7 +49,7 @@ export default async function GalleryPage() {
       </section>
       <GalleryLibrary images={images} />
       <FaqSection
-        deva="प्रश्न"
+        deva="Questions"
         title="Questions about the gallery"
         sub="How to search, filter, and download her darshan."
         items={GALLERY_FAQS}

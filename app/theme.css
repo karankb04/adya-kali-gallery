@@ -1,0 +1,275 @@
+/* ======================================================================
+   SITE THEME (redesign) — every page.
+   <body class="site2"> turns this on site-wide. The look: black base, red
+   title bands, sindoor/black section bands on the home page, Anton headings
+   with one gentle Instrument Serif italic word, Inter Tight body text,
+   round pill buttons, quiet hovers. Colours here are fixed (not the old
+   light/dark tokens) so the device dark-mode switch can't flip them.
+   ====================================================================== */
+
+/* ---------- base tokens: the old "evening" palette, always on, on true black ---------- */
+:root{
+  color-scheme:dark;
+  --bg:#0D0806; --bg-soft:#160d0a; --paper:#1d120e;
+  --ink:#f3e9df; --ink-soft:#bcaa9c;
+  --line:rgba(240,170,150,.16);
+  --gold-ink:#e0b05a; --red-ink:#ff6d61;
+  --disp:var(--font-anton),Impact,sans-serif;
+  --serif:var(--font-anton),Impact,sans-serif;
+  --body:var(--font-inter-tight),system-ui,sans-serif;
+}
+body.site2{background:#0D0806;color:#f3e9df}
+/* the same per-class fixes the old dark mode applied, now always */
+.site2 .search input::placeholder{color:#9a897d}
+.site2 .k-body{color:#eadccf}
+.site2 .k-verse-render{color:#e3d4c6}
+.site2 .k-verse-translit{color:#c7b2a0}
+.site2 .facet-btn.on .facet-value,.site2 .facet-opt.on .facet-count,.site2 .gallery-hero-dek a,.site2 .creator-role,
+.site2 .kcard:hover .kcard-title,.site2 .k-verse-deva,.site2 .k-quote p,.site2 .sc-pin-row:hover .sc-pin-row-arrow,
+.site2 .stl-item-solid{color:var(--red-ink)}
+.site2 .skip-link{color:#231712}
+
+/* decorative gold dividers are replaced by small English kickers */
+.site2 .lib-orn,.site2 .katha-orn{display:none}
+
+/* ---------- red title band at the top of every inner page ---------- */
+.site2 .gallery-hero,.site2 .katha-hero{background:#E8371D;padding:clamp(7rem,12vw,9rem) 0 clamp(3rem,6vw,4.5rem)}
+.site2 .gallery-hero-deva,.site2 .katha-hero-deva{font-family:var(--font-inter-tight),sans-serif;font-weight:600;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:#0D0806;margin-bottom:.5rem}
+.site2 .gallery-hero h1,.site2 .katha-hero h1{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3;
+  font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:.005em}
+.site2 .gallery-hero h1 .it,.site2 .katha-hero h1 .it{color:#0D0806;font-size:1.1em}
+.site2 .gallery-hero-dek,.site2 .katha-hero-dek{color:rgba(251,241,227,.9);font-weight:400;font-size:clamp(1.02rem,1.4vw,1.18rem);max-width:54ch}
+.site2 .gallery-hero-dek a{color:#FBF1E3}
+
+/* ---------- Katha article: header on a full-width red band ---------- */
+.site2 .katha-article{padding-top:0}
+.site2 .k-head{position:relative;padding-top:clamp(7rem,12vw,9rem);padding-bottom:3rem;
+  background:#E8371D;box-shadow:0 0 0 100vmax #E8371D;clip-path:inset(0 -100vmax)}
+.site2 .k-kind{color:#0D0806}
+.site2 .k-kind a:hover{border-color:#0D0806}
+.site2 .k-deva{color:#0D0806;font-family:var(--font-inter-tight),sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.site2 .k-title{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3;line-height:.95}
+.site2 .k-dek{color:rgba(251,241,227,.92)}
+.site2 .k-date{color:rgba(251,241,227,.85)}
+.site2 .k-cover{margin-top:2.6rem}
+.site2 .k-related-h{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);color:#FBF1E3}
+.site2 .k-related-h .it{color:#ff7a66;font-size:1.1em}
+
+/* ---------- About: alternate the image sections red / black ---------- */
+.site2 .about-section{padding-top:clamp(64px,8vw,110px);padding-bottom:clamp(64px,8vw,110px)}
+.site2 .about-section-alt{background:#E8371D;box-shadow:0 0 0 100vmax #E8371D;clip-path:inset(0 -100vmax)}
+.site2 .about-section-alt .lib-head .kick{color:#0D0806}
+.site2 .about-section-alt .lib-head h2 .it{color:#0D0806}
+
+/* ---------- Music + Katha lists breathe like the home sections ---------- */
+.site2 .music-wrap{padding-top:clamp(56px,7vw,90px)}
+.site2 .katha-list{padding-top:clamp(40px,5vw,70px)}
+.site2{
+  --h-red:#E8371D; --h-red-hover:#ff4a2c; --h-red-deep:#9c0f14; --h-rose:#ff7a66;
+  --h-black:#0D0806; --h-cream:#FBF1E3; --h-paper:#FFFAF3; --h-ink:#231712; --h-ink-soft:#6f5d55;
+  --h-gold:#D9A23E; --h-gold-ink:#8a5f14; --h-haldi:#FAF112; --h-leaf:#0E9F48;
+  --h-disp:var(--font-anton),Impact,sans-serif;
+  --h-ital:var(--font-instrument),Georgia,serif;
+  --h-body:var(--font-inter-tight),system-ui,sans-serif;
+  --h-clash:var(--font-clash),sans-serif;
+  background:var(--h-black);color:var(--h-cream);font-family:var(--h-body);
+  /* the tilted ribbon pokes past the screen edge; clip (not hidden) so pinning still works */
+  overflow-x:clip;
+}
+/* Lenis owns smooth scrolling on this page; stop the CSS version fighting it. */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+
+/* the one gentle italic word in a loud heading */
+.site2 .it{font-family:var(--h-ital);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em}
+
+/* ---------- section bands: galleries on black, the rest on red ---------- */
+.site2 .band{position:relative}
+.site2 .band-black{background:var(--h-black);color:var(--h-cream)}
+.site2 .band-red{background:var(--h-red);color:var(--h-cream)}
+.site2 .band > section{padding-top:clamp(72px,9vw,120px);padding-bottom:clamp(72px,9vw,120px);margin-top:0;margin-bottom:0;
+  /* the old section rules reset side padding to 0, which left phones edge-to-edge */
+  padding-left:clamp(1rem,4vw,2.4rem);padding-right:clamp(1rem,4vw,2.4rem)}
+
+/* ---------- section headings: one line, centred, readable line below ---------- */
+.site2 .lib-head{gap:.35rem;margin-bottom:clamp(28px,3.5vw,44px)}
+.site2 .lib-head .kick,.site2 .faq-deva,.site2 .sc-pin-deva{font-family:var(--h-body);font-weight:600;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--h-gold)}
+.site2 .band-red .lib-head .kick{color:var(--h-black)}
+.site2 .lib-head h2,.site2 .faq .lib-head h2{font-family:var(--h-disp);font-weight:400;text-transform:uppercase;
+  font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:.95;letter-spacing:.005em;color:var(--h-cream)}
+.site2 .lib-head h2 .it{font-size:1.1em;color:var(--h-rose)}
+.site2 .band-red .lib-head h2 .it{color:var(--h-black)}
+.site2 .lib-head .sub{font-family:var(--h-body);font-weight:400;font-size:clamp(1.02rem,1.4vw,1.18rem);color:rgba(251,241,227,.82);margin-top:.5rem;max-width:52ch}
+.site2 .count{font-family:var(--h-body);color:var(--h-gold);font-size:12px;letter-spacing:.16em}
+/* Her faces: compact heading block (no darshan count, less air) */
+.site2 .lib .count{display:none}
+.site2 .lib .lib-head{gap:.2rem;margin-bottom:1.4rem}
+.site2 .lib .lib-head .sub{margin-top:.25rem;max-width:62ch}
+.site2 .band > section.lib{padding-top:clamp(56px,6vw,80px)}
+
+/* ---------- pill buttons: round, clean, gentle hover ---------- */
+.site2 .pill,.site2 .open-gallery-btn{display:inline-flex;align-items:center;gap:.6rem;border-radius:2rem;padding:.8rem 1.35rem;
+  font-family:var(--h-clash);font-weight:700;text-transform:uppercase;font-size:.92rem;letter-spacing:.04em;line-height:1;white-space:nowrap;
+  background:var(--h-cream);color:var(--h-ink);border:1.5px solid transparent;box-shadow:none;text-decoration:none;cursor:pointer;
+  transition:background .3s,color .3s,border-color .3s}
+.site2 .pill-ar{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--h-red-deep);color:var(--h-cream);transition:transform .3s}
+.site2 .pill:hover{background:#fff}
+.site2 .pill:hover .pill-ar,.site2 .open-gallery-btn:hover svg{transform:translateX(3px)}
+.site2 .pill-ink{background:var(--h-ink);color:var(--h-cream)}
+.site2 .pill-ink .pill-ar{background:var(--h-red)}
+.site2 .pill-ink:hover{background:#3a271f}
+.site2 .pill-line{background:transparent;color:var(--h-cream);border-color:rgba(251,241,227,.55)}
+.site2 .pill-line .pill-ar{background:transparent;border:1px solid rgba(251,241,227,.55)}
+.site2 .pill-line:hover{background:rgba(251,241,227,.08);border-color:var(--h-cream)}
+/* Open Gallery (static + floating): red pill */
+.site2 .open-gallery-btn{background:var(--h-red);color:var(--h-cream)}
+.site2 .open-gallery-btn:hover{background:var(--h-red-hover);transform:none;box-shadow:none}
+.site2 .open-gallery-btn svg{width:16px;height:16px;transition:transform .3s}
+.site2 .open-gallery-float{box-shadow:0 14px 34px -14px rgba(0,0,0,.8)}
+.site2 .open-gallery-float.show:hover{transform:none}
+
+/* ---------- HERO: drifting wall kept; only the line under the title changes ---------- */
+.site2 .hero-jai{font-family:var(--h-body);font-weight:600;font-size:clamp(.8rem,1.4vw,1rem);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--h-rose);margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.site2 .hero-c .hero-tagline{margin-top:.6rem;font-family:var(--h-disp);font-weight:400;text-transform:uppercase;
+  font-size:clamp(1.6rem,3.2vw,3.1rem);line-height:.98;max-width:24ch;color:var(--h-cream);text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.site2 .hero-tagline .it{color:var(--h-gold);font-size:1.12em}
+.site2 .hero-c .cue{font-family:var(--h-body)}
+.site2 .scrim{background:linear-gradient(180deg,rgba(14,6,3,.62) 0%,transparent 15%),linear-gradient(0deg,rgba(14,6,3,.9) 2%,transparent 30%)}
+
+/* ---------- MANTRA RIBBON (mockup 1): tilted black band, slides with scroll ---------- */
+.site2 .home-ribbon-clip{position:relative;z-index:3;overflow-x:clip;overflow-y:visible}
+.site2 .home-ribbon{position:relative;z-index:3;overflow:hidden;background:var(--h-black);color:var(--h-cream);padding:14px 0;
+  transform:rotate(-1.5deg) scale(1.03);box-shadow:0 10px 30px -12px rgba(0,0,0,.6)}
+.site2 .home-ribbon-track{display:flex;width:max-content;white-space:nowrap;will-change:transform;
+  font-family:var(--h-disp);font-size:clamp(1.4rem,2.6vw,2.4rem);line-height:1.15;text-transform:uppercase}
+.site2 .home-ribbon-unit{display:flex}
+.site2 .home-ribbon-unit > span{padding:0 .5em}
+.site2 .home-ribbon .it{font-size:1.1em}
+.site2 .home-ribbon [lang="hi"]{font-family:var(--font-deva),serif;text-transform:none;font-size:.9em}
+.site2 .home-ribbon .hr-sep{color:var(--h-red)}
+
+/* ---------- MAA VIDEO (yellow poster moment) ---------- */
+.site2 .maa{background:var(--h-haldi)}
+.site2 .maa-stick{position:relative;height:100vh;height:100svh;overflow:hidden;background-color:var(--h-haldi);
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+.site2 .maa-canvas{position:absolute;inset:0;width:100%;height:100%}
+.site2 .maa-outline{position:absolute;left:0;right:0;top:44%;text-align:center;font-family:var(--h-disp);font-size:clamp(4rem,13vw,14rem);
+  line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px var(--h-leaf);pointer-events:none;white-space:nowrap}
+.site2 .maa-v{position:absolute;left:clamp(16px,4vw,48px);writing-mode:vertical-rl;transform:rotate(180deg);color:var(--h-leaf);
+  font-family:var(--h-body);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.site2 .maa-v1{top:16vh}.site2 .maa-v2{bottom:10vh}
+.site2 .maa-shade{position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(transparent,rgba(13,8,6,.82));pointer-events:none}
+.site2 .maa-foot{position:absolute;left:0;right:0;bottom:5vh;text-align:center;z-index:2;padding:0 clamp(16px,4vw,48px)}
+.site2 .maa-foot-s{font-family:var(--h-body);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--h-cream);opacity:.9}
+.site2 .maa-foot-t{font-family:var(--h-disp);font-size:clamp(2rem,4.5vw,4.4rem);line-height:1;text-transform:uppercase;color:var(--h-haldi);margin:6px 0}
+.site2 .maa-foot-t .it{color:var(--h-cream)}
+.site2 .maa-foot-d{font-family:var(--h-body);font-weight:600;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--h-cream)}
+
+/* ---------- HER FACES (black): today's grid, new type ---------- */
+.site2 .search input{background:rgba(251,241,227,.06);border:1.5px solid rgba(251,241,227,.16);border-radius:2rem;color:var(--h-cream);font-family:var(--h-body)}
+.site2 .search input::placeholder{color:rgba(251,241,227,.5)}
+.site2 .search input:focus{border-color:var(--h-red);box-shadow:none}
+.site2 .search .ic{color:var(--h-red)}
+.site2 .facet-btn{background:rgba(251,241,227,.06);border:1.5px solid rgba(251,241,227,.16);border-radius:2rem;color:var(--h-cream);font-family:var(--h-body)}
+.site2 .facet-btn:hover,.site2 .facet-btn.open{border-color:var(--h-red);box-shadow:none}
+.site2 .facet-label{color:rgba(251,241,227,.55)}
+.site2 .facet-value,.site2 .facet-btn.on .facet-value{color:var(--h-cream)}
+.site2 .facet-chevron{color:rgba(251,241,227,.55)}
+.site2 .card{background:#241208;box-shadow:0 10px 30px -18px rgba(0,0,0,.8)}
+.site2 .card:hover{transform:none;box-shadow:0 10px 30px -18px rgba(0,0,0,.8)}
+.site2 .card img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.site2 .card:hover img{transform:scale(1.03)}
+.site2 .card .cap{padding:2rem 1rem .9rem;background:linear-gradient(transparent,rgba(20,8,4,.92))}
+.site2 .card .nm{font-size:1.15rem;text-shadow:none}
+.site2 .card .tr{font-family:var(--h-ital);font-style:italic;font-size:1.15rem;line-height:1.1;color:var(--h-rose)}
+.site2 .card .fm{font-family:var(--h-body);font-size:.7rem;letter-spacing:.14em}
+.site2 .empty{color:rgba(251,241,227,.7)}
+
+/* ---------- TODAY'S DARSHAN (red): today's card, new type ---------- */
+.site2 .dotd-card{background:var(--h-paper);border:none;color:var(--h-ink);box-shadow:0 40px 80px -40px rgba(60,6,2,.7)}
+.site2 .dotd-body{padding-right:1.4rem}
+.site2 .dotd-deva{color:var(--h-gold-ink);font-size:1.6rem}
+.site2 .dotd-title{font-family:var(--h-disp);font-weight:400;font-size:clamp(2.2rem,4.4vw,3.4rem);color:var(--h-ink)}
+.site2 .dotd-title .it{color:var(--h-red-deep);font-size:1.1em}
+.site2 .dotd-form{font-family:var(--h-body);color:var(--h-red-deep)}
+.site2 .dotd-teach{font-family:var(--h-body);color:var(--h-ink-soft);border-left-color:var(--h-red)}
+.site2 .dotd-body .pill{margin-top:1.5rem}
+
+/* ---------- INSTAGRAM (black): today's post cards ---------- */
+.site2 .insta-card{background:var(--h-paper);border:none;color:var(--h-ink);box-shadow:0 14px 34px -20px rgba(0,0,0,.8)}
+.site2 .insta-card:hover{transform:none;box-shadow:0 14px 34px -20px rgba(0,0,0,.8)}
+.site2 .insta-username,.site2 .insta-likes,.site2 .insta-caption strong,.site2 .insta-actions{color:var(--h-ink);font-family:var(--h-body)}
+.site2 .insta-caption{color:var(--h-ink-soft);font-family:var(--h-body)}
+.site2 .insta-time{color:#8a7a70;font-family:var(--h-body)}
+.site2 .insta-img img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.site2 .insta-card:hover .insta-img img{transform:scale(1.03)}
+.site2 .insta-card:hover .insta-actions svg:first-child{color:var(--h-red);transform:none}
+.site2 .insta-nav button{background:transparent;border-color:rgba(251,241,227,.3);color:var(--h-cream)}
+.site2 .insta-nav button:hover{border-color:var(--h-red);color:var(--h-cream)}
+.site2 .insta-dot{background:rgba(251,241,227,.25)}
+.site2 .insta-dot{width:7px;height:7px;border-radius:50%}
+.site2 .insta-dot.on{background:var(--h-red);width:7px;border-radius:50%;transform:scale(1.4)}
+.site2 .insta-nav button:focus:not(:focus-visible){outline:none}
+.site2 .lib-head .pill{margin-top:1rem}
+
+/* ---------- WALK WITH HER (red): today's cards, new type ---------- */
+.site2 .sc-pin-area{grid-template-columns:360px 1fr}
+.site2 .sc-pin-sticky{background:var(--h-paper);border:none;color:var(--h-ink);padding:2.2rem 2rem;box-shadow:0 30px 60px -36px rgba(60,6,2,.7)}
+.site2 .sc-pin-deva{color:var(--h-gold-ink)}
+.site2 .sc-pin-sticky h3{font-family:var(--h-disp);font-weight:400;text-transform:uppercase;font-size:clamp(2.4rem,3.6vw,3.2rem);line-height:.95;color:var(--h-ink)}
+.site2 .sc-pin-sticky h3 .it{color:var(--h-red-deep);font-size:1.1em}
+.site2 .sc-pin-sticky p{font-family:var(--h-body);color:var(--h-ink-soft);font-size:1.02rem}
+.site2 .sc-pin-row{background:var(--h-paper);border:none;color:var(--h-ink)}
+.site2 .sc-pin-row:hover{box-shadow:0 12px 28px -18px rgba(60,6,2,.7)}
+.site2 .sc-pin-row-icon{background:#f3e6dc;color:var(--h-red-deep)}
+.site2 .sc-pin-row-label{font-family:var(--h-disp);font-weight:400;font-size:1.3rem;letter-spacing:.02em;color:var(--h-ink)}
+.site2 .sc-pin-row-desc{font-family:var(--h-body);color:var(--h-ink-soft);font-size:.95rem}
+.site2 .sc-pin-row:hover .sc-pin-row-arrow{color:var(--h-red-deep)}
+@media(max-width:1199px){.site2 .sc-pin-area{grid-template-columns:1fr}}
+
+/* ---------- FAQ (black): heading left, open list right ---------- */
+.site2 .faq{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,80px);align-items:start}
+.site2 .faq .lib-head{align-items:flex-start;text-align:left;margin:0}
+.site2 .faq .lib-orn{display:none}
+.site2 .faq-list{max-width:none;margin:0;gap:0}
+.site2 .faq-item{background:transparent;border:none;border-top:1px solid rgba(251,241,227,.18);border-radius:0}
+.site2 .faq-item:last-child{border-bottom:1px solid rgba(251,241,227,.18)}
+.site2 .faq-q{padding:24px 0;background:none;color:var(--h-cream);font-family:var(--h-disp);font-weight:400;text-transform:uppercase;
+  font-size:clamp(1.25rem,2vw,1.75rem);line-height:1.1;letter-spacing:.01em}
+.site2 .faq-item.open .faq-q{color:var(--h-cream)}
+.site2 .faq-icon{width:34px;height:34px;border:1px solid rgba(251,241,227,.3);border-radius:50%;background:transparent;color:var(--h-cream);transition:background .3s,color .3s}
+.site2 .faq-item.open .faq-icon{background:var(--h-cream);color:var(--h-black)}
+.site2 .faq-bar,.site2 .faq-item.open .faq-bar{background:currentColor}
+.site2 .faq-item.open .faq-icon{border-color:var(--h-cream)}
+.site2 .faq-a{font-family:var(--h-body);font-size:1.08rem;line-height:1.65;padding:0 0 24px;max-width:56ch;color:rgba(251,241,227,.78)}
+
+/* ---------- phone ---------- */
+@media(max-width:860px){
+  .site2 .maa-v,.site2 .maa-outline{display:none}
+  .site2 .faq{grid-template-columns:1fr}
+  .site2 .dotd-body{padding:0 .4rem .6rem}
+  .site2 .card .nm,.site2 .card .tr{font-size:1rem}
+}
+/* the row of post dots was wider than a phone screen; arrows are enough there */
+@media(max-width:560px){.site2 .insta-dots{display:none}}
+
+/* ---------- Creator profile: red title band ---------- */
+.site2 .creator-hero{background:#E8371D;padding:clamp(7rem,12vw,9rem) 0 3rem}
+.site2 .creator-hero h1{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3;line-height:.95}
+.site2 .creator-hero .creator-role{color:#0D0806}
+
+/* ---------- About: readable text on the red Seva band ---------- */
+.site2 .about-section-alt .lib-head .sub{color:rgba(251,241,227,.92)}
+.site2 .about-section-alt .seva-eyebrow{color:#0D0806}
+.site2 .about-section-alt .seva-text h3{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3}
+.site2 .about-section-alt .seva-text p{color:rgba(251,241,227,.92);font-weight:400}
+/* round dots everywhere (no stretched "current" rectangle) */
+.site2 .coverflow-dot{width:7px;height:7px;border-radius:50%}
+.site2 .coverflow-dot.on,.site2 .coverflow-dot[aria-current="true"]{width:7px;border-radius:50%;transform:scale(1.4)}
+
+/* ---------- shared sections keep a side margin on every page (old rules zeroed it) ---------- */
+.site2 section.lib,.site2 section.dotd,.site2 section.insta,.site2 section.faq,.site2 section.katha-list,.site2 section.k-related{
+  padding-left:clamp(1rem,4vw,2.4rem);padding-right:clamp(1rem,4vw,2.4rem)}

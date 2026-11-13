@@ -36,7 +36,7 @@ export default function BlogIndex() {
       <main className="katha-page">
         <section className="katha-hero">
           <div className="wrap">
-            <div className="katha-hero-deva">कथा</div>
+            <div className="katha-hero-deva">Stories</div>
             <h1>Katha</h1>
             <p className="katha-hero-dek">
               Stories and teachings of the Mother — her iconography, her
@@ -58,7 +58,7 @@ export default function BlogIndex() {
         </section>
       </main>
       <FaqSection
-        deva="प्रश्न"
+        deva="Questions"
         title="Questions about Katha"
         sub="What this section is, and where the stories come from."
         items={BLOG_INDEX_FAQS}

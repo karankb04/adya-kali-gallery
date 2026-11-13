@@ -25,7 +25,7 @@ export default function MusicPage() {
       <SiteHeader />
       <section className="gallery-hero">
         <div className="wrap">
-          <div className="gallery-hero-deva">संगीत</div>
+          <div className="gallery-hero-deva">Listen</div>
           <h1>Music</h1>
           <p className="gallery-hero-dek">
             Chants, stotrams, and devotional songs for the Mother — from the{" "}

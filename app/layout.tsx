@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Anton, Instrument_Serif, Inter_Tight, Roboto_Slab, Tiro_Devanagari_Hindi } from "next/font/google";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import "./globals.css";
+import "./theme.css";
 
 // Self-hosted and preloaded by Next instead of a CSS @import chain, so text
 // can paint without waiting on third-party CSS. globals.css maps these
@@ -99,7 +100,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${clash.variable} ${slab.variable} ${deva.variable} ${anton.variable} ${instrument.variable} ${interTight.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased site2">{children}</body>
     </html>
   );
 }

@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import Ornament from "@/components/Ornament";
 import RevealGrid from "@/components/showcase/RevealGrid";
 import ScrollImageReveal from "@/components/ScrollImageReveal";
 import Coverflow from "@/components/Coverflow";
 import FaqSection from "@/components/FaqSection";
-import MantraRibbon from "@/components/MantraRibbon";
+import HomeRibbon from "@/components/HomeRibbon";
 import { ABOUT_FAQS } from "@/content/faqs";
 
 export const metadata: Metadata = {
@@ -61,7 +60,7 @@ export default function AboutPage() {
       <SiteHeader />
       <section className="gallery-hero">
         <div className="wrap">
-          <div className="gallery-hero-deva">परिचय</div>
+          <div className="gallery-hero-deva">Our story</div>
           <h1>About</h1>
           <p className="gallery-hero-dek">
             The story of Adya Kali and the KaliPutra Mission — coming soon.
@@ -72,8 +71,10 @@ export default function AboutPage() {
       {/* ---------- REVEAL CARDS (placeholder content) ---------- */}
       <section className="about-section wrap">
         <div className="lib-head">
-          <Ornament className="lib-orn" />
-          <h2>Moments from the mission</h2>
+          <div className="kick">The mission</div>
+          <h2>
+            Moments from the <em className="it">mission</em>
+          </h2>
           <div className="sub">[Placeholder] Content to be decided later.</div>
         </div>
         <RevealGrid />
@@ -82,8 +83,10 @@ export default function AboutPage() {
       {/* ---------- SCROLL IMAGE REVEAL: seva / annadanam ---------- */}
       <section className="about-section about-section-alt wrap" id="seva">
         <div className="lib-head">
-          <Ornament className="lib-orn" />
-          <h2>Her seva, in the world</h2>
+          <div className="kick">Seva</div>
+          <h2>
+            Her seva, in the <em className="it">world</em>
+          </h2>
           <div className="sub">
             [Placeholder] The sevas and annadanams carried out by the mission.
           </div>
@@ -92,20 +95,22 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- MANTRA RIBBON ---------- */}
-      <MantraRibbon />
+      <HomeRibbon />
 
       {/* ---------- COVERFLOW (placeholder content) ---------- */}
       <section className="about-section wrap">
         <div className="lib-head">
-          <Ornament className="lib-orn" />
-          <h2>Her many faces</h2>
+          <div className="kick">Darshan</div>
+          <h2>
+            Her many <em className="it">faces</em>
+          </h2>
           <div className="sub">[Placeholder] Content to be decided later.</div>
         </div>
         <Coverflow items={COVERFLOW_ITEMS} />
       </section>
 
       <FaqSection
-        deva="प्रश्न"
+        deva="Questions"
         title="Questions about the mission"
         sub="Everything you might want to know about who we are."
         items={ABOUT_FAQS}

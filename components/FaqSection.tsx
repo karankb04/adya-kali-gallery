@@ -21,6 +21,18 @@ interface FaqSectionProps {
  * Motion's layout animation handles cleanly. One item open at a time,
  * matching motion.dev/ui/faq-sections' accordion behavior.
  */
+/** Plain-text titles get the site style: loud words + one gentle italic last word. */
+function styledTitle(title: React.ReactNode): React.ReactNode {
+  if (typeof title !== "string") return title;
+  const words = title.trim().split(/\s+/);
+  if (words.length < 2) return title;
+  return (
+    <>
+      {words.slice(0, -1).join(" ")} <em className="it">{words[words.length - 1]}</em>
+    </>
+  );
+}
+
 export default function FaqSection({ deva, title, sub, items }: FaqSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -31,7 +43,7 @@ export default function FaqSection({ deva, title, sub, items }: FaqSectionProps)
       <div className="lib-head">
         <Ornament className="lib-orn" />
         {deva && <div className="faq-deva">{deva}</div>}
-        <h2>{title}</h2>
+        <h2>{styledTitle(title)}</h2>
         {sub && <div className="sub">{sub}</div>}
       </div>
 

@@ -2,7 +2,6 @@ import { getImages } from "@/lib/images";
 import { buildSiteJsonLd, serializeJsonLd } from "@/lib/seo";
 import KaliApp from "@/components/KaliApp";
 import DarshanOfTheDay from "@/components/DarshanOfTheDay";
-import "./home.css";
 
 export const revalidate = 60;
 

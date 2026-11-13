@@ -43,13 +43,16 @@ export default function HomeRibbon() {
   }, []);
 
   return (
-    <div className="home-ribbon" ref={wrapRef} aria-label="Jai Maa Kali — Mother of infinite forms">
-      <div className="home-ribbon-track" ref={trackRef} aria-hidden="true">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <span key={i} className="home-ribbon-unit">
-            {UNIT}
-          </span>
-        ))}
+    // Outer wrapper clips the tilted band's corners so it never widens the page.
+    <div className="home-ribbon-clip">
+      <div className="home-ribbon" ref={wrapRef} aria-label="Jai Maa Kali — Mother of infinite forms">
+        <div className="home-ribbon-track" ref={trackRef} aria-hidden="true">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className="home-ribbon-unit">
+              {UNIT}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ import { downloadImage } from "@/lib/download";
 import DarshanModal from "./DarshanModal";
 import RImage from "./RImage";
 import FacetDropdown from "./FacetDropdown";
-import Ornament from "./Ornament";
 import FloatingGalleryButton from "./FloatingGalleryButton";
 
 interface GalleryLibraryProps {
@@ -192,8 +191,14 @@ export default function GalleryLibrary({
     <>
       <section className="lib wrap" id={id}>
         <div className="lib-head">
-          {kicker ? <div className="kick">{kicker}</div> : <Ornament className="lib-orn" />}
-          <h2>{heading ?? "Her Faces"}</h2>
+          <div className="kick">{kicker ?? "The library"}</div>
+          <h2>
+            {heading ?? (
+              <>
+                Her <em className="it">faces</em>
+              </>
+            )}
+          </h2>
           <div className="sub">
             New darshan, offered by her children. Search her names, filter her
             forms.

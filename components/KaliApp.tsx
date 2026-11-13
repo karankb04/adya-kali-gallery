@@ -26,10 +26,10 @@ interface KaliAppProps {
 const HOME_PREVIEW_LIMIT = 16;
 
 /**
- * Homepage, redesign pilot ("home2"). Every section sits on a solid band:
+ * Homepage (redesign). Every section sits on a solid band:
  * image-heavy galleries on black, everything else on sindoor red, with the
  * yellow Maa video as the one poster moment. All home-only styling lives in
- * app/home.css under the .home2 wrapper, so other pages are unaffected.
+ * app/theme.css (shared by every page via the .site2 class on <body>).
  */
 export default function KaliApp({ images, daily }: KaliAppProps) {
   // Shared with GalleryLibrary so the Hero wall and the grid below open the
@@ -41,7 +41,7 @@ export default function KaliApp({ images, daily }: KaliAppProps) {
       <SmoothScroll />
       <SiteHeader />
 
-      <div className="home2">
+      <div className="home">
         {/* ---------- HERO ---------- */}
         <Hero images={images} onOpen={setSelected} />
 
