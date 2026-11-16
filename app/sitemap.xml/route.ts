@@ -3,7 +3,8 @@ import { getPosts } from "@/lib/posts";
 import { SITE_URL } from "@/lib/seo";
 import { r2url } from "@/lib/r2";
 
-export const revalidate = 3600;
+// Written once per build (the site is rebuilt nightly).
+export const dynamic = "force-static";
 
 function esc(s: string): string {
   return (s || "")

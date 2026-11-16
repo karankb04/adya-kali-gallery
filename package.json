@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/flatten-rsc.mjs && node scripts/generate-images.mjs",
     "start": "next start",
+    "preview:cf": "wrangler dev",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -23,7 +25,13 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.6",
     "postcss": "^8",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.162.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261113.1": true
   }
 }

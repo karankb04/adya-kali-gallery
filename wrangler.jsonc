@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kali-gallery",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "R2_BASE_URL": "https://pub-e4d48761fb3344af9a75e599e68d03f1.r2.dev"
+  },
+  // 00:05 UTC = 05:35 India time, just after Today's Darshan (picked by UTC
+  // date) rolls over. Needs the DEPLOY_HOOK_URL secret set in the dashboard.
+  "triggers": { "crons": ["5 0 * * *"] }
+}
