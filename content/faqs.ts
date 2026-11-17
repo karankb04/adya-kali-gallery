@@ -5,19 +5,19 @@ import { FaqItem } from "@/components/FaqSection";
 export const HOME_FAQS: FaqItem[] = [
   {
     q: "Is this gallery free to use?",
-    a: "Yes — every image here can be downloaded freely for personal devotional use. This is a seva, a labour of devotion, never a commercial gallery.",
+    a: "Yes. Every image here can be downloaded free for personal devotional use. The gallery is run as seva, not as a business.",
   },
   {
     q: "Are all the images real, or AI-generated?",
-    a: "Both. Images marked \"AI-envisioned\" are AI-generated devotional art; everything else has been shared by real devotees. Both are held with equal reverence — the mark is there for transparency, not to rank one above the other.",
+    a: "Both. Images marked \"AI-envisioned\" are AI-generated devotional art; everything else was shared by devotees. The mark is there so you know which is which. Both are held with the same reverence.",
   },
   {
     q: "Can I submit my own image of Maa Kali?",
-    a: "Not yet through the site directly — for now, reach out via Instagram @kaliputramission. We're working on a way to accept devotee submissions here.",
+    a: "Not through the site yet. For now, send it to us on Instagram at @kaliputramission. We're working on a way to take submissions here.",
   },
   {
     q: "What does \"Adya Kali\" mean?",
-    a: "Adya means \"the first\" or \"primordial.\" Adya Kali is the Mother before creation itself — the source every other form of hers arises from.",
+    a: "Adya means \"the first\" or \"primordial.\" Adya Kali is the Mother before creation itself, the source every other form of hers comes from.",
   },
   {
     q: "How often are new images added?",
@@ -28,30 +28,30 @@ export const HOME_FAQS: FaqItem[] = [
 export const GALLERY_FAQS: FaqItem[] = [
   {
     q: "How do I filter by a specific form of Kali?",
-    a: "Use the Form dropdown above the grid — Dakshina Kali, Shmashana Kali, and every other form currently in the library, with a live count next to each.",
+    a: "Use the Form dropdown above the grid. It lists Dakshina Kali, Shmashana Kali and every other form in the library, with a count next to each.",
   },
   {
     q: "What's the difference between \"Sort by: Featured\" and \"Popular\"?",
-    a: "Featured surfaces images we've hand-picked to highlight. Popular ranks by how much devotees have engaged with each image.",
+    a: "Featured shows images we've picked by hand. Popular ranks images by how much devotees have engaged with them.",
   },
   {
     q: "Can I download images for print?",
-    a: "Yes — open any image and use \"Download her darshan\" to get the full-resolution file.",
+    a: "Yes. Open any image and use \"Download her darshan\" to get the full-resolution file.",
   },
   {
     q: "What does the \"Type\" filter do?",
-    a: "It narrows results to a specific format — sketches, mobile wallpapers, desktop wallpapers, or WhatsApp stickers, with more categories being added over time.",
+    a: "It narrows results to one format: sketches, mobile wallpapers, desktop wallpapers or WhatsApp stickers. More types will be added over time.",
   },
   {
     q: "Are new forms added to the Form filter automatically?",
-    a: "Yes — the moment a new form is added to the library, it appears in the filter with no need for a site update.",
+    a: "Yes. When a new form is added to the library, it shows up in the filter on its own.",
   },
 ];
 
 export const BLOG_INDEX_FAQS: FaqItem[] = [
   {
     q: "What does \"Katha\" mean?",
-    a: "Katha (कथा) means \"story\" or \"teaching\" — the devotional storytelling tradition this section is named for.",
+    a: "Katha (कथा) means \"story\" or \"teaching\". This section is named after that devotional storytelling tradition.",
   },
   {
     q: "How often is new Katha published?",
@@ -63,14 +63,14 @@ export const BLOG_INDEX_FAQS: FaqItem[] = [
   },
   {
     q: "Can I suggest a topic for a future Katha?",
-    a: "Yes — reach out via Instagram @kaliputramission. Requests from devotees are always welcome.",
+    a: "Yes. Reach out on Instagram at @kaliputramission. Requests from devotees are always welcome.",
   },
 ];
 
 export const ABOUT_FAQS: FaqItem[] = [
   {
     q: "What is the KaliPutra Mission?",
-    a: "[Placeholder] A devotional mission dedicated to Maa Adya Kali — sharing her images, teachings, and seva with devotees everywhere, free of cost.",
+    a: "[Placeholder] A devotional mission dedicated to Maa Adya Kali. It shares her images, teachings and seva with devotees everywhere, free of cost.",
   },
   {
     q: "Is the mission a registered organization?",
@@ -78,7 +78,7 @@ export const ABOUT_FAQS: FaqItem[] = [
   },
   {
     q: "How can I volunteer or contribute?",
-    a: "[Placeholder] Reach out via Instagram @kaliputramission — ways to get involved will be listed here soon.",
+    a: "[Placeholder] Reach out on Instagram at @kaliputramission. Ways to get involved will be listed here soon.",
   },
   {
     q: "Where do the sevas shown on this page take place?",
@@ -86,6 +86,6 @@ export const ABOUT_FAQS: FaqItem[] = [
   },
   {
     q: "Is this website officially run by the mission?",
-    a: "[Placeholder] Yes — this gallery and site are maintained as part of the KaliPutra Mission's outreach.",
+    a: "[Placeholder] Yes. This gallery and site are maintained as part of the KaliPutra Mission's outreach.",
   },
 ];

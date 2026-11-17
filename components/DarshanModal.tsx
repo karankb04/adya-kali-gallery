@@ -11,6 +11,8 @@ interface DarshanModalProps {
   /** Navigate to the previous/next darshan in the current filtered set. */
   onPrev?: () => void;
   onNext?: () => void;
+  /** e.g. "3 of 22" — where this photo sits in the current set. */
+  position?: string;
 }
 
 const SPRING = { type: "spring", stiffness: 300, damping: 32, mass: 0.9 } as const;
@@ -28,6 +30,7 @@ export default function DarshanModal({
   onClose,
   onPrev,
   onNext,
+  position,
 }: DarshanModalProps) {
   const isOpen = !!image;
   const returnFocusTo = useRef<HTMLElement | null>(null);
@@ -135,6 +138,7 @@ export default function DarshanModal({
             className="modal"
             role="dialog"
             aria-modal="true"
+            aria-labelledby="darshan-title"
             onClick={(e) => {
               if (e.target === e.currentTarget) onClose();
             }}
@@ -153,7 +157,7 @@ export default function DarshanModal({
                 <RImage
                   key={image.id}
                   r2Key={image.r2Key}
-                  alt={image.altText ?? `${image.transliteration} — ${image.form}`}
+                  alt={image.altText ?? `${image.transliteration}, ${image.form}`}
                   width={image.width}
                   height={image.height}
                   dominantColor={image.dominantColor}
@@ -174,8 +178,8 @@ export default function DarshanModal({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3, delay: 0.08 }}
               >
-                <div className="d-deva">{image.nameDevanagari}</div>
-                <div className="d-tr">{image.transliteration}</div>
+                {position && <div className="d-pos">{position}</div>}
+                <h2 className="d-tr" id="darshan-title">{image.transliteration}</h2>
                 <div className="d-fm">
                   <span>{image.form}</span>
                   <span className="dot" />

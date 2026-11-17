@@ -22,7 +22,7 @@ export async function GET() {
       (p) =>
         `    <image:image>\n` +
         `      <image:loc>${esc(r2url(p.r2Key))}</image:loc>\n` +
-        `      <image:title>${esc(`${p.transliteration} — ${p.form}`)}</image:title>\n` +
+        `      <image:title>${esc(`${p.transliteration}, ${p.form}`)}</image:title>\n` +
         `      <image:caption>${esc(p.teachingCaption)}</image:caption>\n` +
         `    </image:image>`
     )

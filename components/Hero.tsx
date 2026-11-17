@@ -120,13 +120,17 @@ export default function Hero({ images, onOpen }: HeroProps) {
           </motion.div>
         </h1>
         <p className="hero-tagline">
-          A living library of the <em className="it">Mother</em> — her every
-          face, gathered for all the world to behold.
+          A living library of the <em className="it">Mother</em>. Every face
+          of hers, gathered for the whole world to see.
         </p>
-        <div className="cue">
-          The Library
-          <b />
-        </div>
+        <a href="#library" className="pill hero-cta">
+          Enter the library
+          <span className="pill-ar" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
+              <path d="M8 3v10M3.5 8.5L8 13l4.5-4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </a>
       </div>
     </section>
   );

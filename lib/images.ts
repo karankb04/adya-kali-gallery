@@ -31,7 +31,7 @@ function normalize(list: KaliImage[]): KaliImage[] {
       const altText =
         p.altText && p.altText.trim()
           ? p.altText
-          : `${p.transliteration} (${p.nameDevanagari}) — ${p.form}, a devotional image of Maa Adya Kali`;
+          : `${p.transliteration} (${p.nameDevanagari}), ${p.form}. A devotional image of Maa Adya Kali`;
 
       return { ...p, slug: unique, altText };
     })

@@ -31,11 +31,11 @@ export default async function RelatedDarshan({
             key={p.id}
             className="k-darshan-tile"
             href={`/gallery?form=${encodeURIComponent(p.form)}`}
-            aria-label={`${p.transliteration} — ${p.form}, in the library`}
+            aria-label={`${p.transliteration}, ${p.form}, in the library`}
           >
             <RImage
               r2Key={p.r2Key}
-              alt={p.altText ?? `${p.transliteration} — ${p.form}`}
+              alt={p.altText ?? `${p.transliteration}, ${p.form}`}
               width={p.width}
               height={p.height}
               dominantColor={p.dominantColor}

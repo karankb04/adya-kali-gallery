@@ -5,6 +5,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { ENGAGE_LINKS } from "@/content/engageLinks";
 import EngageIcon from "./EngageIcons";
 
+const GROUPS = ["Watch and listen", "Read and practise", "Join"] as const;
+
 /**
  * A sidebar column stays fixed while a taller sibling list scrolls past it.
  *
@@ -77,33 +79,38 @@ export default function PinnedTeaching({
         <p>{text}</p>
       </div>
       <div className="sc-pin-list">
-        {ENGAGE_LINKS.map((link) => (
-          <a
-            key={link.id}
-            className="sc-pin-row"
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="sc-pin-row-icon">
-              <EngageIcon id={link.id} />
-            </span>
-            <span className="sc-pin-row-body">
-              <span className="sc-pin-row-label">{link.label}</span>
-              <span className="sc-pin-row-desc">{link.description}</span>
-            </span>
-            <span className="sc-pin-row-arrow" aria-hidden="true">
-              <svg viewBox="0 0 16 16" fill="none" width="16">
-                <path
-                  d="M4 12L12 4M12 4H5.5M12 4V10.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-          </a>
+        {GROUPS.map((group) => (
+          <div className="sc-pin-group" key={group}>
+            <h4 className="sc-pin-group-h">{group}</h4>
+            {ENGAGE_LINKS.filter((l) => l.group === group).map((link) => (
+              <a
+                key={link.id}
+                className="sc-pin-row"
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="sc-pin-row-icon">
+                  <EngageIcon id={link.id} />
+                </span>
+                <span className="sc-pin-row-body">
+                  <span className="sc-pin-row-label">{link.label}</span>
+                  <span className="sc-pin-row-desc">{link.description}</span>
+                </span>
+                <span className="sc-pin-row-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" width="16">
+                    <path
+                      d="M4 12L12 4M12 4H5.5M12 4V10.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </a>
+            ))}
+          </div>
         ))}
       </div>
     </div>

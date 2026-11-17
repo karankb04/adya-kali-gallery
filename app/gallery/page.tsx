@@ -11,17 +11,17 @@ import { GALLERY_FAQS } from "@/content/faqs";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Gallery — Every Face of the Mother",
+  title: "Gallery: Every Face of the Mother",
   description:
-    "The full living gallery of Maa Adya Kali — every form, every darshan, searchable and filterable. Free to browse and download.",
+    "The full gallery of Maa Adya Kali. Search and filter every form and darshan, and download them free.",
   alternates: { canonical: "/gallery" },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/gallery`,
     siteName: SITE_NAME,
-    title: "Gallery — Every Face of the Mother",
+    title: "Gallery: Every Face of the Mother",
     description:
-      "The full living gallery of Maa Adya Kali — every form, every darshan, searchable and filterable.",
+      "The full gallery of Maa Adya Kali. Search and filter every form and darshan.",
   },
 };
 
@@ -36,15 +36,15 @@ export default async function GalleryPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <SiteHeader />
+      <main>
       <section className="gallery-hero">
         <div className="wrap">
-          <div className="gallery-hero-deva">Jai Maa</div>
           <h1>
             The <em className="it">gallery</em>
           </h1>
           <p className="gallery-hero-dek">
-            Every face of the Mother gathered in one place — search her
-            names, filter her forms, and take her home.
+            Every face of the Mother in one place. Search her names, filter
+            her forms, and take her home.
           </p>
         </div>
       </section>
@@ -56,6 +56,7 @@ export default async function GalleryPage() {
         sub="How to search, filter, and download her darshan."
         items={GALLERY_FAQS}
       />
+      </main>
       <SiteFooter />
     </>
   );

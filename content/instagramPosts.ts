@@ -12,7 +12,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     width: 832,
     height: 1109,
     dominantColor: "#824e41",
-    caption: "Her right hand always open — never closed to a child who calls. 🙏",
+    caption: "Her right hand always open, never closed to a child who calls. 🙏",
     likes: 1204,
     postedAgo: "2d",
     permalink: "https://www.instagram.com/kaliputramission/",

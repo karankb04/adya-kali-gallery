@@ -22,7 +22,7 @@ export const MUSIC_VIDEOS: MusicVideo[] = [
     id: "kandene-kaali",
     youtubeId: "yGW_-xK8fAI",
     title: "Kandene Kaali",
-    description: "The divine vision of Maa Kali — a Tamil devotional music video.",
+    description: "The divine vision of Maa Kali, a Tamil devotional music video.",
   },
   {
     id: "svayambhu-stuti",
@@ -34,7 +34,7 @@ export const MUSIC_VIDEOS: MusicVideo[] = [
     id: "sleep-meditation",
     youtubeId: "luqHIdpSP6E",
     title: "Powerful Meditation / Sleep Music",
-    description: "Jai Maa Ādyakāli — long-form meditation music.",
+    description: "Jai Maa Ādyakāli: long-form meditation music.",
   },
   {
     id: "batuka-bhairava",

@@ -33,25 +33,27 @@ body.site2{background:#0D0806;color:#f3e9df}
 .site2 .lib-orn,.site2 .katha-orn{display:none}
 
 /* ---------- red title band at the top of every inner page ---------- */
-.site2 .gallery-hero,.site2 .katha-hero{background:#E8371D;padding:clamp(7rem,12vw,9rem) 0 clamp(3rem,6vw,4.5rem)}
-.site2 .gallery-hero-deva,.site2 .katha-hero-deva{font-family:var(--font-inter-tight),sans-serif;font-weight:600;font-size:12px;
-  letter-spacing:.16em;text-transform:uppercase;color:#0D0806;margin-bottom:.5rem}
+.site2 .gallery-hero,.site2 .katha-hero{background:#E8371D;padding:clamp(6rem,9vw,7.4rem) 0 clamp(1.8rem,3.4vw,2.6rem);text-align:left}
+/* one row: big title on the left, the sentence on the right, sitting on the title's baseline */
+.site2 .gallery-hero .wrap,.site2 .katha-hero .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:1.2rem 3rem;flex-wrap:wrap}
+.site2 .gallery-hero h1,.site2 .katha-hero h1{margin:0}
+.site2 .gallery-hero-dek,.site2 .katha-hero-dek{margin:0 0 .35em;max-width:38ch;line-height:1.5}
 .site2 .gallery-hero h1,.site2 .katha-hero h1{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3;
   font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:.005em}
 .site2 .gallery-hero h1 .it,.site2 .katha-hero h1 .it{color:#0D0806;font-size:1.1em}
-.site2 .gallery-hero-dek,.site2 .katha-hero-dek{color:rgba(251,241,227,.9);font-weight:400;font-size:clamp(1.02rem,1.4vw,1.18rem);max-width:54ch}
+.site2 .gallery-hero-dek,.site2 .katha-hero-dek{color:var(--h-cream-hi);font-weight:500;font-size:clamp(1.02rem,1.4vw,1.18rem)}
 .site2 .gallery-hero-dek a{color:#FBF1E3}
 
 /* ---------- Katha article: header on a full-width red band ---------- */
 .site2 .katha-article{padding-top:0}
-.site2 .k-head{position:relative;padding-top:clamp(7rem,12vw,9rem);padding-bottom:3rem;
+.site2 .k-head{position:relative;padding-top:clamp(6rem,9vw,7.4rem);padding-bottom:clamp(1.8rem,3.4vw,2.6rem);
   background:#E8371D;box-shadow:0 0 0 100vmax #E8371D;clip-path:inset(0 -100vmax)}
 .site2 .k-kind{color:#0D0806}
 .site2 .k-kind a:hover{border-color:#0D0806}
 .site2 .k-deva{color:#0D0806;font-family:var(--font-inter-tight),sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
 .site2 .k-title{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3;line-height:.95}
-.site2 .k-dek{color:rgba(251,241,227,.92)}
-.site2 .k-date{color:rgba(251,241,227,.85)}
+.site2 .k-dek{color:var(--h-cream-hi)}
+.site2 .k-date{color:var(--h-cream-hi)}
 .site2 .k-cover{margin-top:2.6rem}
 .site2 .k-related-h{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);color:#FBF1E3}
 .site2 .k-related-h .it{color:#ff7a66;font-size:1.1em}
@@ -68,7 +70,7 @@ body.site2{background:#0D0806;color:#f3e9df}
 .site2{
   --h-red:#E8371D; --h-red-hover:#ff4a2c; --h-red-deep:#9c0f14; --h-rose:#ff7a66;
   --h-black:#0D0806; --h-cream:#FBF1E3; --h-paper:#FFFAF3; --h-ink:#231712; --h-ink-soft:#6f5d55;
-  --h-gold:#D9A23E; --h-gold-ink:#8a5f14; --h-haldi:#FAF112; --h-leaf:#0E9F48;
+  --h-cream-hi:#FFF7EE; --h-gold:#D9A23E; --h-gold-ink:#8a5f14; --h-haldi:#FAF112; --h-leaf:#0E9F48;
   --h-disp:var(--font-anton),Impact,sans-serif;
   --h-ital:var(--font-instrument),Georgia,serif;
   --h-body:var(--font-inter-tight),system-ui,sans-serif;
@@ -136,7 +138,10 @@ html.lenis,html.lenis body{height:auto}
 .site2 .hero-c .hero-tagline{margin-top:.6rem;font-family:var(--h-disp);font-weight:400;text-transform:uppercase;
   font-size:clamp(1.6rem,3.2vw,3.1rem);line-height:.98;max-width:24ch;color:var(--h-cream);text-shadow:0 4px 30px rgba(0,0,0,.6)}
 .site2 .hero-tagline .it{color:var(--h-gold);font-size:1.12em}
-.site2 .hero-c .cue{font-family:var(--h-body)}
+/* a soft dark pool behind the title and line so they read over bright photos; room for the fixed header */
+.site2 .hero-c{padding-top:84px;background:radial-gradient(62% 40% at 50% 58%,rgba(12,5,2,.82),rgba(12,5,2,.5) 55%,transparent 82%)}
+.site2 .hero-c .hero-cta{margin-top:2rem;pointer-events:auto}
+.site2 .hero-c .hero-cta:hover .pill-ar{transform:translateY(3px)}
 .site2 .scrim{background:linear-gradient(180deg,rgba(14,6,3,.62) 0%,transparent 15%),linear-gradient(0deg,rgba(14,6,3,.9) 2%,transparent 30%)}
 
 /* ---------- MANTRA RIBBON (mockup 1): tilted black band, slides with scroll ---------- */
@@ -191,11 +196,10 @@ html.lenis,html.lenis body{height:auto}
 /* ---------- TODAY'S DARSHAN (red): today's card, new type ---------- */
 .site2 .dotd-card{background:var(--h-paper);border:none;color:var(--h-ink);box-shadow:0 40px 80px -40px rgba(60,6,2,.7)}
 .site2 .dotd-body{padding-right:1.4rem}
-.site2 .dotd-deva{color:var(--h-gold-ink);font-size:1.6rem}
 .site2 .dotd-title{font-family:var(--h-disp);font-weight:400;font-size:clamp(2.2rem,4.4vw,3.4rem);color:var(--h-ink)}
 .site2 .dotd-title .it{color:var(--h-red-deep);font-size:1.1em}
 .site2 .dotd-form{font-family:var(--h-body);color:var(--h-red-deep)}
-.site2 .dotd-teach{font-family:var(--h-body);color:var(--h-ink-soft);border-left-color:var(--h-red)}
+.site2 .dotd-teach{font-family:var(--h-body);color:var(--h-ink-soft)}
 .site2 .dotd-body .pill{margin-top:1.5rem}
 
 /* ---------- INSTAGRAM (black): today's post cards ---------- */
@@ -223,6 +227,12 @@ html.lenis,html.lenis body{height:auto}
 .site2 .sc-pin-sticky h3 .it{color:var(--h-red-deep);font-size:1.1em}
 .site2 .sc-pin-sticky p{font-family:var(--h-body);color:var(--h-ink-soft);font-size:1.02rem}
 .site2 .sc-pin-row{background:var(--h-paper);border:none;color:var(--h-ink)}
+/* opened photo: with the Hindi line gone, her name is the headline */
+.site2 .darshan .meta .d-tr{font-family:var(--h-ital);font-style:italic;font-weight:400;font-size:clamp(2rem,4.6vw,2.9rem);line-height:1.05;color:var(--h-cream);margin-top:.35rem}
+/* "Walk with her": three short groups instead of nine equal rows */
+.site2 .sc-pin-list{gap:clamp(1.6rem,3vw,2.4rem)}
+.site2 .sc-pin-group{display:flex;flex-direction:column;gap:.75rem}
+.site2 .sc-pin-group-h{margin:0 0 .15rem;font-family:var(--h-body);font-weight:600;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--h-cream-hi)}
 .site2 .sc-pin-row:hover{box-shadow:0 12px 28px -18px rgba(60,6,2,.7)}
 .site2 .sc-pin-row-icon{background:#f3e6dc;color:var(--h-red-deep)}
 .site2 .sc-pin-row-label{font-family:var(--h-disp);font-weight:400;font-size:1.3rem;letter-spacing:.02em;color:var(--h-ink)}
@@ -262,10 +272,10 @@ html.lenis,html.lenis body{height:auto}
 .site2 .creator-hero .creator-role{color:#0D0806}
 
 /* ---------- About: readable text on the red Seva band ---------- */
-.site2 .about-section-alt .lib-head .sub{color:rgba(251,241,227,.92)}
+.site2 .about-section-alt .lib-head .sub{color:var(--h-cream-hi)}
 .site2 .about-section-alt .seva-eyebrow{color:#0D0806}
 .site2 .about-section-alt .seva-text h3{font-family:var(--font-anton),Impact,sans-serif;font-weight:400;color:#FBF1E3}
-.site2 .about-section-alt .seva-text p{color:rgba(251,241,227,.92);font-weight:400}
+.site2 .about-section-alt .seva-text p{color:var(--h-cream-hi);font-weight:400}
 /* round dots everywhere (no stretched "current" rectangle) */
 .site2 .coverflow-dot{width:7px;height:7px;border-radius:50%}
 .site2 .coverflow-dot.on,.site2 .coverflow-dot[aria-current="true"]{width:7px;border-radius:50%;transform:scale(1.4)}
@@ -285,6 +295,8 @@ html.lenis,html.lenis body{height:auto}
 .site2 .band-red .faq-deva,.site2 .band-red .lib-head .kick{color:#0D0806}
 .site2 .band-red .lib-head h2 .it{color:#0D0806}
 .site2 .band-red .faq-item{border-color:rgba(251,241,227,.3)}
+/* small text on sindoor red: plain cream only reaches ~4.4:1, this lighter cream clears 4.5:1 */
+.site2 .band-red .lib-head .sub,.site2 .band-red .faq-a,.site2 .band-red .faq .sub{color:var(--h-cream-hi)}
 
 /* ---------- yellow tilted ribbon: the only yellow on inner pages ---------- */
 .site2 .home-ribbon-yellow .home-ribbon{background:#FAF112;color:#0B7A37}

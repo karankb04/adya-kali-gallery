@@ -3,10 +3,11 @@
   "name": "kali-gallery",
   "main": "worker/index.js",
   "compatibility_date": "2026-11-01",
-  // Served only on kali.gallery (custom domain set in the dashboard); no
-  // public *.workers.dev copy or preview URLs that search engines could index.
+  // Live site only on kali.gallery (custom domain set in the dashboard); no
+  // public *.workers.dev copy. Preview links (*.karanb0406.workers.dev) are on
+  // for testing branches before they go live; public/_headers marks them noindex.
   "workers_dev": false,
-  "preview_urls": false,
+  "preview_urls": true,
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",

@@ -13,15 +13,15 @@ import { SITE_URL, SITE_NAME } from "@/lib/seo";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Katha — Stories & Teachings of the Mother",
+  title: "Katha: Stories and Teachings of the Mother",
   description:
-    "Katha — devotional stories, iconography explainers, festival guides and scripture of Maa Adya Kali. Long-form reading from the living library of the Mother.",
+    "Devotional stories, explainers on her iconography, festival guides and scripture of Maa Adya Kali, from the living library of the Mother.",
   alternates: { canonical: "/blog" },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/blog`,
     siteName: SITE_NAME,
-    title: "Katha — Stories & Teachings of the Mother",
+    title: "Katha: Stories and Teachings of the Mother",
     description:
       "Devotional stories, iconography explainers, festival guides and scripture of Maa Adya Kali.",
   },
@@ -30,6 +30,8 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const posts = getPosts();
   const carousel = posts.slice(0, 3);
+  // The featured three are already in the carousel; the grid shows the rest.
+  const rest = posts.slice(carousel.length);
 
   return (
     <>
@@ -37,12 +39,12 @@ export default function BlogIndex() {
       <main className="katha-page">
         <section className="katha-hero">
           <div className="wrap">
-            <div className="katha-hero-deva">Stories</div>
-            <h1>Katha</h1>
+            <h1>
+              The <em className="it">katha</em>
+            </h1>
             <p className="katha-hero-dek">
-              Stories and teachings of the Mother — her iconography, her
-              festivals, her scripture. Long-form reading for the devoted and
-              the curious alike.
+              Stories and teachings of the Mother: her iconography, her
+              festivals and her scripture.
             </p>
             <Ornament className="katha-orn" />
           </div>
@@ -64,13 +66,20 @@ export default function BlogIndex() {
 
         <HomeRibbon tone="yellow" />
 
-        <section className="wrap katha-list">
-          <div className="katha-grid">
-            {posts.map((p) => (
-              <PostCard key={p.slug} post={p} />
-            ))}
-          </div>
-        </section>
+        {rest.length > 0 && (
+          <section className="wrap katha-list">
+            <div className="lib-head">
+              <h2>
+                More <em className="it">stories</em>
+              </h2>
+            </div>
+            <div className="katha-grid">
+              {rest.map((p) => (
+                <PostCard key={p.slug} post={p} />
+              ))}
+            </div>
+          </section>
+        )}
       </main>
       <div className="band band-red">
         <FaqSection

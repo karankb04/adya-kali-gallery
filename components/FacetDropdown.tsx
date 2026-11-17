@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export interface FacetOption {
   value: string;
@@ -40,19 +40,43 @@ export default function FacetDropdown({
   onClose,
   onSelect,
 }: FacetDropdownProps) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!open) return;
+    // Focus the chosen option so arrow keys start from it.
+    const panel = panelRef.current;
+    (panel?.querySelector<HTMLElement>('[aria-selected="true"]') ?? panel?.querySelector<HTMLElement>("[role=option]"))?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        btnRef.current?.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
+  // Up/Down/Home/End move between options, like a native select.
+  const onPanelKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const opts = Array.from(e.currentTarget.querySelectorAll<HTMLElement>("[role=option]"));
+    const i = opts.indexOf(document.activeElement as HTMLElement);
+    const next =
+      e.key === "ArrowDown" ? Math.min(i + 1, opts.length - 1) :
+      e.key === "ArrowUp" ? Math.max(i - 1, 0) :
+      e.key === "Home" ? 0 :
+      e.key === "End" ? opts.length - 1 : -1;
+    if (next < 0) return;
+    e.preventDefault();
+    opts[next]?.focus();
+  };
+
   return (
     <div className="facet">
       <button
         type="button"
+        ref={btnRef}
         className={`facet-btn${active ? " on" : ""}${open ? " open" : ""}`}
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -74,7 +98,7 @@ export default function FacetDropdown({
             tabIndex={-1}
             onClick={onClose}
           />
-          <div className="facet-panel" role="listbox" aria-label={label}>
+          <div className="facet-panel" role="listbox" aria-label={label} ref={panelRef} onKeyDown={onPanelKey}>
             {options.map((opt) => (
               <button
                 type="button"
@@ -82,7 +106,10 @@ export default function FacetDropdown({
                 role="option"
                 aria-selected={opt.value === value}
                 className={`facet-opt${opt.value === value ? " on" : ""}`}
-                onClick={() => onSelect(opt.value)}
+                onClick={() => {
+                  onSelect(opt.value);
+                  btnRef.current?.focus();
+                }}
               >
                 <span>{opt.label}</span>
                 {typeof opt.count === "number" && (

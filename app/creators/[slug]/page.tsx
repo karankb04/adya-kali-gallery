@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     ? r2url(creator.works[0].thumbnailR2Key)
     : undefined;
   return {
-    title: `${creator.name} — ${creator.role}`,
+    title: `${creator.name}, ${creator.role}`,
     description: creator.bio,
     alternates: { canonical: `/creators/${creator.slug}` },
     // These are placeholder example profiles for a style review — keep them
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       type: "profile",
       url: `${SITE_URL}/creators/${creator.slug}`,
       siteName: SITE_NAME,
-      title: `${creator.name} — ${creator.role}`,
+      title: `${creator.name}, ${creator.role}`,
       description: creator.bio,
       images: ogImage ? [{ url: ogImage, alt: creator.name }] : undefined,
     },

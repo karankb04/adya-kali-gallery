@@ -22,7 +22,7 @@ export function imageObject(p: KaliImage) {
     "@type": "ImageObject",
     "@id": `${SITE_URL}/#${p.slug || p.id}`,
     contentUrl: r2url(p.r2Key),
-    name: `${p.transliteration} — ${p.form}`,
+    name: `${p.transliteration}, ${p.form}`,
     caption: p.teachingCaption,
     description: p.description || p.teachingCaption,
     representativeOfPage: false,
@@ -45,7 +45,7 @@ function websiteNode() {
     url: SITE_URL,
     name: SITE_NAME,
     description:
-      "A living library of Maa Adya Kali — sacred images, her many forms, and teachings.",
+      "A living library of Maa Adya Kali: sacred images, her many forms, and teachings.",
     inLanguage: ["en", "hi", "sa"],
   };
 }

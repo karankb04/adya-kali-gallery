@@ -57,12 +57,12 @@ const interTight = Inter_Tight({
 });
 
 const description =
-  "A living library of Maa Adya Kali — sacred images, her many forms, and teachings. Free darshan for devotees across the world.";
+  "A living library of Maa Adya Kali: sacred images, her many forms, and teachings. Free darshan for devotees across the world.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — A Living Library of the Mother`,
+    default: `${SITE_NAME}: A Living Library of the Mother`,
     template: `%s · ${SITE_NAME}`,
   },
   description,
@@ -82,13 +82,13 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — A Living Library of the Mother`,
+    title: `${SITE_NAME}: A Living Library of the Mother`,
     description,
     images: [{ url: "/logo.png", width: 512, height: 512, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — A Living Library of the Mother`,
+    title: `${SITE_NAME}: A Living Library of the Mother`,
     description,
     images: ["/logo.png"],
   },

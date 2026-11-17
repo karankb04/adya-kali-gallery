@@ -1,4 +1,5 @@
 import MobileMenu from "./MobileMenu";
+import NavLinks from "./NavLinks";
 
 export default function SiteHeader() {
   return (
@@ -13,14 +14,7 @@ export default function SiteHeader() {
         Maa Adya Kali Gallery
       </a>
 
-      <nav className="navlinks">
-        <a href="/gallery">Gallery</a>
-        <a href="/about">About</a>
-        <a href="/music">Music</a>
-        <a href="/blog" className="nav-katha">
-          Katha
-        </a>
-      </nav>
+      <NavLinks />
 
       <div className="nav-cta">
         <a href="/about#seva" className="btn-donate">
@@ -43,6 +37,7 @@ export default function SiteHeader() {
           target="_blank"
           rel="noopener noreferrer"
           className="btn-mission"
+          aria-label="Visit KaliPutra Mission (opens in a new tab)"
         >
           <span className="btn-mission-fill" />
           <span className="btn-mission-text">Visit KaliPutra Mission</span>

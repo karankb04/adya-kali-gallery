@@ -205,29 +205,27 @@ export default function MaaVideo() {
     raf = requestAnimationFrame(render);
 
     const ctx = gsap.context(() => {
+      // Reduced motion: no scroll hold at all; she simply shows as the final frame.
+      if (reduced) return;
       const st = ScrollTrigger.create({
         trigger: pinEl,
         start: "top top",
         end: "+=154%",
         pin: true,
         scrub: true,
-        onUpdate: (s) => { target = reduced ? 1 : s.progress; },
+        onUpdate: (s) => { target = s.progress; },
       });
       // Page opened (or reloaded) already partway down: start from that frame.
-      if (!reduced) {
-        target = shown = st.progress;
-        setPoster(st.progress > 0.5);
-      }
-      if (!reduced) {
-        gsap.fromTo(outlineRef.current, { xPercent: 18 }, {
-          xPercent: -18, ease: "none",
-          scrollTrigger: { trigger: pinEl, start: "top top", end: "+=154%", scrub: true },
-        });
-        gsap.from(footRef.current, {
-          y: 60, opacity: 0, ease: "none",
-          scrollTrigger: { trigger: pinEl, start: "top top", end: "+=40%", scrub: true },
-        });
-      }
+      target = shown = st.progress;
+      setPoster(st.progress > 0.5);
+      gsap.fromTo(outlineRef.current, { xPercent: 18 }, {
+        xPercent: -18, ease: "none",
+        scrollTrigger: { trigger: pinEl, start: "top top", end: "+=154%", scrub: true },
+      });
+      gsap.from(footRef.current, {
+        y: 60, opacity: 0, ease: "none",
+        scrollTrigger: { trigger: pinEl, start: "top top", end: "+=40%", scrub: true },
+      });
     });
 
     return () => {
@@ -238,7 +236,7 @@ export default function MaaVideo() {
   }, []);
 
   return (
-    <section className="maa" aria-label="Maa Adya Kali — Mother of infinite forms">
+    <section className="maa" aria-label="Maa Adya Kali, Mother of infinite forms">
       <div className="maa-stick" ref={pinRef}>
         <video ref={videoRef} muted playsInline preload="auto" style={{ display: "none" }} />
         <canvas ref={canvasRef} className="maa-canvas" aria-hidden="true" />
@@ -247,7 +245,7 @@ export default function MaaVideo() {
         <div className="maa-v maa-v2">The Mother • The Eternal</div>
         <div className="maa-shade" />
         <div className="maa-foot" ref={footRef}>
-          <p className="maa-foot-s">From the cremation ground to the heart of creation — she is time, power and liberation.</p>
+          <p className="maa-foot-s">From the cremation ground to the heart of creation, she is time, power and liberation.</p>
           <p className="maa-foot-t">Mother of infinite <em className="it">forms</em></p>
           <p className="maa-foot-d">Bhairavakaalike Namosthute</p>
         </div>

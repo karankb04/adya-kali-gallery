@@ -8,15 +8,15 @@ import HomeRibbon from "@/components/HomeRibbon";
 export const metadata: Metadata = {
   title: "Music",
   description:
-    "Chants, stotrams, and devotional music for Adya Kali — from the ADYAKALI MUSIC YouTube channel.",
+    "Chants, stotrams, and devotional music for Adya Kali, from the ADYAKALI MUSIC YouTube channel.",
   alternates: { canonical: "/music" },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/music`,
     siteName: SITE_NAME,
-    title: "Music — Maa Adya Kali Gallery",
+    title: "Music: Maa Adya Kali Gallery",
     description:
-      "Chants, stotrams, and devotional music for Adya Kali — from the ADYAKALI MUSIC YouTube channel.",
+      "Chants, stotrams, and devotional music for Adya Kali, from the ADYAKALI MUSIC YouTube channel.",
   },
 };
 
@@ -24,12 +24,14 @@ export default function MusicPage() {
   return (
     <>
       <SiteHeader />
+      <main>
       <section className="gallery-hero">
         <div className="wrap">
-          <div className="gallery-hero-deva">Listen</div>
-          <h1>Music</h1>
+          <h1>
+            The <em className="it">music</em>
+          </h1>
           <p className="gallery-hero-dek">
-            Chants, stotrams, and devotional songs for the Mother — from the{" "}
+            Chants, stotrams, and devotional songs for the Mother, from the{" "}
             <a
               href="https://www.youtube.com/@ADYAKALIMUSIC_KPM"
               target="_blank"
@@ -45,6 +47,7 @@ export default function MusicPage() {
       <div className="wrap music-wrap">
         <MusicGrid />
       </div>
+      </main>
       <SiteFooter />
     </>
   );

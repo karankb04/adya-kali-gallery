@@ -9,3 +9,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+
+# Preview links for test branches: never indexed by search engines
+https://:preview.karanb0406.workers.dev/*
+  X-Robots-Tag: noindex, nofollow

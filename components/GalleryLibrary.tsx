@@ -292,7 +292,7 @@ export default function GalleryLibrary({
               >
                 <RImage
                   r2Key={p.r2Key}
-                  alt={p.altText ?? `${p.transliteration} — ${p.form}`}
+                  alt={p.altText ?? `${p.transliteration}, ${p.form}`}
                   width={p.width}
                   height={p.height}
                   dominantColor={p.dominantColor}
@@ -326,7 +326,6 @@ export default function GalleryLibrary({
                 </svg>
               </span>
               <div className="cap">
-                <div className="nm">{p.nameDevanagari}</div>
                 <div className="tr">{p.transliteration}</div>
                 <div className="fm">{p.form}</div>
               </div>
@@ -345,6 +344,7 @@ export default function GalleryLibrary({
         onClose={() => setSelected(null)}
         onPrev={prev ? () => setSelected(prev) : undefined}
         onNext={next ? () => setSelected(next) : undefined}
+        position={selectedIndex >= 0 ? `${selectedIndex + 1} of ${visible.length}` : undefined}
       />
     </>
   );

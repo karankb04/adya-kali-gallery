@@ -58,7 +58,7 @@ export default function DarshanOfTheDay({
         <div className="dotd-media">
           <RImage
             r2Key={img.r2Key}
-            alt={img.altText ?? `${img.transliteration} — ${img.form}`}
+            alt={img.altText ?? `${img.transliteration}, ${img.form}`}
             width={img.width}
             height={img.height}
             dominantColor={img.dominantColor}
@@ -67,7 +67,6 @@ export default function DarshanOfTheDay({
           />
         </div>
         <div className="dotd-body">
-          <p className="dotd-deva" lang="hi">{img.nameDevanagari}</p>
           {home2 ? (
             <>
               <h3 className="dotd-title">

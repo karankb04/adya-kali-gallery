@@ -36,7 +36,7 @@ export default function SiteFooter() {
             <div className="sfoot-label">Newsletter</div>
             <p className="sfoot-news-copy">
               Darshan updates, new additions to the library, and the story of
-              Adya Kali — straight to your inbox.
+              Adya Kali, sent to your inbox.
             </p>
             <form className="sfoot-form" onSubmit={handleSubmit}>
               <input
@@ -71,6 +71,7 @@ export default function SiteFooter() {
             <Link href="/">Home</Link>
             <Link href="/gallery">Gallery</Link>
             <Link href="/about">About</Link>
+            <Link href="/music">Music</Link>
             <Link href="/blog">Katha</Link>
           </nav>
 

@@ -5,14 +5,10 @@ import Hero from "./Hero";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import GalleryLibrary from "./GalleryLibrary";
-import InstagramFeed from "./InstagramFeed";
-import PinnedTeaching from "./showcase/PinnedTeaching";
-import FaqSection from "./FaqSection";
 import HomeRibbon from "./HomeRibbon";
 import MaaVideo from "./MaaVideo";
 import SmoothScroll from "./SmoothScroll";
 import FadeUp from "./FadeUp";
-import { HOME_FAQS } from "@/content/faqs";
 
 interface KaliAppProps {
   images: KaliImage[];
@@ -41,7 +37,7 @@ export default function KaliApp({ images, daily }: KaliAppProps) {
       <SmoothScroll />
       <SiteHeader />
 
-      <div className="home">
+      <main className="home">
         {/* ---------- HERO ---------- */}
         <Hero images={images} onOpen={setSelected} />
 
@@ -69,43 +65,10 @@ export default function KaliApp({ images, daily }: KaliAppProps) {
           />
         </div>
 
-        {/* ---------- DARSHAN OF THE DAY (red) ---------- */}
-        <div className="band band-red">{daily}</div>
+        {/* ---------- DARSHAN OF THE DAY (black, so it stands apart from the red footer) ---------- */}
+        <div className="band band-black">{daily}</div>
 
-        {/* ---------- INSTAGRAM (black) ---------- */}
-        <div className="band band-black">
-          <InstagramFeed />
-        </div>
-
-        {/* ---------- PINNED TEACHING (red) ---------- */}
-        <div className="band band-red">
-          <section className="pin-teaching wrap">
-            <PinnedTeaching
-              kicker="Join the mission"
-              heading={
-                <>
-                  Walk with <em className="it">her</em>
-                </>
-              }
-              text="Nine ways to stay close to the mission — watch, listen, read, or join, whichever calls you."
-            />
-          </section>
-        </div>
-
-        {/* ---------- FAQ (black) ---------- */}
-        <div className="band band-black">
-          <FaqSection
-            deva="Questions"
-            title={
-              <>
-                Devotees <em className="it">ask</em>
-              </>
-            }
-            sub="Everything you might want to know about the gallery and the mission behind it."
-            items={HOME_FAQS}
-          />
-        </div>
-      </div>
+      </main>
 
       <SiteFooter />
       <FadeUp />

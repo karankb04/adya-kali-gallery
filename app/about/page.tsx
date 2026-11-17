@@ -6,7 +6,9 @@ import ScrollImageReveal from "@/components/ScrollImageReveal";
 import Coverflow from "@/components/Coverflow";
 import FaqSection from "@/components/FaqSection";
 import HomeRibbon from "@/components/HomeRibbon";
-import { ABOUT_FAQS } from "@/content/faqs";
+import InstagramFeed from "@/components/InstagramFeed";
+import PinnedTeaching from "@/components/showcase/PinnedTeaching";
+import { ABOUT_FAQS, HOME_FAQS } from "@/content/faqs";
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,7 +25,7 @@ const SEVA_ITEMS = [
     dominantColor: "#824e41",
     eyebrow: "Annadanam",
     title: "Free meals, offered without condition",
-    text: "[Placeholder] A short line about the annadanam seva — who it serves, how often it runs, and what it means to the mission.",
+    text: "[Placeholder] A short line about the annadanam seva: who it serves, how often it runs, and what it means to the mission.",
   },
   {
     r2Key: "WhatsApp Image 2026-04-14 at 17.37.43.jpeg",
@@ -32,7 +34,7 @@ const SEVA_ITEMS = [
     dominantColor: "#4b1e1a",
     eyebrow: "Vastra Daan",
     title: "Clothing for those who need it most",
-    text: "[Placeholder] A short line about the vastra daan seva — where donations go and how devotees can contribute.",
+    text: "[Placeholder] A short line about the vastra daan seva: where donations go and how devotees can contribute.",
   },
   {
     r2Key: "WhatsApp Image 2026-06-24 at 06.37.14.jpeg",
@@ -41,7 +43,7 @@ const SEVA_ITEMS = [
     dominantColor: "#a87650",
     eyebrow: "Vidya Daan",
     title: "Supporting a child's education",
-    text: "[Placeholder] A short line about the vidya daan seva — the students it supports and how it's funded.",
+    text: "[Placeholder] A short line about the vidya daan seva: the students it supports and how it's funded.",
   },
 ];
 
@@ -58,12 +60,14 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
+      <main>
       <section className="gallery-hero">
         <div className="wrap">
-          <div className="gallery-hero-deva">Our story</div>
-          <h1>About</h1>
+          <h1>
+            About <em className="it">us</em>
+          </h1>
           <p className="gallery-hero-dek">
-            The story of Adya Kali and the KaliPutra Mission — coming soon.
+            The story of Adya Kali and the KaliPutra Mission. Coming soon.
           </p>
         </div>
       </section>
@@ -109,13 +113,41 @@ export default function AboutPage() {
         <Coverflow items={COVERFLOW_ITEMS} />
       </section>
 
-      <FaqSection
-        deva="Questions"
-        title="Questions about the mission"
-        sub="Everything you might want to know about who we are."
-        items={ABOUT_FAQS}
-      />
+      {/* ---------- INSTAGRAM (black) ---------- */}
+      <div className="band band-black">
+        <InstagramFeed />
+      </div>
 
+      {/* ---------- WALK WITH HER (red) ---------- */}
+      <div className="band band-red">
+        <section className="pin-teaching wrap">
+          <PinnedTeaching
+            kicker="Join the mission"
+            heading={
+              <>
+                Walk with <em className="it">her</em>
+              </>
+            }
+            text="Nine ways to stay close to the mission. Watch, listen, read or join, whichever calls you."
+          />
+        </section>
+      </div>
+
+      {/* ---------- FAQ (black) ---------- */}
+      <div className="band band-black">
+        <FaqSection
+          deva="Questions"
+          title={
+            <>
+              Devotees <em className="it">ask</em>
+            </>
+          }
+          sub="Common questions about the gallery and the mission behind it."
+          items={[...HOME_FAQS, ...ABOUT_FAQS]}
+        />
+      </div>
+
+      </main>
       <SiteFooter />
     </>
   );

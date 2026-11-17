@@ -39,7 +39,7 @@ export default function InstagramFeed() {
           From <em className="it">Instagram</em>
         </h2>
         <div className="sub">
-          Devotional moments from the KaliPutra Mission — follow along for
+          Devotional moments from the KaliPutra Mission. Follow along for
           more.
         </div>
         <a
